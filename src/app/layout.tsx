@@ -1,8 +1,9 @@
+import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import './globals.css'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'KeyPulse — The Heartbeat of your API Lifecycle',
   description:
     'Paste any API key. We detect the provider, verify it live, and tell you everything — in seconds. Privacy-first, zero-log API key validation.',
@@ -28,7 +29,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <body className="font-sans">{children}</body>
+      <body className="font-sans" suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   )
 }
