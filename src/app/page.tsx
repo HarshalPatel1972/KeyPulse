@@ -9,6 +9,7 @@ import TrustStrip from '@/components/TrustStrip'
 import ThemeSwitcher from '@/components/ThemeSwitcher'
 import ResultCard from '@/components/ResultCard'
 import StarRiver from '@/components/StarRiver'
+import GitHubButton from '@/components/GitHubButton'
 
 export default function Home() {
   const [key, setKey] = useState('')
@@ -66,17 +67,9 @@ export default function Home() {
             KeyPulse
           </span>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <ThemeSwitcher />
-          <a
-            href="https://github.com/HarshalPatel1972/keypulse"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs transition-colors"
-            style={{ color: 'var(--text-hint)' }}
-          >
-            GitHub
-          </a>
+          <GitHubButton />
         </div>
       </nav>
 

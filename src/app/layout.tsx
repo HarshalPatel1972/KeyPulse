@@ -3,13 +3,15 @@ import localFont from 'next/font/local'
 import './globals.css'
 
 const cirka = localFont({
-  src: '../../public/Cirka/Cirka-Bold.otf',
+  src: '../fonts/Cirka/Cirka-Bold.otf',
   variable: '--font-cirka',
+  display: 'swap',
 })
 
 const season = localFont({
-  src: '../../public/season/SeasonSans-TRIAL-Regular.otf',
+  src: '../fonts/season/SeasonSans-TRIAL-Regular.otf',
   variable: '--font-season',
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
