@@ -163,7 +163,6 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: text-flow 60s ease-in-out infinite;
   filter: drop-shadow(0 0 0.5px rgba(255,255,255,0.2));
 }
 

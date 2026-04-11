@@ -70,14 +70,6 @@ export default function Home() {
                 <stop offset="60%" stopColor="#ffde59" />
                 <stop offset="80%" stopColor="#7ed957" />
                 <stop offset="100%" stopColor="#ffffff" />
-                <animateTransform 
-                  attributeName="gradientTransform" 
-                  type="translate" 
-                  from="-1 0" 
-                  to="1 0" 
-                  dur="3s" 
-                  repeatCount="indefinite" 
-                />
               </linearGradient>
             </defs>
             <polyline
