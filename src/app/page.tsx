@@ -141,13 +141,7 @@ export default function Home() {
               />
               <div className="mt-8 relative group">
                  <div className="relative flex items-stretch rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] transition-all duration-500 shadow-2xl">
-                    <div 
-                      className="flex-1 transition-all duration-500"
-                      style={{ 
-                        marginRight: hasChecked ? '0px' : '-160px',
-                        transform: hasChecked ? 'translateX(0)' : 'translateX(80px)'
-                      }}
-                    >
+                    <div className="flex-1 overflow-hidden transition-all duration-500 ease-out">
                       <VerifyButton
                         onClick={handleVerify}
                         isLoading={isLoading}
