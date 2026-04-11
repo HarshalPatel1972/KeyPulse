@@ -209,12 +209,16 @@ export default function Home() {
             )}
             
             {history.length === 0 && !isLoading ? (
-              <div className="h-full flex flex-col items-center justify-center text-center opacity-20 pointer-events-none px-12">
-                <div className="w-12 h-12 rounded-2xl border border-dashed border-white/20 mb-4 flex items-center justify-center">
-                  <span className="text-xl">⚡</span>
+              <div className="h-full flex flex-col items-center justify-center text-center opacity-60 pointer-events-none px-12 group/empty">
+                <div className="w-16 h-16 rounded-2xl border border-dashed border-white/30 mb-6 flex items-center justify-center animate-pulse-heartbeat bg-white/[0.02] shadow-[0_0_30px_rgba(255,255,255,0.02)]">
+                  <span className="text-2xl filter drop-shadow-[0_0_10px_rgba(255,187,0,0.5)]">⚡</span>
                 </div>
-                <p className="text-xs uppercase tracking-[0.15em] font-medium leading-relaxed">
-                  Results will populate here in real-time
+                <p className="text-[10px] uppercase tracking-[0.25em] font-bold leading-relaxed max-w-[200px]" style={{ color: 'var(--text-muted)' }}>
+                  Feed awaiting input
+                </p>
+                <div className="mt-4 w-12 h-[1px] bg-white/10" />
+                <p className="mt-4 text-[9px] uppercase tracking-[0.1em] opacity-40 leading-relaxed">
+                  Real-time results will <br /> populate here
                 </p>
               </div>
             ) : (
