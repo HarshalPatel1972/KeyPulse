@@ -72,10 +72,10 @@ export default function ManualSelect({ value, onChange }: Props) {
           </svg>
         </button>
 
-        {/* Custom Dropdown Grid - Elevated to absolute top priority */}
+        {/* Custom Dropdown Grid - High Contrast Adaptive Grid */}
         {isOpen && (
-          <div className="absolute z-[99999] w-[120%] -left-[10%] mt-2 rounded-2xl overflow-hidden bg-[#161426] border border-white/20 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] animate-dropdown-open">
-            <div className="p-2 grid grid-cols-3 gap-1.5 overflow-y-auto max-h-[400px] custom-scrollbar">
+          <div className="absolute z-[99999] w-[100%] sm:w-[120%] left-0 sm:-left-[10%] mt-2 rounded-2xl overflow-hidden bg-[#161426] border border-white/20 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] animate-dropdown-open">
+            <div className="p-2 grid grid-cols-2 md:grid-cols-3 gap-1.5 overflow-y-auto max-h-[400px] custom-scrollbar">
               {PROVIDERS.map((p) => (
                 <button
                   key={p.id}
@@ -85,7 +85,7 @@ export default function ManualSelect({ value, onChange }: Props) {
                   }}
                   className={`
                     flex items-center gap-2.5 px-3 py-2.5 rounded-xl transition-all duration-300
-                    hover:bg-white/[0.07] group border
+                    hover:bg-white/[0.07] group border active-scale
                     ${value?.id === p.id 
                       ? 'bg-accent/15 border-accent/60 shadow-[0_0_20px_rgba(var(--accent-rgb),0.15)]' 
                       : 'border-white/5 hover:border-white/20'

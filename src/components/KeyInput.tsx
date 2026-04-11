@@ -11,9 +11,10 @@ interface Props {
   onKeyChange: (key: string) => void
   isLoading: boolean
   isInvalid: boolean
+  forceManual?: boolean
 }
 
-export default function KeyInput({ value, onProviderChange, onKeyChange, isLoading, isInvalid }: Props) {
+export default function KeyInput({ value, onProviderChange, onKeyChange, isLoading, isInvalid, forceManual }: Props) {
   const [showKey, setShowKey] = useState(false)
   const [detection, setDetection] = useState<ReturnType<typeof detectProvider> | null>(null)
   const [manualProvider, setManualProvider] = useState<Provider | null>(null)
@@ -50,7 +51,7 @@ export default function KeyInput({ value, onProviderChange, onKeyChange, isLoadi
     onProviderChange(provider)
   }
 
-  const showManual = detection?.confidence === 'unknown' && value.trim().length > 8
+  const showManual = (detection?.confidence === 'unknown' && value.trim().length > 8) || forceManual
 
   return (
     <div className="w-full">

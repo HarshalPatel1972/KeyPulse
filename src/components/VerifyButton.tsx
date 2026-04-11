@@ -12,7 +12,7 @@ export default function VerifyButton({ onClick, disabled, isLoading, activeTheme
       disabled={disabled || isLoading}
       className={`
         w-full py-4 rounded-none font-heading font-bold text-[15px] tracking-[0.05em] uppercase
-        transition-all duration-300 relative overflow-hidden group
+        transition-all duration-300 relative overflow-hidden group active-scale
         ${disabled || isLoading 
           ? 'bg-white/[0.04] text-white/20' 
           : 'cursor-pointer hover:bg-white/5 active:scale-[0.98]'

@@ -10,6 +10,7 @@ import ThemeSwitcher from '@/components/ThemeSwitcher'
 import ResultCard from '@/components/ResultCard'
 import StarRiver from '@/components/StarRiver'
 import GitHubButton from '@/components/GitHubButton'
+import MobileNav, { TabType } from '@/components/MobileNav'
 
 export default function Home() {
   const [key, setKey] = useState('')
@@ -17,8 +18,14 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false)
   const [isInvalid, setIsInvalid] = useState(false)
   const [history, setHistory] = useState<VerifyResult[]>([])
-  const [hasChecked, setHasChecked] = useState(false)
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 })
+  const [activeTab, setActiveTab] = useState<TabType>('pulse')
+  const [forceManual, setForceManual] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect()
@@ -104,20 +111,27 @@ export default function Home() {
 
       {/* Main Container - Absolute rigid height to prevent any jitter */}
       <div className="flex-1 h-[calc(100vh-64px)] flex items-stretch overflow-hidden relative">
-        {/* Interaction Column - Fixed inside rigid parent */}
-        <div className="flex-1 h-full flex flex-col items-center justify-center p-6 overflow-y-auto relative z-[20000] box-border">
-          <div className="w-full max-w-[540px] py-12 relative -top-[30px] scale-[1.08] transform-gpu transition-all duration-700">
+        {/* Interaction Column - Pulse Tab */}
+        <div className={`flex-1 h-full flex flex-col items-center justify-center p-4 md:p-6 overflow-y-auto relative z-[20000] box-border ${activeTab === 'pulse' ? 'flex' : 'hidden xl:flex'}`}>
+          <div className="w-full max-w-[540px] py-6 md:py-12 relative xl:-top-[30px] xl:scale-[1.08] transform-gpu transition-all duration-700">
             <div className="mb-6 text-center animate-fade-in">
-              <div
-                className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full backdrop-blur-md bg-white/[0.03] border border-white/10 text-[10px] mb-4 transition-all duration-500 hover:border-white/20"
+              <button
+                type="button"
+                onClick={() => setForceManual(v => !v)}
+                className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full backdrop-blur-md bg-white/[0.03] border border-white/10 text-[10px] mb-4 transition-all duration-500 hover:border-white/20 active:scale-95 cursor-pointer"
                 style={{ letterSpacing: '0.12em', color: 'var(--text-muted)' }}
               >
                 <div className="relative flex items-center justify-center">
                   <span className="absolute w-2.5 h-2.5 rounded-full bg-valid/40 animate-ping" />
                   <span className="relative w-1.5 h-1.5 rounded-full bg-valid shadow-[0_0_8px_rgba(45,212,191,0.5)]" />
                 </div>
-                <span className="font-sans font-medium uppercase mt-0.5">11 providers supported</span>
-              </div>
+                <span className="font-sans font-medium uppercase mt-0.5">
+                  {forceManual ? 'Pick a provider' : '11 providers supported'}
+                </span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={`transition-transform duration-300 ${forceManual ? 'rotate-180' : ''}`}>
+                  <path d="m6 9 6 6 6-6"/>
+                </svg>
+              </button>
               <h1 
                 className="text-4xl font-heading mb-2 tracking-[-0.03em] interactive-text-flow pb-2 cursor-default"
                 onMouseMove={handleMouseMove}
@@ -190,6 +204,7 @@ export default function Home() {
                 <KeyInput
                   value={key}
                   onProviderChange={setProvider}
+                  forceManual={forceManual}
                   onKeyChange={(val) => {
                     setKey(val)
                     if (!val) {
@@ -205,13 +220,55 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Fixed Vertical Divider - Guaranteed to reach the screen bottom */}
+        {/* Mobile History View */}
+        <div className={`flex-1 flex flex-col h-full bg-transparent overflow-hidden relative z-20 xl:hidden ${activeTab === 'history' ? 'flex' : 'hidden'}`}>
+          <div className="w-full border-b border-[var(--border)] bg-white/[0.02] shrink-0 p-6 flex items-center justify-between">
+            <h2 className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted">Verification Feed</h2>
+            <span className="text-[10px] font-mono opacity-30">{history.length} active</span>
+          </div>
+          <div className="flex-1 w-full overflow-y-auto p-4 md:p-6 space-y-6 pb-24">
+            {history.length === 0 && !isLoading ? (
+              <div className="h-full flex flex-col items-center justify-center text-center opacity-60 px-12">
+                <div className="w-16 h-16 rounded-2xl border border-dashed border-white/30 mb-6 flex items-center justify-center animate-pulse-heartbeat bg-white/[0.02]">
+                  <span className="text-2xl">⚡</span>
+                </div>
+                <p className="text-[10px] uppercase tracking-[0.25em] font-bold">Feed awaiting input</p>
+              </div>
+            ) : (
+              <div className="flex flex-col gap-4">
+                {history.map((res, idx) => (
+                  <div key={res.checkedAt + idx} className="animate-slide-up">
+                    <ResultCard result={res} />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Mobile Settings/Theme View */}
+        <div className={`flex-1 flex flex-col h-full items-center justify-center p-6 relative z-20 xl:hidden ${activeTab === 'settings' ? 'flex' : 'hidden'}`}>
+          <div className="w-full max-w-sm space-y-8 animate-fade-in text-center">
+            <div>
+              <h2 className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted mb-6">Select Atmosphere</h2>
+              <div className="bg-white/[0.03] border border-white/10 rounded-3xl p-6">
+                <ThemeSwitcher />
+              </div>
+            </div>
+            
+            <div className="pt-8 border-t border-white/5">
+              <h2 className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted mb-6">Open Source</h2>
+              <GitHubButton />
+            </div>
+          </div>
+        </div>
+
+        {/* Fixed Vertical Divider - Desktop Only */}
         <div className="hidden xl:block fixed top-16 bottom-0 right-[420px] w-[1px] z-[9999] bg-[var(--border)] pointer-events-none">
-          {/* Subtle Glow for consistency */}
           <div className="absolute inset-x-[-1px] inset-y-0 bg-accent/20 blur-[1px]" />
         </div>
 
-        {/* Sidebar Column - Strictly locked width and height */}
+        {/* Sidebar Column - Desktop Only */}
         <div 
           className="hidden xl:flex flex-col h-full bg-transparent overflow-hidden shrink-0 w-[420px] relative z-20"
           style={{ backdropFilter: 'blur(4px)' }}
@@ -258,6 +315,8 @@ export default function Home() {
         </div>
       </div>
 
+      <MobileNav activeTab={activeTab} onTabChange={setActiveTab} historyCount={history.length} />
+
       {/* Footer - Fixed to absolute bottom with increased presence */}
       <footer className="fixed bottom-0 left-0 w-full pt-2 pb-[33px] z-[50000] bg-base/5 backdrop-blur-xs border-white/[0.01]">
         <div className="flex items-center justify-center gap-3 xl:pr-[420px]">
@@ -279,8 +338,8 @@ export default function Home() {
               >
                 Harshal Patel
               </a>
-              {/* Heart Particles */}
-              {hearts.map(h => (
+              {/* Heart Particles - Client Side Only */}
+              {isMounted && hearts.map(h => (
                 <span 
                   key={h.id}
                   className="absolute animate-heart pointer-events-none z-0"
