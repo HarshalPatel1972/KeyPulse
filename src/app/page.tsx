@@ -239,17 +239,17 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="relative py-3 z-10 border-t border-white/[0.05] backdrop-blur-md bg-white/[0.01] shrink-0">
+      <footer className="relative py-2 z-10 backdrop-blur-md bg-white/[0.01] shrink-0 mt-auto">
         <div className="flex items-center justify-center gap-3">
-          <span className="text-[10px] uppercase tracking-[0.2em] text-muted opacity-40">© 2026</span>
-          <div className="w-[1px] h-3 bg-white/10" />
+          <span className="text-[9px] uppercase tracking-[0.2em] text-muted opacity-30">© 2026</span>
+          <div className="w-[1px] h-2 bg-white/10" />
           <div className="flex items-center gap-1.5">
-            <span className="text-[10px] uppercase tracking-[0.1em] text-muted opacity-40">Built by</span>
+            <span className="text-[9px] uppercase tracking-[0.1em] text-muted opacity-30">Built by</span>
             <a
               href="https://github.com/HarshalPatel1972"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[11px] font-bold tracking-[0.15em] uppercase text-primary transition-all duration-300 hover:text-accent"
+              className="text-[10px] font-bold tracking-[0.15em] uppercase text-primary transition-all duration-300 hover:text-accent"
             >
               Harshal Patel
             </a>
