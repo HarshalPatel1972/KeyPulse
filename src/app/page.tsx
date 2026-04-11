@@ -61,7 +61,7 @@ export default function Home() {
         style={{ borderBottom: '1px solid var(--border)' }}
       >
         <div className="flex items-center gap-2.5 group">
-          <svg width="24" height="24" viewBox="0 0 20 20" fill="none" className="animate-pulse-heartbeat transition-all duration-500 group-hover:scale-110">
+          <svg width="24" height="24" viewBox="0 0 20 20" fill="none" className="transition-all duration-500 group-hover:scale-110">
             <defs>
               <linearGradient id="logo-flow" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#ffffff" />
@@ -75,20 +75,29 @@ export default function Home() {
                   type="translate" 
                   from="-1 0" 
                   to="1 0" 
-                  dur="4s" 
+                  dur="3s" 
                   repeatCount="indefinite" 
                 />
               </linearGradient>
             </defs>
             <polyline
-              points="1,10 5,10 7,4 9,16 11,7 13,13 15,10 19,10"
+              className="drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]"
               stroke="url(#logo-flow)"
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
               fill="none"
-              className="drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
-            />
+            >
+              <animate 
+                attributeName="points"
+                dur="1.5s"
+                repeatCount="indefinite"
+                values="
+                  1,10 5,10 7,4 9,16 11,7 13,13 15,10 19,10;
+                  1,10 5,10 7,6 9,14 11,8 13,12 15,10 19,10;
+                  1,10 5,10 7,4 9,16 11,7 13,13 15,10 19,10"
+              />
+            </polyline>
           </svg>
           <span className="text-lg font-heading font-bold animate-text-flow tracking-tight">
             KeyPulse
@@ -238,18 +247,19 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="relative py-2 z-10 backdrop-blur-md bg-white/[0.01] shrink-0 mt-auto">
+      {/* Footer - Fixed to absolute bottom for professional grounding */}
+      <footer className="fixed bottom-0 left-0 w-full py-2 z-50 bg-base/10 backdrop-blur-xs border-white/[0.02]">
         <div className="flex items-center justify-center gap-3">
-          <span className="text-[9px] uppercase tracking-[0.2em] text-muted opacity-30">© 2026</span>
-          <div className="w-[1px] h-2 bg-white/10" />
+          <span className="text-[8px] uppercase tracking-[0.25em] text-muted opacity-20">© 2026</span>
+          <div className="w-[1px] h-2 bg-white/5" />
           <div className="flex items-center gap-1.5">
-            <span className="text-[9px] uppercase tracking-[0.1em] text-muted opacity-30">Built by</span>
+            <span className="text-[8px] uppercase tracking-[0.1em] text-muted opacity-20">Built by</span>
             <a
               href="https://github.com/HarshalPatel1972"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[10px] font-bold tracking-[0.15em] uppercase text-primary transition-all duration-300 hover:text-accent"
+              className="text-[9px] font-bold tracking-[0.2em] uppercase text-primary transition-all duration-300 hover:text-accent hover:opacity-100 opacity-60"
+              style={{ letterSpacing: '0.15em' }}
             >
               Harshal Patel
             </a>
