@@ -4,10 +4,15 @@ import { GeistMono } from 'geist/font/mono'
 import './globals.css'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://keypulse.app'),
   title: 'KeyPulse — The Heartbeat of your API Lifecycle',
   description:
     'Paste any API key. We detect the provider, verify it live, and tell you everything — in seconds. Privacy-first, zero-log API key validation.',
-  keywords: ['API key', 'validator', 'checker', 'OpenAI', 'Anthropic', 'Gemini', 'security'],
+  alternates: {
+    canonical: '/',
+  },
+  manifest: '/manifest.json',
+  keywords: ['API key', 'validator', 'checker', 'OpenAI', 'Anthropic', 'Gemini', 'security', 'key pulse'],
   authors: [{ name: 'KeyPulse Team' }],
   openGraph: {
     title: 'KeyPulse — Check if your key still has a pulse',
@@ -22,8 +27,8 @@ export const metadata: Metadata = {
     description: 'The heartbeat of your API lifecycle.',
   },
   icons: {
-    icon: '/logo.png',
-    apple: '/logo.png',
+    icon: '/favicon.ico',
+    apple: '/favicon.ico',
   },
 }
 
