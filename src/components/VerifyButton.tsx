@@ -10,7 +10,7 @@ export default function VerifyButton({ onClick, disabled, isLoading }: Props) {
       onClick={onClick}
       disabled={disabled || isLoading}
       className={`
-        w-full py-4 rounded-xl font-heading font-bold text-[15px] tracking-[0.05em] uppercase
+        w-full py-4 rounded-none font-heading font-bold text-[15px] tracking-[0.05em] uppercase
         transition-all duration-300 relative overflow-hidden group
         ${disabled || isLoading 
           ? 'bg-white/[0.04] text-white/20' 
