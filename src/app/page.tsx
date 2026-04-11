@@ -48,21 +48,20 @@ export default function Home() {
         className="flex items-center justify-between px-6 py-4"
         style={{ borderBottom: '1px solid var(--border)' }}
       >
-        <div className="flex items-center gap-2">
-          {/* Pulse icon — inline SVG */}
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <div className="flex items-center gap-2.5 group">
+          {/* Pulse icon — inline SVG with neon glow */}
+          <svg width="22" height="22" viewBox="0 0 20 20" fill="none" className="animate-pulse-heartbeat transition-all duration-500 group-hover:scale-110">
             <polyline
               points="1,10 5,10 7,4 9,16 11,7 13,13 15,10 19,10"
               stroke="var(--accent)"
-              strokeWidth="1.5"
+              strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              fill="none"
+              className="drop-shadow-[0_0_6px_var(--accent)]"
             />
           </svg>
           <span
-            className="text-sm font-heading"
-            style={{ color: 'var(--text-primary)' }}
+            className="text-lg font-heading font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/70 tracking-tight"
           >
             KeyPulse
           </span>
