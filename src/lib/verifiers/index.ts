@@ -17,6 +17,8 @@ const DIRECT_VERIFIERS: Partial<Record<ProviderId, (key: string) => Promise<Veri
   mistral: (key) => proxyVerifier(key, 'mistral'),
   cohere: (key) => proxyVerifier(key, 'cohere'),
   perplexity: (key) => proxyVerifier(key, 'perplexity'),
+  together: (key) => proxyVerifier(key, 'together'),
+  elevenlabs: (key) => proxyVerifier(key, 'elevenlabs'),
 }
 
 export async function verify(key: string, providerId: ProviderId): Promise<VerifyResult> {
