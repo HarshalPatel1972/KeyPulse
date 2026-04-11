@@ -203,9 +203,11 @@ export default function Home() {
           className="hidden xl:flex flex-col border-l border-white/[0.08] bg-transparent overflow-hidden"
           style={{ backdropFilter: 'blur(4px)' }}
         >
-          <div className="p-6 border-b border-white/[0.05] flex items-center justify-between bg-white/[0.02] shrink-0">
-            <h2 className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted">Verification Feed</h2>
-            <span className="text-[10px] font-mono opacity-30">{history.length} active</span>
+          <div className="border-b border-white/[0.05] bg-white/[0.02] shrink-0">
+            <div className="p-6 flex items-center justify-between">
+              <h2 className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted">Verification Feed</h2>
+              <span className="text-[10px] font-mono opacity-30">{history.length} active</span>
+            </div>
           </div>
 
           <div className="flex-1 overflow-y-auto p-6 space-y-6">
@@ -225,7 +227,7 @@ export default function Home() {
                 <p className="text-[10px] uppercase tracking-[0.25em] font-bold" style={{ color: 'var(--text-muted)' }}>
                   Feed awaiting input
                 </p>
-                <div className="mt-4 w-12 h-[1px] bg-white/10" />
+                <div className="mt-4 w-24 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                 <p className="mt-4 text-[9px] uppercase tracking-[0.1em] opacity-40">
                   Real-time results will <br /> populate here
                 </p>
