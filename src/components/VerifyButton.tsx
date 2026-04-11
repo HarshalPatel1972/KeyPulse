@@ -10,11 +10,11 @@ export default function VerifyButton({ onClick, disabled, isLoading }: Props) {
       onClick={onClick}
       disabled={disabled || isLoading}
       className={`
-        w-full mt-6 py-4 rounded-2xl font-heading font-bold text-[15px] tracking-[0.05em] uppercase
+        w-full py-4 rounded-xl font-heading font-bold text-[15px] tracking-[0.05em] uppercase
         transition-all duration-300 relative overflow-hidden group
         ${disabled || isLoading 
-          ? 'bg-white/[0.04] text-white/20 border border-white/5 cursor-not-allowed' 
-          : 'cursor-pointer hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_20px_rgba(124,58,237,0.1)] hover:shadow-[0_0_30px_rgba(124,58,237,0.3)]'
+          ? 'bg-white/[0.04] text-white/20' 
+          : 'cursor-pointer hover:bg-white/5 active:scale-[0.98]'
         }
       `}
       style={{
