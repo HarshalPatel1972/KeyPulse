@@ -134,8 +134,8 @@ export default function ResultCard({ result, provider: manualProvider, onReset }
         <p className="text-[9px] text-hint uppercase tracking-widest font-bold opacity-30">
           {new Date(result.checkedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
         </p>
-        {onReset && result.checkedAt === 0 && ( // Hide button in history unless specifically needed
-          <button
+        {onReset && result.checkedAt === '0' && ( // Hide button in history unless specifically needed
+            <button
             onClick={onReset}
             className="text-[9px] font-bold text-primary hover:text-primary/70 transition-colors uppercase tracking-widest bg-white/[0.05] px-3 py-1.5 rounded-lg border border-white/[0.1]"
           >
