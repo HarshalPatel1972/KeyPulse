@@ -2,9 +2,10 @@ interface Props {
   onClick: () => void
   disabled: boolean
   isLoading: boolean
+  activeTheme?: string
 }
 
-export default function VerifyButton({ onClick, disabled, isLoading }: Props) {
+export default function VerifyButton({ onClick, disabled, isLoading, activeTheme }: Props) {
   return (
     <button
       onClick={onClick}
