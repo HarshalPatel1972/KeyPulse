@@ -149,9 +149,29 @@ export default function Home() {
                     >
                       <button
                         onClick={handleReset}
-                        className="w-full h-full font-bold text-[10px] uppercase tracking-[0.22em] transition-all duration-300 hover:bg-white/[0.05] active:scale-95 text-muted flex items-center justify-center gap-2 px-6"
+                        className="group/reset w-full h-full font-bold text-[10px] uppercase tracking-[0.22em] transition-all duration-300 hover:bg-white/[0.05] active:scale-95 flex items-center justify-center gap-2 px-6"
+                        style={{ color: 'var(--text-muted)' }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.color = 'var(--accent)';
+                          e.currentTarget.style.textShadow = '0 0 10px var(--accent)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.color = 'var(--text-muted)';
+                          e.currentTarget.style.textShadow = 'none';
+                        }}
                       >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-40">
+                        <svg 
+                          xmlns="http://www.w3.org/2000/svg" 
+                          width="12" 
+                          height="12" 
+                          viewBox="0 0 24 24" 
+                          fill="none" 
+                          stroke="currentColor" 
+                          strokeWidth="2.5" 
+                          strokeLinecap="round" 
+                          strokeLinejoin="round" 
+                          className="opacity-40 transition-colors duration-300"
+                        >
                           <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
                           <path d="M3 3v5h5" />
                         </svg>
