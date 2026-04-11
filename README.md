@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# KeyPulse 💓
 
-## Getting Started
+**KeyPulse is the heartbeat of your API lifecycle.**
 
-First, run the development server:
+KeyPulse is a high-performance, privacy-first API key validator. It allows developers to instantly detect the provider of an API key and verify its status live, directly from the browser, with zero server-side logging.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Instant Recognition**: Automatic prefix-based detection for 11+ major AI providers.
+- **Live Verification**: Real-time status checks (Valid, Invalid, Quota Exceeded, Rate Limited).
+- **Privacy First**: Direct browser-to-API communication. Your keys never leave your device.
+- **Deep Insights**: View available models, account types, and remaining rate limits.
+- **Beautiful UI**: A focused, dark-mode experience built with Geist Mono and Tailwind CSS.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠 Supported Providers
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- OpenAI
+- Anthropic
+- Google Gemini
+- Groq
+- Mistral
+- Cohere
+- HuggingFace
+- Perplexity
+- Together AI
+- Replicate
+- ElevenLabs
 
-## Learn More
+## 📦 Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- **Framework**: [Next.js 14](https://nextjs.org/) (App Router, TypeScript)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Fonts**: [Geist](https://vercel.com/font)
+- **Proxy**: Cloudflare Workers (for CORS-restricted providers)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠 Setup
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Prerequisites
 
-## Deploy on Vercel
+- [pnpm](https://pnpm.io/)
+- A Cloudflare Worker (optional, for proxy-dependent providers)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Local Development
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/HarshalPatel1972/keypulse.git
+   cd keypulse
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   pnpm install
+   ```
+
+3. **Configure environment**:
+   Create a `.env.local` file:
+   ```env
+   NEXT_PUBLIC_CF_WORKER_URL=your_worker_url
+   ```
+
+4. **Run the development server**:
+   ```bash
+   pnpm dev
+   ```
+
+5. **Open the app**:
+   Navigate to `http://localhost:3000`.
+
+## 🔒 Privacy & Security
+
+KeyPulse is designed with a strict zero-log policy. We utilize direct browser-to-API calls whenever possible. For providers where CORS is restricted, we use a stateless Cloudflare Worker proxy that does not log requests or keys.
+
+## 📄 License
+
+MIT
