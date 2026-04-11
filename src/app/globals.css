@@ -1,5 +1,26 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Cirka';
+  src: url('/fonts/cirka.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Season';
+  src: url('/fonts/season.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-cirka: 'Cirka', system-ui, sans-serif;
+  --font-season: 'Season', system-ui, sans-serif;
+}
+
 *, *::before, *::after { box-sizing: border-box; }
 
 /* Default theme applied on html element */

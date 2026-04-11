@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { cirka, theSeason } from './fonts'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -33,11 +32,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${cirka.variable} ${theSeason.variable}`}>
-      <body 
-        className={`${theSeason.className} antialiased`} 
-        suppressHydrationWarning
-      >
+    <html lang="en">
+      <body className="font-sans antialiased" suppressHydrationWarning>
         {children}
       </body>
     </html>
