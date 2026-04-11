@@ -77,8 +77,8 @@ export default function KeyInput({ value, onProviderChange, onKeyChange, isLoadi
             color: 'var(--text-primary)',
             fontFamily: 'var(--font-geist-mono)',
             fontSize: '13px',
-            WebkitTextSecurity: showKey ? 'none' : ('disc' as any),
-          }}
+            WebkitTextSecurity: showKey ? 'none' : 'disc',
+          } as any}
           autoComplete="one-time-code"
           autoCorrect="off"
           spellCheck={false}
