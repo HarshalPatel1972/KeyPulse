@@ -57,8 +57,7 @@ export default function Home() {
       <div className="w-full max-w-[560px]">
         {!result ? (
           <div className="animate-in fade-in slide-in-from-top-4 duration-500">
-            <div className="mb-10 text-center flex flex-col items-center">
-              <img src="/logo.png" alt="KeyPulse Logo" className="w-16 h-16 mb-6 rounded-2xl shadow-2xl shadow-invalid/20 ring-1 ring-border" />
+            <div className="mb-10 text-center">
               <h1 className="text-3xl font-semibold text-primary mb-2 tracking-tight">KeyPulse</h1>
               <p className="text-muted text-base">Check if your key still has a pulse.</p>
             </div>
