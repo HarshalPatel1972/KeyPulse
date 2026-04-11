@@ -37,8 +37,8 @@ html {
   --bg-base:      #08070f;
   --bg-surface:   #0f0d1a;
   --bg-elevated:  #161228;
-  --border:       rgba(124, 58, 237, 0.15);
-  --border-hover: rgba(124, 58, 237, 0.35);
+  --border:       rgba(255, 255, 255, 0.12);
+  --border-hover: rgba(255, 255, 255, 0.25);
   --text-primary: #f0eeff;
   --text-muted:   #a78bfa;
   --text-hint:    #6d5fa0;
@@ -56,8 +56,8 @@ html.theme-void {
   --bg-base:      #060812;
   --bg-surface:   #0b1121;
   --bg-elevated:  #111d35;
-  --border:       rgba(14, 165, 233, 0.12);
-  --border-hover: rgba(14, 165, 233, 0.28);
+  --border:       rgba(255, 255, 255, 0.12);
+  --border-hover: rgba(255, 255, 255, 0.25);
   --text-primary: #e2f0ff;
   --text-muted:   #38bdf8;
   --text-hint:    #3a5a7a;
@@ -75,8 +75,8 @@ html.theme-dusk {
   --bg-base:      #0c0a08;
   --bg-surface:   #150f08;
   --bg-elevated:  #1e1609;
-  --border:       rgba(249, 115, 22, 0.12);
-  --border-hover: rgba(249, 115, 22, 0.28);
+  --border:       rgba(255, 255, 255, 0.12);
+  --border-hover: rgba(255, 255, 255, 0.25);
   --text-primary: #fef3e8;
   --text-muted:   #fb923c;
   --text-hint:    #6b4a26;
@@ -88,6 +88,15 @@ html.theme-dusk {
   --invalid:      #f87171;
   --quota:        #facc15;
   --unknown:      #6b4a26;
+}
+
+html, body {
+  overflow: hidden !important;
+  height: 100% !important;
+  width: 100% !important;
+  margin: 0;
+  padding: 0;
+  position: fixed;
 }
 
 body {
@@ -150,20 +159,102 @@ body {
   background: linear-gradient(
     135deg, 
     #ffffff 10%, 
-    #999999 20%, 
+    #a78bfa 20%, 
     #ff00c1 30%, 
     #00fff0 40%, 
-    #ffde59 50%, 
-    #7ed957 60%, 
-    #5271ff 70%, 
+    #fbbf24 50%, 
+    #2dd4bf 60%, 
+    #7c3aed 70%, 
     #ffffff 80%,
-    #999999 90%
+    #a78bfa 90%
   );
   background-size: 400% 400%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 0 0.5px rgba(255,255,255,0.2));
+  animation: text-flow 8s ease infinite;
+}
+
+.interactive-text-flow {
+  background: linear-gradient(
+    135deg, 
+    #ffffff 0%, 
+    #ffffff 25%,
+    #ff00c1 35%, 
+    #00fff0 50%, 
+    #7c3aed 65%, 
+    #ffffff 75%,
+    #ffffff 100%
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-position: var(--mouse-x, 50%) var(--mouse-y, 50%);
+  transition: background-position 0.15s ease-out, filter 0.3s ease;
+  filter: drop-shadow(0 0 1px rgba(255,255,255,0.1));
+}
+
+.interactive-text-flow:hover {
+  filter: drop-shadow(0 0 8px var(--accent));
+}
+
+/* Liquid Logo Animations */
+@keyframes wave-swing {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(2px) rotate(1deg); }
+}
+
+@keyframes wave-flow {
+  from { stroke-dashoffset: 40; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes liquid-fill {
+  0% { transform: translate(-50%, 0) scaleY(1); }
+  50% { transform: translate(-48%, 1px) scaleY(0.95); }
+  100% { transform: translate(-50%, 0) scaleY(1); }
+}
+
+.animate-wave-1 { animation: wave-swing 3s ease-in-out infinite; }
+.animate-wave-2 { animation: wave-swing 2.5s ease-in-out infinite reverse; }
+.animate-wave-3 { animation: wave-swing 4s ease-in-out infinite; }
+.animate-liquid-background { animation: liquid-fill 6s ease-in-out infinite; }
+
+/* Text Wave Animation */
+@keyframes text-wave {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.animate-text-wave {
+  display: inline-block;
+  animation: text-wave 2.5s ease-in-out infinite;
+}
+
+/* Floating Hearts Easter Egg */
+@keyframes heart-float {
+  0% { 
+    transform: translateY(0) scale(0) rotate(0deg); 
+    opacity: 0; 
+  }
+  20% { 
+    opacity: 0.8; 
+    filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.8));
+  }
+  100% { 
+    transform: translateY(-100px) scale(1.5) rotate(25deg); 
+    opacity: 0; 
+  }
+}
+
+.animate-heart {
+  display: inline-block;
+  pointer-events: none;
+  animation: heart-float 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  color: #ff3333;
+  font-size: 14px;
 }
 
 /* Completely Hide All Scrollbars (Manual/Global) */
