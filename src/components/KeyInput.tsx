@@ -1,5 +1,5 @@
 'use client'
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { detectProvider } from '@/lib/detect'
 import { Provider } from '@/lib/types'
 import ProviderBadge from './ProviderBadge'
@@ -17,14 +17,20 @@ export default function KeyInput({ value, onProviderChange, onKeyChange, isLoadi
   const [showKey, setShowKey] = useState(false)
   const [detection, setDetection] = useState<ReturnType<typeof detectProvider> | null>(null)
   const [manualProvider, setManualProvider] = useState<Provider | null>(null)
+  
+  useEffect(() => {
+    if (!value.trim()) {
+      setDetection(null)
+      setManualProvider(null)
+    }
+  }, [value])
 
   const handleChange = useCallback(
     (newValue: string) => {
       onKeyChange(newValue)
       if (!newValue.trim()) {
-        setDetection(null)
-        setManualProvider(null)
-        onProviderChange(null)
+        onKeyChange(newValue)
+        // Keep detection and provider persistent for a better UX during Reset
         return
       }
       const result = detectProvider(newValue)
@@ -60,7 +66,7 @@ export default function KeyInput({ value, onProviderChange, onKeyChange, isLoadi
         }}
       >
         <input
-          type={showKey ? 'text' : 'password'}
+          type="text"
           value={value}
           onChange={(e) => handleChange(e.target.value)}
           placeholder="Paste your API key here..."
@@ -71,8 +77,9 @@ export default function KeyInput({ value, onProviderChange, onKeyChange, isLoadi
             color: 'var(--text-primary)',
             fontFamily: 'var(--font-geist-mono)',
             fontSize: '13px',
+            WebkitTextSecurity: showKey ? 'none' : ('disc' as any),
           }}
-          autoComplete="off"
+          autoComplete="one-time-code"
           autoCorrect="off"
           spellCheck={false}
         />
