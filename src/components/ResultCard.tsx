@@ -12,6 +12,7 @@ interface Props {
 export default function ResultCard({ result, provider: manualProvider, onReset }: Props) {
   const provider = manualProvider || PROVIDERS_MAP[result.provider]
   const [showModels, setShowModels] = useState(false)
+  const [imgError, setImgError] = useState(false)
   const isError = result.status === 'error' || result.status === 'invalid'
   const statusColor = result.status === 'valid' ? '#2dd4bf' : '#f87171'
 
@@ -20,13 +21,22 @@ export default function ResultCard({ result, provider: manualProvider, onReset }
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-3">
           <div
-            className="w-10 h-10 rounded-xl flex items-center justify-center border"
+            className="w-10 h-10 rounded-xl flex items-center justify-center border overflow-hidden"
             style={{
               borderColor: provider.color + '30',
               backgroundColor: provider.color + '10',
             }}
           >
-            <span className="w-4 h-4 rounded-full" style={{ backgroundColor: provider.color }} />
+            {!imgError ? (
+              <img
+                src={`https://logo.clearbit.com/${provider.domain}`}
+                alt={provider.name}
+                className="w-6 h-6 object-contain"
+                onError={() => setImgError(true)}
+              />
+            ) : (
+              <span className="w-4 h-4 rounded-full" style={{ backgroundColor: provider.color }} />
+            )}
           </div>
           <div>
             <h3 className="text-primary font-medium tracking-tight">{provider.name}</h3>

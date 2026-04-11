@@ -20,6 +20,7 @@ export interface Provider {
   name: string
   prefixes: string[] // key prefixes that identify this provider
   color: string // accent hex for the badge
+  domain: string // core website domain to fetch the exact company logo
   docsUrl: string
   verifyEndpoint: string // the URL we call for verification
   requiresProxy: boolean // true → route through CF Worker
