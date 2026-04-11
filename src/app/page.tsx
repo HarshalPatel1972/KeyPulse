@@ -243,18 +243,18 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Footer - Fixed to absolute bottom for professional grounding */}
-      <footer className="fixed bottom-0 left-0 w-full py-2 z-50 bg-base/10 backdrop-blur-xs border-white/[0.02]">
+      {/* Footer - Fixed to absolute bottom with increased presence */}
+      <footer className="fixed bottom-0 left-0 w-full pt-2 pb-[33px] z-50 bg-base/5 backdrop-blur-xs border-white/[0.01]">
         <div className="flex items-center justify-center gap-3">
-          <span className="text-[8px] uppercase tracking-[0.25em] text-muted opacity-20">© 2026</span>
+          <span className="text-[10px] uppercase tracking-[0.25em] text-muted opacity-30">© 2026</span>
           <div className="w-[1px] h-2 bg-white/5" />
           <div className="flex items-center gap-1.5">
-            <span className="text-[8px] uppercase tracking-[0.1em] text-muted opacity-20">Built by</span>
+            <span className="text-[10px] uppercase tracking-[0.1em] text-muted opacity-30">Built by</span>
             <a
               href="https://github.com/HarshalPatel1972"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[9px] font-bold tracking-[0.2em] uppercase text-primary transition-all duration-300 hover:text-accent hover:opacity-100 opacity-60"
+              className="text-[11px] font-bold tracking-[0.2em] uppercase text-primary transition-all duration-300 hover:text-accent hover:opacity-100 opacity-60"
               style={{ letterSpacing: '0.15em' }}
             >
               Harshal Patel
