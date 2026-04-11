@@ -5,6 +5,8 @@ import KeyInput from '@/components/KeyInput'
 import VerifyButton from '@/components/VerifyButton'
 import TrustBanner from '@/components/TrustBanner'
 
+import { verify } from '@/lib/verifiers'
+
 export default function Home() {
   const [key, setKey] = useState('')
   const [provider, setProvider] = useState<Provider | null>(null)
@@ -15,9 +17,18 @@ export default function Home() {
     if (!key.trim() || !provider) return
     setIsLoading(true)
     setIsInvalid(false)
-    // Phase 5 wires this up — placeholder for now
-    await new Promise((r) => setTimeout(r, 1000))
-    setIsLoading(false)
+
+    try {
+      const result = await verify(key.trim(), provider.id)
+      console.log('Verification Result:', result)
+      if (result.status === 'invalid') {
+        setIsInvalid(true)
+      }
+    } catch (err) {
+      console.error('Verification failed:', err)
+    } finally {
+      setIsLoading(false)
+    }
   }, [key, provider])
 
   useEffect(() => {
