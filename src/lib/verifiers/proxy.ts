@@ -34,25 +34,46 @@ export async function proxyVerifier(key: string, providerId: ProviderId): Promis
     })
 
     if (!res.ok) {
-      const errorData = await res.json().catch(() => ({ error: 'Proxy error' }))
+      const errorData = await res.json().catch(() => ({}))
+      
+      if (res.status === 401 || res.status === 403) {
+        return { ...base, status: 'invalid', models: [], account: null, rateLimit: null, rawError: 'Invalid API key.' }
+      }
+      if (res.status === 429) {
+        return { ...base, status: 'rate_limited', models: [], account: null, rateLimit: null, rawError: 'Rate limit exceeded.' }
+      }
+      
+      const rawError = errorData.error?.message || errorData.message || errorData.error || `HTTP ${res.status}`
       return {
         ...base,
         status: 'error',
         models: [],
         account: null,
         rateLimit: null,
-        rawError: errorData.error || `HTTP ${res.status}`,
+        rawError: typeof rawError === 'string' ? rawError : JSON.stringify(rawError),
       }
     }
 
     const data = await res.json()
+    
+    // Generic model array extraction based on common AI Provider schemas
+    let extractedModels: string[] = []
+    if (Array.isArray(data)) {
+      extractedModels = data.map((m: any) => m.id || m.name)
+    } else if (data.data && Array.isArray(data.data)) {
+      extractedModels = data.data.map((m: any) => m.id || m.name)
+    } else if (data.models && Array.isArray(data.models)) {
+      extractedModels = data.models.map((m: any) => typeof m === 'string' ? m : m.name || m.id)
+    }
+    extractedModels = extractedModels.filter(Boolean).map(String).sort()
+
     return {
       ...base,
-      status: data.status,
-      models: data.models || [],
-      account: data.account || null,
-      rateLimit: data.rateLimit || null,
-      rawError: data.rawError,
+      status: 'valid',
+      models: extractedModels,
+      account: null,
+      rateLimit: null,
+      rawError: null,
     }
   } catch (err) {
     return {
