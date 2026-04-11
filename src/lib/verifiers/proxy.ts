@@ -18,25 +18,30 @@ export async function proxyVerifier(key: string, providerId: ProviderId): Promis
   }
 
   try {
+    const isElevenLabs = providerId === 'elevenlabs'
+    const headers: Record<string, string> = isElevenLabs
+      ? { 'xi-api-key': key }
+      : { Authorization: `Bearer ${key}` }
+
     const res = await fetch(workerUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        key,
-        endpoint: provider.verifyEndpoint,
-        provider: providerId,
+        url: provider.verifyEndpoint,
+        method: 'GET',
+        headers,
       }),
     })
 
     if (!res.ok) {
-      const error = await res.json().catch(() => ({ error: 'Proxy error' }))
+      const errorData = await res.json().catch(() => ({ error: 'Proxy error' }))
       return {
         ...base,
         status: 'error',
         models: [],
         account: null,
         rateLimit: null,
-        rawError: error.error || `HTTP ${res.status}`,
+        rawError: errorData.error || `HTTP ${res.status}`,
       }
     }
 
