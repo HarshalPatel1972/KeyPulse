@@ -8,6 +8,7 @@ import VerifyButton from '@/components/VerifyButton'
 import TrustStrip from '@/components/TrustStrip'
 import ThemeSwitcher from '@/components/ThemeSwitcher'
 import ResultCard from '@/components/ResultCard'
+import StarRiver from '@/components/StarRiver'
 
 export default function Home() {
   const [key, setKey] = useState('')
@@ -37,9 +38,10 @@ export default function Home() {
 
   return (
     <main
-      className="min-h-screen flex flex-col"
+      className="min-h-screen flex flex-col relative z-0"
       style={{ background: 'var(--bg-base)' }}
     >
+      <StarRiver />
       {/* Top nav bar */}
       <nav
         className="flex items-center justify-between px-6 py-4"
