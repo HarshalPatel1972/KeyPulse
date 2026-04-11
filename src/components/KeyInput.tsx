@@ -6,29 +6,28 @@ import ProviderBadge from './ProviderBadge'
 import ManualSelect from './ManualSelect'
 
 interface Props {
+  value: string
   onProviderChange: (provider: Provider | null) => void
   onKeyChange: (key: string) => void
   isLoading: boolean
   isInvalid: boolean
 }
 
-export default function KeyInput({ onProviderChange, onKeyChange, isLoading, isInvalid }: Props) {
-  const [key, setKey] = useState('')
+export default function KeyInput({ value, onProviderChange, onKeyChange, isLoading, isInvalid }: Props) {
   const [showKey, setShowKey] = useState(false)
   const [detection, setDetection] = useState<ReturnType<typeof detectProvider> | null>(null)
   const [manualProvider, setManualProvider] = useState<Provider | null>(null)
 
   const handleChange = useCallback(
-    (value: string) => {
-      setKey(value)
-      onKeyChange(value)
-      if (!value.trim()) {
+    (newValue: string) => {
+      onKeyChange(newValue)
+      if (!newValue.trim()) {
         setDetection(null)
         setManualProvider(null)
         onProviderChange(null)
         return
       }
-      const result = detectProvider(value)
+      const result = detectProvider(newValue)
       setDetection(result)
       if (result.confidence === 'high' && result.provider) {
         setManualProvider(null)
@@ -45,7 +44,7 @@ export default function KeyInput({ onProviderChange, onKeyChange, isLoading, isI
     onProviderChange(provider)
   }
 
-  const showManual = detection?.confidence === 'unknown' && key.trim().length > 8
+  const showManual = detection?.confidence === 'unknown' && value.trim().length > 8
 
   return (
     <div className="w-full">
@@ -62,7 +61,7 @@ export default function KeyInput({ onProviderChange, onKeyChange, isLoading, isI
       >
         <input
           type={showKey ? 'text' : 'password'}
-          value={key}
+          value={value}
           onChange={(e) => handleChange(e.target.value)}
           placeholder="Paste your API key here..."
           disabled={isLoading}
@@ -78,7 +77,7 @@ export default function KeyInput({ onProviderChange, onKeyChange, isLoading, isI
           spellCheck={false}
         />
         <div className="flex items-center pr-2 gap-1">
-          {key && !isLoading && (
+          {value && !isLoading && (
             <button
               type="button"
               onClick={() => handleChange('')}
