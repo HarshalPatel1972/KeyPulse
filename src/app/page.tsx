@@ -113,6 +113,7 @@ export default function Home() {
             {/* Input steps */}
             <div className="animate-slide-up" style={{ animationDelay: '0.1s' }}>
               <KeyInput
+                value={key}
                 onProviderChange={setProvider}
                 onKeyChange={(val) => {
                   setKey(val)
