@@ -1,4 +1,5 @@
 'use client'
+import { useState } from 'react'
 import { VerifyResult, Provider } from '@/lib/types'
 
 interface Props {
@@ -8,12 +9,13 @@ interface Props {
 }
 
 export default function ResultCard({ result, provider, onReset }: Props) {
+  const [showModels, setShowModels] = useState(false)
   const isError = result.status === 'error' || result.status === 'invalid'
-  const statusColor = result.status === 'valid' ? 'var(--valid)' : 'var(--invalid)'
+  const statusColor = result.status === 'valid' ? '#22c55e' : '#ef4444'
 
   return (
     <div className="w-full bg-surface border border-border rounded-2xl p-6 shadow-2xl animate-in slide-in-from-bottom-4 duration-300">
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-3">
           <div
             className="w-10 h-10 rounded-xl flex items-center justify-center border"
@@ -25,8 +27,10 @@ export default function ResultCard({ result, provider, onReset }: Props) {
             <span className="w-4 h-4 rounded-full" style={{ backgroundColor: provider.color }} />
           </div>
           <div>
-            <h3 className="text-primary font-medium">{provider.name}</h3>
-            <p className="text-xs text-muted">API Key Verification</p>
+            <h3 className="text-primary font-medium tracking-tight">{provider.name}</h3>
+            <p className="text-[11px] text-muted uppercase tracking-wider font-bold">
+              API Verification
+            </p>
           </div>
         </div>
         <div
@@ -40,8 +44,81 @@ export default function ResultCard({ result, provider, onReset }: Props) {
           {result.status.replace('_', ' ')}
         </div>
       </div>
-      
-      {/* Rest of the card features will be added in subsequent commits */}
+
+      <div className="space-y-4">
+        {result.rawError && (
+          <div className="p-4 rounded-xl bg-invalid/10 border border-invalid/20 text-invalid text-sm">
+            {result.rawError}
+          </div>
+        )}
+
+        {result.account && (
+          <div className="bg-elevated/50 p-4 rounded-xl border border-border">
+            <p className="text-xs text-muted mb-1 uppercase tracking-widest font-bold">Account</p>
+            <p className="text-sm text-primary font-medium">
+              {result.account.name || 'Anonymous'}{' '}
+              <span className="text-muted ml-1 opacity-50">• {result.account.type}</span>
+            </p>
+          </div>
+        )}
+
+        {result.rateLimit && (
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-elevated/50 p-4 rounded-xl border border-border">
+              <p className="text-xs text-muted mb-1 uppercase tracking-widest font-bold">Limit</p>
+              <p className="text-sm text-primary font-medium">{result.rateLimit.limit}</p>
+            </div>
+            <div className="bg-elevated/50 p-4 rounded-xl border border-border">
+              <p className="text-xs text-muted mb-1 uppercase tracking-widest font-bold">
+                Remaining
+              </p>
+              <p className="text-sm text-primary font-medium">{result.rateLimit.remaining}</p>
+            </div>
+          </div>
+        )}
+
+        {result.models.length > 0 && (
+          <div className="bg-elevated/50 rounded-xl border border-border overflow-hidden transition-all">
+            <button
+              onClick={() => setShowModels(!showModels)}
+              className="w-full flex items-center justify-between p-4 hover:bg-elevated/80 transition-colors"
+            >
+              <div>
+                <p className="text-xs text-muted mb-1 text-left uppercase tracking-widest font-bold">
+                  Available Models
+                </p>
+                <p className="text-sm text-primary font-medium text-left">
+                  {result.models.length} models found
+                </p>
+              </div>
+              <span
+                className={`text-muted transition-transform duration-200 ${
+                  showModels ? 'rotate-180' : ''
+                }`}
+              >
+                ▼
+              </span>
+            </button>
+            {showModels && (
+              <div className="p-4 pt-0 grid grid-cols-1 gap-1 border-t border-border/50">
+                {result.models.slice(0, 12).map((m) => (
+                  <div key={m} className="text-[11px] font-mono text-muted py-1 flex items-center">
+                    <span className="w-1 h-1 bg-muted/30 rounded-full mr-2" />
+                    {m}
+                  </div>
+                ))}
+                {result.models.length > 12 && (
+                  <div className="text-[10px] text-hint py-2 text-center italic">
+                    + {result.models.length - 12} more models
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* Timestamp and Reset button added next */}
     </div>
   )
 }
