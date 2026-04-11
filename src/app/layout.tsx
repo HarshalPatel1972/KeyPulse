@@ -1,15 +1,15 @@
 import type { Metadata } from 'next'
-import { Outfit, JetBrains_Mono } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
 
-const outfit = Outfit({
-  subsets: ['latin'],
-  variable: '--font-outfit',
+const cirka = localFont({
+  src: '../../public/Cirka/Cirka-Bold.otf',
+  variable: '--font-cirka',
 })
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-jetbrains-mono',
+const season = localFont({
+  src: '../../public/season/SeasonSans-TRIAL-Regular.otf',
+  variable: '--font-season',
 })
 
 export const metadata: Metadata = {
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${outfit.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${cirka.variable} ${season.variable}`}>
       <body className="font-sans" suppressHydrationWarning>
         {children}
       </body>

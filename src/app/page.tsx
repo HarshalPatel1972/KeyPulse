@@ -60,7 +60,7 @@ export default function Home() {
             />
           </svg>
           <span
-            className="text-sm font-medium"
+            className="text-sm font-heading"
             style={{ color: 'var(--text-primary)' }}
           >
             KeyPulse
@@ -101,12 +101,12 @@ export default function Home() {
               11 providers supported
             </div>
             <h1
-              className="text-4xl font-medium mb-3 tracking-tight"
+              className="text-5xl font-heading mb-4 tracking-tight"
               style={{ color: 'var(--text-primary)', letterSpacing: '-0.03em' }}
             >
               KeyPulse
             </h1>
-            <p className="text-base" style={{ color: 'var(--text-muted)' }}>
+            <p className="text-xl font-light" style={{ color: 'var(--text-muted)' }}>
               Check if your key still has a pulse.
             </p>
           </div>

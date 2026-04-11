@@ -17,8 +17,8 @@ const config: Config = {
         quota:    'var(--quota)',
       },
       fontFamily: {
-        sans: ['var(--font-outfit)'],
-        mono: ['var(--font-jetbrains-mono)'],
+        heading: ['var(--font-cirka)'],
+        sans: ['var(--font-season)'],
       },
       borderColor: {
         DEFAULT: 'var(--border)',
