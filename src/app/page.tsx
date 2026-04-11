@@ -73,10 +73,10 @@ export default function Home() {
       </nav>
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-4 py-16">
-        <div className="w-full max-w-[520px]">
-
-          {/* Hero */}
+      <div className="flex-1 flex flex-col items-center justify-center px-4 py-12 lg:py-16">
+        <div className="w-full max-w-[900px]">
+          
+          {/* Hero — centered above the grid */}
           <div className="mb-10 text-center">
             <div
               className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full backdrop-blur-md bg-white/[0.03] border border-white/10 text-[10px] mb-6 transition-all duration-500 hover:border-white/20 group"
@@ -104,45 +104,55 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Input section */}
-          <KeyInput
-            onProviderChange={setProvider}
-            onKeyChange={setKey}
-            isLoading={isLoading}
-            isInvalid={isInvalid}
-          />
+          {/* Two-column grid: Command Center + Trust Sidebar */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_240px] gap-8 items-start">
+            
+            {/* Left column — Command Center */}
+            <div>
+              <KeyInput
+                onProviderChange={setProvider}
+                onKeyChange={setKey}
+                isLoading={isLoading}
+                isInvalid={isInvalid}
+              />
 
-          <VerifyButton
-            onClick={handleVerify}
-            disabled={!key.trim() || !provider}
-            isLoading={isLoading}
-          />
+              <VerifyButton
+                onClick={handleVerify}
+                disabled={!key.trim() || !provider}
+                isLoading={isLoading}
+              />
 
-          <TrustStrip />
-
-          {/* Results */}
-          {(isLoading || result) && (
-            <div className="mt-6">
-              {isLoading && !result ? (
-                <div
-                  className="rounded-2xl overflow-hidden"
-                  style={{ border: '1px solid var(--border)' }}
-                >
-                  {[1, 2, 3].map((i) => (
+              {/* Results */}
+              {(isLoading || result) && (
+                <div className="mt-6">
+                  {isLoading && !result ? (
                     <div
-                      key={i}
-                      className="shimmer h-12"
-                      style={{
-                        borderBottom: i < 3 ? '1px solid var(--border)' : 'none',
-                      }}
-                    />
-                  ))}
+                      className="rounded-2xl overflow-hidden"
+                      style={{ border: '1px solid var(--border)' }}
+                    >
+                      {[1, 2, 3].map((i) => (
+                        <div
+                          key={i}
+                          className="shimmer h-12"
+                          style={{
+                            borderBottom: i < 3 ? '1px solid var(--border)' : 'none',
+                          }}
+                        />
+                      ))}
+                    </div>
+                  ) : result ? (
+                    <ResultCard result={result} />
+                  ) : null}
                 </div>
-              ) : result ? (
-                <ResultCard result={result} />
-              ) : null}
+              )}
             </div>
-          )}
+
+            {/* Right column — Trust Sidebar */}
+            <div className="lg:sticky lg:top-8">
+              <TrustStrip />
+            </div>
+
+          </div>
         </div>
       </div>
 

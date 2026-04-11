@@ -33,17 +33,16 @@ export default function TrustStrip() {
   ]
 
   return (
-    <div className="mt-8 relative group">
+    <div className="relative group w-full">
       {/* Container Background Glow */}
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-accent/20 via-valid/20 to-accent/20 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+      <div className="absolute -inset-0.5 bg-gradient-to-b from-accent/20 via-valid/20 to-accent/20 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
       
-      <div className="relative flex flex-col md:flex-row items-stretch justify-center gap-0 rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.03] border border-white/[0.08]">
+      <div className="relative flex flex-col items-stretch justify-center gap-0 rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.03] border border-white/[0.08]">
         {signals.map((s, i) => (
           <div
             key={s.label}
-            className="flex-1 flex flex-col items-center py-6 px-4 text-center transition-all duration-300 hover:bg-white/[0.02]"
+            className="flex flex-col items-center lg:items-start py-6 px-6 transition-all duration-300 hover:bg-white/[0.02]"
             style={{
-              borderRight: i < signals.length - 1 ? '1px solid rgba(255,255,255,0.06)' : 'none',
               borderBottom: i < signals.length - 1 ? '1px solid rgba(255,255,255,0.06)' : 'none',
             }}
           >
@@ -53,19 +52,12 @@ export default function TrustStrip() {
             <span className="font-heading font-bold text-[13px] tracking-wider uppercase mb-1" style={{ color: 'var(--text-primary)' }}>
               {s.label}
             </span>
-            <span className="font-sans text-[11px] font-medium opacity-60" style={{ color: 'var(--text-muted)' }}>
+            <span className="font-sans text-[11px] font-medium opacity-60 lg:text-left" style={{ color: 'var(--text-muted)' }}>
               {s.desc}
             </span>
           </div>
         ))}
       </div>
-      
-      {/* Mobile Responsive Border adjustment */}
-      <style jsx>{`
-        @media (min-width: 768px) {
-          .flex-1 { border-bottom: none !important; }
-        }
-      `}</style>
     </div>
   )
 }
