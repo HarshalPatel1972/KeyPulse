@@ -1,7 +1,16 @@
 import type { Metadata } from 'next'
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
+import { Outfit, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  variable: '--font-outfit',
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://key-pulse-tau.vercel.app'),
@@ -34,7 +43,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html lang="en" className={`${outfit.variable} ${jetbrainsMono.variable}`}>
       <body className="font-sans" suppressHydrationWarning>
         {children}
       </body>

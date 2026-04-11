@@ -17,8 +17,8 @@ const config: Config = {
         quota:    'var(--quota)',
       },
       fontFamily: {
-        sans: ['var(--font-geist-sans)'],
-        mono: ['var(--font-geist-mono)'],
+        sans: ['var(--font-outfit)'],
+        mono: ['var(--font-jetbrains-mono)'],
       },
       borderColor: {
         DEFAULT: 'var(--border)',
