@@ -23,12 +23,7 @@ export default function Home() {
 
     try {
       const res = await verify(key.trim(), provider.id)
-      console.log('Verification Result:', res)
-      if (res.status === 'invalid') {
-        setIsInvalid(true)
-      } else {
-        setResult(res)
-      }
+      setResult(res)
     } catch (err) {
       console.error('Verification failed:', err)
     } finally {
