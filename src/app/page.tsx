@@ -18,6 +18,28 @@ export default function Home() {
   const [isInvalid, setIsInvalid] = useState(false)
   const [history, setHistory] = useState<VerifyResult[]>([])
   const [hasChecked, setHasChecked] = useState(false)
+  const [mousePos, setMousePos] = useState({ x: 50, y: 50 })
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const x = ((e.clientX - rect.left) / rect.width) * 100
+    const y = ((e.clientY - rect.top) / rect.height) * 100
+    setMousePos({ x, y })
+  }
+
+  // Heart Easter Egg State
+  const [hearts, setHearts] = useState<{ id: number; x: number }[]>([])
+  const [isHoveringName, setIsHoveringName] = useState(false)
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout
+    if (isHoveringName) {
+      interval = setInterval(() => {
+        setHearts(prev => [...prev.slice(-20), { id: Math.random(), x: Math.random() * 80 + 10 }])
+      }, 150)
+    }
+    return () => clearInterval(interval)
+  }, [isHoveringName])
 
   const handleVerify = useCallback(async () => {
     if (!key.trim() || !provider || isLoading) return
@@ -55,49 +77,24 @@ export default function Home() {
     >
       <StarRiver />
       
+      
       {/* Navigation */}
       <nav
         className="h-16 flex items-center justify-between px-6 shrink-0"
         style={{ borderBottom: '1px solid var(--border)' }}
       >
-        <div className="flex items-center gap-2.5 group">
-          <svg width="24" height="24" viewBox="0 0 20 20" fill="none" className="transition-all duration-500 group-hover:scale-110 overflow-visible">
-            <defs>
-              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="1.5" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-              </filter>
-              <linearGradient id="logo-flow" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#ffffff" />
-                <stop offset="20%" stopColor="#ff00c1" />
-                <stop offset="40%" stopColor="#00fff0" />
-                <stop offset="60%" stopColor="#ffde59" />
-                <stop offset="80%" stopColor="#7ed957" />
-                <stop offset="100%" stopColor="#ffffff" />
-              </linearGradient>
-            </defs>
-            <polyline
-              style={{ filter: 'url(#glow)' }}
-              stroke="url(#logo-flow)"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              fill="none"
-            >
-              <animate 
-                attributeName="points"
-                dur="1.5s"
-                repeatCount="indefinite"
-                values="
-                  1,10 5,10 7,4 9,16 11,7 13,13 15,10 19,10;
-                  1,10 5,10 7,6 9,14 11,8 13,12 15,10 19,10;
-                  1,10 5,10 7,4 9,16 11,7 13,13 15,10 19,10"
-              />
-            </polyline>
-          </svg>
-          <span className="text-lg font-heading font-bold animate-text-flow tracking-tight">
-            KeyPulse
-          </span>
+        <div className="flex items-center gap-1 group">
+          <div className="text-xl font-heading font-bold tracking-tight flex">
+            {"KeyPulse".split('').map((char, i) => (
+              <span 
+                key={i} 
+                className="animate-text-flow animate-text-wave" 
+                style={{ animationDelay: `${i * 0.12}s` }}
+              >
+                {char}
+              </span>
+            ))}
+          </div>
         </div>
         <div className="flex items-center gap-3">
           <ThemeSwitcher />
@@ -105,12 +102,11 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Main Grid */}
-      <div className="flex-1 grid grid-cols-1 xl:grid-cols-[1fr_420px] items-stretch overflow-hidden">
-        
-        {/* Interaction Column */}
-        <div className="flex flex-col items-center justify-center p-6 overflow-y-auto">
-          <div className="w-full max-w-[500px] py-6">
+      {/* Main Container - Absolute rigid height to prevent any jitter */}
+      <div className="flex-1 h-[calc(100vh-64px)] flex items-stretch overflow-hidden relative">
+        {/* Interaction Column - Fixed inside rigid parent */}
+        <div className="flex-1 h-full flex flex-col items-center justify-center p-6 overflow-y-auto relative z-10 box-border">
+          <div className="w-full max-w-[540px] py-12 relative -top-[30px] scale-[1.08] transform-gpu transition-all duration-700">
             <div className="mb-6 text-center animate-fade-in">
               <div
                 className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full backdrop-blur-md bg-white/[0.03] border border-white/10 text-[10px] mb-4 transition-all duration-500 hover:border-white/20"
@@ -122,7 +118,14 @@ export default function Home() {
                 </div>
                 <span className="font-sans font-medium uppercase mt-0.5">11 providers supported</span>
               </div>
-              <h1 className="text-4xl font-heading mb-2 tracking-[-0.03em] animate-text-flow pb-2">
+              <h1 
+                className="text-4xl font-heading mb-2 tracking-[-0.03em] interactive-text-flow pb-2 cursor-default"
+                onMouseMove={handleMouseMove}
+                style={{ 
+                  '--mouse-x': `${mousePos.x}%`, 
+                  '--mouse-y': `${mousePos.y}%` 
+                } as React.CSSProperties}
+              >
                 KeyPulse
               </h1>
               <p className="text-lg font-light opacity-80" style={{ color: 'var(--text-muted)' }}>
@@ -144,8 +147,8 @@ export default function Home() {
                 isLoading={isLoading}
                 isInvalid={isInvalid}
               />
-              <div className="mt-8 relative group">
-                 <div className="relative flex items-stretch rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] transition-all duration-500 shadow-2xl">
+              <div className="mt-3 relative group">
+                 <div className="relative flex items-stretch rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.03] border border-[var(--border)] transition-all duration-500 shadow-2xl mt-1">
                     <div className="flex-1 overflow-hidden transition-all duration-500 ease-out">
                       <VerifyButton
                         onClick={handleVerify}
@@ -156,7 +159,7 @@ export default function Home() {
                     </div>
                     
                     <div 
-                      className="w-[160px] border-l border-white/[0.08] bg-white/[0.02] flex items-center justify-center overflow-hidden transition-all duration-500 ease-out"
+                      className="w-[160px] border-l border-[var(--border)] bg-white/[0.02] flex items-center justify-center overflow-hidden transition-all duration-500 ease-out"
                       style={{ 
                         width: hasChecked ? '160px' : '0px',
                         opacity: hasChecked ? 1 : 0,
@@ -198,12 +201,18 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Sidebar Column */}
+        {/* Fixed Vertical Divider - Guaranteed to reach the screen bottom */}
+        <div className="hidden xl:block fixed top-16 bottom-0 right-[420px] w-[1px] z-[9999] bg-[var(--border)] pointer-events-none">
+          {/* Subtle Glow for consistency */}
+          <div className="absolute inset-x-[-1px] inset-y-0 bg-accent/20 blur-[1px]" />
+        </div>
+
+        {/* Sidebar Column - Strictly locked width and height */}
         <div 
-          className="hidden xl:flex flex-col border-l border-white/[0.08] bg-transparent overflow-hidden"
+          className="hidden xl:flex flex-col h-full bg-transparent overflow-hidden shrink-0 w-[420px] relative z-20"
           style={{ backdropFilter: 'blur(4px)' }}
         >
-          <div className="w-full border-b border-white/[0.05] bg-white/[0.02] shrink-0">
+          <div className="w-full border-b border-[var(--border)] bg-white/[0.02] shrink-0">
             <div className="p-6 flex items-center justify-between">
               <h2 className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted">Verification Feed</h2>
               <span className="text-[10px] font-mono opacity-30">{history.length} active</span>
@@ -228,7 +237,7 @@ export default function Home() {
                   Feed awaiting input
                 </p>
                 <div className="mt-4 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                <p className="mt-4 text-[9px] uppercase tracking-[0.1em] opacity-40">
+                <p className="mt-4 text-[9px] uppercase tracking-[0.15em] opacity-70 text-muted font-bold">
                   Real-time results will <br /> populate here
                 </p>
               </div>
@@ -247,20 +256,36 @@ export default function Home() {
 
       {/* Footer - Fixed to absolute bottom with increased presence */}
       <footer className="fixed bottom-0 left-0 w-full pt-2 pb-[33px] z-50 bg-base/5 backdrop-blur-xs border-white/[0.01]">
-        <div className="flex items-center justify-center gap-3">
+        <div className="flex items-center justify-center gap-3 xl:pr-[420px]">
           <span className="text-[10px] uppercase tracking-[0.25em] text-muted opacity-30">© 2026</span>
-          <div className="w-[1px] h-2 bg-white/5" />
-          <div className="flex items-center gap-1.5">
+          <div className="w-[1px] h-2 bg-[var(--border)]" />
+          <div className="flex items-center gap-1.5 relative">
             <span className="text-[10px] uppercase tracking-[0.1em] text-muted opacity-30">Built by</span>
-            <a
-              href="https://github.com/HarshalPatel1972"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[11px] font-bold tracking-[0.2em] uppercase text-primary transition-all duration-300 hover:text-accent hover:opacity-100 opacity-60"
-              style={{ letterSpacing: '0.15em' }}
+            <div 
+              className="relative inline-flex items-center group/name"
+              onMouseEnter={() => setIsHoveringName(true)}
+              onMouseLeave={() => setIsHoveringName(false)}
             >
-              Harshal Patel
-            </a>
+              <a
+                href="https://github.com/HarshalPatel1972"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[11px] font-bold tracking-[0.2em] uppercase text-primary transition-all duration-300 hover:text-accent hover:opacity-100 opacity-60 z-10 relative"
+                style={{ letterSpacing: '0.15em' }}
+              >
+                Harshal Patel
+              </a>
+              {/* Heart Particles */}
+              {hearts.map(h => (
+                <span 
+                  key={h.id}
+                  className="absolute animate-heart pointer-events-none z-0"
+                  style={{ left: `${h.x}%`, top: '-10px' }}
+                >
+                  ❤️
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </footer>
