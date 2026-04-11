@@ -259,7 +259,7 @@ export default function Home() {
       </div>
 
       {/* Footer - Fixed to absolute bottom with increased presence */}
-      <footer className="fixed bottom-0 left-0 w-full pt-2 pb-[33px] z-50 bg-base/5 backdrop-blur-xs border-white/[0.01]">
+      <footer className="fixed bottom-0 left-0 w-full pt-2 pb-[33px] z-[50000] bg-base/5 backdrop-blur-xs border-white/[0.01]">
         <div className="flex items-center justify-center gap-3 xl:pr-[420px]">
           <span className="text-[10px] uppercase tracking-[0.25em] text-muted opacity-30">© 2026</span>
           <div className="w-[1px] h-2 bg-[var(--border)]" />
