@@ -17,7 +17,7 @@ export default function ResultCard({ result, provider: manualProvider, onReset }
   const statusColor = result.status === 'valid' ? '#2dd4bf' : '#f87171'
 
   return (
-    <div className="w-full bg-transparent border border-white/10 rounded-2xl p-5 animate-in slide-in-from-bottom-4 duration-300 group/card hover:border-white/20 transition-all">
+    <div className="w-full bg-transparent border border-[var(--border)] rounded-2xl p-5 animate-in slide-in-from-bottom-4 duration-300 group/card transition-[border-color,background-color] hover:border-[var(--border-hover)]">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
           <div

@@ -47,7 +47,7 @@ export default function ManualSelect({ value, onChange }: Props) {
           className={`
             w-full flex items-center justify-between rounded-2xl px-4 py-3.5 text-sm 
             transition-all duration-300 backdrop-blur-xl bg-white/[0.03] border 
-            ${isOpen ? 'border-accent/40 ring-2 ring-accent/20' : 'border-white/[0.08] hover:bg-white/[0.05] hover:border-white/[0.15]'}
+            ${isOpen ? 'border-accent/40 ring-2 ring-accent/20' : 'border-[var(--border)] hover:bg-white/[0.05] hover:border-[var(--border-hover)]'}
           `}
           style={{ color: value ? 'var(--text-primary)' : 'var(--text-hint)' }}
         >
@@ -74,7 +74,7 @@ export default function ManualSelect({ value, onChange }: Props) {
 
         {/* Custom Dropdown List */}
         {isOpen && (
-          <div className="absolute z-50 w-full mt-2 rounded-2xl overflow-hidden backdrop-blur-2xl bg-[#0f0d1a]/95 border border-white/10 shadow-2xl animate-dropdown-open">
+          <div className="absolute z-50 w-full mt-2 rounded-2xl overflow-hidden backdrop-blur-2xl bg-[#0f0d1a]/95 border border-[var(--border)] shadow-2xl animate-dropdown-open">
             <div className="max-h-[300px] overflow-y-auto custom-scrollbar p-1.5">
               {PROVIDERS.map((p) => (
                 <button

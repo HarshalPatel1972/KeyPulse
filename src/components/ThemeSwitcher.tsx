@@ -27,7 +27,7 @@ export default function ThemeSwitcher() {
 
   return (
     <div 
-      className="p-1 rounded-full flex items-center relative gap-0.5 bg-[#050505]/60 border border-white/[0.05] backdrop-blur-2xl shadow-2xl"
+      className="p-1 rounded-full flex items-center relative gap-0.5 bg-[#050505]/60 border border-[var(--border)] backdrop-blur-2xl shadow-2xl"
     >
       {/* Liquid Ambient Highlight */}
       <div 
@@ -36,7 +36,7 @@ export default function ThemeSwitcher() {
           width: 'calc(33.333% - 4px)',
           left: active === 'theme-aurora' ? '4px' : active === 'theme-void' ? '33.333%' : '66.666%',
           background: 'rgba(255, 255, 255, 0.03)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
+          border: '1px solid var(--border)',
           boxShadow: `inset 0 1px 1px rgba(255,255,255,0.1), 0 0 20px ${THEMES.find(t => t.id === active)?.color}15`,
         }}
       />

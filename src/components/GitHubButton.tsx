@@ -9,16 +9,16 @@ export default function GitHubButton() {
       className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-all group"
       style={{
         background: 'rgba(255, 255, 255, 0.03)',
-        border: '1px solid rgba(255, 255, 255, 0.08)',
+        border: '1px solid var(--border)',
         color: 'var(--text-hint)',
         backdropFilter: 'blur(8px)',
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)'
+        e.currentTarget.style.borderColor = 'var(--border-hover)'
         e.currentTarget.style.color = 'var(--text-primary)'
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)'
+        e.currentTarget.style.borderColor = 'var(--border)'
         e.currentTarget.style.color = 'var(--text-hint)'
       }}
     >

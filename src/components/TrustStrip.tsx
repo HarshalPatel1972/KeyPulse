@@ -43,8 +43,8 @@ export default function TrustStrip() {
             key={s.label}
             className="flex-1 flex flex-col items-center py-6 px-4 text-center transition-all duration-300 hover:bg-white/[0.02]"
             style={{
-              borderRight: i < signals.length - 1 ? '1px solid rgba(255,255,255,0.06)' : 'none',
-              borderBottom: i < signals.length - 1 ? '1px solid rgba(255,255,255,0.06)' : 'none',
+              borderRight: i < signals.length - 1 ? '1px solid var(--border)' : 'none',
+              borderBottom: i < signals.length - 1 ? '1px solid var(--border)' : 'none',
             }}
           >
             <div className="mb-3 transition-transform duration-500 group-hover:scale-110">
