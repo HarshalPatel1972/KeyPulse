@@ -5,6 +5,7 @@ import { verifyGemini } from './gemini'
 import { verifyGroq } from './groq'
 import { verifyHuggingFace } from './huggingface'
 import { verifyReplicate } from './replicate'
+import { proxyVerifier } from './proxy'
 
 const DIRECT_VERIFIERS: Partial<Record<ProviderId, (key: string) => Promise<VerifyResult>>> = {
   openai: verifyOpenAI,
@@ -13,6 +14,9 @@ const DIRECT_VERIFIERS: Partial<Record<ProviderId, (key: string) => Promise<Veri
   groq: verifyGroq,
   huggingface: verifyHuggingFace,
   replicate: verifyReplicate,
+  mistral: (key) => proxyVerifier(key, 'mistral'),
+  cohere: (key) => proxyVerifier(key, 'cohere'),
+  perplexity: (key) => proxyVerifier(key, 'perplexity'),
 }
 
 export async function verify(key: string, providerId: ProviderId): Promise<VerifyResult> {
