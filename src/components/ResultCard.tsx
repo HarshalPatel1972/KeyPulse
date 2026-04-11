@@ -29,7 +29,7 @@ export default function ResultCard({ result, provider: manualProvider, onReset }
           >
             {!imgError ? (
               <img
-                src={`https://logo.clearbit.com/${provider.domain}`}
+                src={`https://www.google.com/s2/favicons?sz=128&domain=${provider.domain}`}
                 alt={provider.name}
                 className="w-6 h-6 object-contain"
                 onError={() => setImgError(true)}
