@@ -162,6 +162,22 @@ body {
   filter: drop-shadow(0 0 0.5px rgba(255,255,255,0.2));
 }
 
+@keyframes stroke-flow {
+  0% { stroke: #ffffff; }
+  10% { stroke: #999999; }
+  20% { stroke: #ff00c1; }
+  30% { stroke: #00fff0; }
+  45% { stroke: #ffde59; }
+  60% { stroke: #7ed957; }
+  75% { stroke: #5271ff; }
+  90% { stroke: #ffffff; }
+  100% { stroke: #999999; }
+}
+
+.animate-stroke-flow {
+  animation: stroke-flow 8s linear infinite;
+}
+
 /* Premium Scrollbar */
 .custom-scrollbar::-webkit-scrollbar {
   width: 5px;
