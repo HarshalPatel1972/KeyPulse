@@ -27,7 +27,6 @@ export default function Home() {
     const r = await verify(key.trim(), provider.id)
     if (r.status === 'invalid') setIsInvalid(true)
     
-    // Add new result to the top of the history
     setHistory(prev => [r, ...prev])
     setIsLoading(false)
     setHasChecked(true)
@@ -55,13 +54,13 @@ export default function Home() {
       style={{ background: 'var(--bg-base)' }}
     >
       <StarRiver />
-      {/* Top nav bar */}
+      
+      {/* Navigation */}
       <nav
-        className="h-16 flex items-center justify-between px-6 py-4 shrink-0"
+        className="h-16 flex items-center justify-between px-6 shrink-0"
         style={{ borderBottom: '1px solid var(--border)' }}
       >
         <div className="flex items-center gap-2.5 group">
-          {/* Pulse icon — inline SVG with neon glow */}
           <svg width="24" height="24" viewBox="0 0 20 20" fill="none" className="animate-pulse-heartbeat transition-all duration-500 group-hover:scale-110">
             <defs>
               <linearGradient id="logo-flow" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -91,9 +90,7 @@ export default function Home() {
               className="drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
             />
           </svg>
-          <span
-            className="text-lg font-heading font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/70 tracking-tight"
-          >
+          <span className="text-lg font-heading font-bold animate-text-flow tracking-tight">
             KeyPulse
           </span>
         </div>
@@ -103,16 +100,15 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Grid Layout: [ Main Content | Sidebar ] */}
+      {/* Main Grid */}
       <div className="flex-1 grid grid-cols-1 xl:grid-cols-[1fr_420px] items-stretch overflow-hidden">
         
-        {/* Left column — Command Center (Mainly for interaction) */}
-        <div className="flex flex-col items-center justify-center p-8 scrollbar-hide overflow-y-auto">
-          <div className="w-full max-w-[520px] py-10">
-            {/* Hero */}
-            <div className="mb-10 text-center animate-fade-in">
+        {/* Interaction Column */}
+        <div className="flex flex-col items-center justify-center p-6 overflow-y-auto">
+          <div className="w-full max-w-[500px] py-6">
+            <div className="mb-6 text-center animate-fade-in">
               <div
-                className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full backdrop-blur-md bg-white/[0.03] border border-white/10 text-[10px] mb-6 transition-all duration-500 hover:border-white/20 group"
+                className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full backdrop-blur-md bg-white/[0.03] border border-white/10 text-[10px] mb-4 transition-all duration-500 hover:border-white/20"
                 style={{ letterSpacing: '0.12em', color: 'var(--text-muted)' }}
               >
                 <div className="relative flex items-center justify-center">
@@ -121,15 +117,14 @@ export default function Home() {
                 </div>
                 <span className="font-sans font-medium uppercase mt-0.5">11 providers supported</span>
               </div>
-              <h1 className="text-5xl font-heading mb-4 tracking-[-0.03em] animate-text-flow pb-2">
+              <h1 className="text-4xl font-heading mb-2 tracking-[-0.03em] animate-text-flow pb-2">
                 KeyPulse
               </h1>
-              <p className="text-xl font-light" style={{ color: 'var(--text-muted)' }}>
+              <p className="text-lg font-light opacity-80" style={{ color: 'var(--text-muted)' }}>
                 Check if your key still has a pulse.
               </p>
             </div>
 
-            {/* Input steps */}
             <div className="animate-slide-up" style={{ animationDelay: '0.1s' }}>
               <KeyInput
                 value={key}
@@ -145,7 +140,6 @@ export default function Home() {
                 isInvalid={isInvalid}
               />
               <div className="mt-8 relative group">
-                 {/* Single Chassis Control Frame */}
                  <div className="relative flex items-stretch rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] transition-all duration-500 shadow-2xl">
                     <div 
                       className="flex-1 transition-all duration-500"
@@ -162,7 +156,6 @@ export default function Home() {
                       />
                     </div>
                     
-                    {/* Reset Button sliding in */}
                     <div 
                       className="w-[160px] border-l border-white/[0.08] bg-white/[0.02] flex items-center justify-center overflow-hidden transition-all duration-500 ease-out"
                       style={{ 
@@ -174,9 +167,7 @@ export default function Home() {
                       <button
                         onClick={handleReset}
                         className="w-full h-full flex items-center justify-center gap-2 text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-300"
-                        style={{ 
-                          color: 'var(--text-muted)'
-                        }}
+                        style={{ color: 'var(--text-muted)' }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.color = 'var(--accent)';
                           e.currentTarget.style.textShadow = '0 0 10px var(--accent)';
@@ -188,15 +179,9 @@ export default function Home() {
                       >
                         <svg 
                           xmlns="http://www.w3.org/2000/svg" 
-                          width="12" 
-                          height="12" 
-                          viewBox="0 0 24 24" 
-                          fill="none" 
-                          stroke="currentColor" 
-                          strokeWidth="2.5" 
-                          strokeLinecap="round" 
-                          strokeLinejoin="round" 
-                          className="opacity-40 transition-colors duration-300"
+                          width="12" height="12" viewBox="0 0 24 24" 
+                          fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" 
+                          className="opacity-40"
                         >
                           <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
                           <path d="M3 3v5h5" />
@@ -214,7 +199,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Right column — Results Sidebar */}
+        {/* Sidebar Column */}
         <div 
           className="hidden xl:flex flex-col border-l border-white/[0.08] bg-transparent overflow-hidden"
           style={{ backdropFilter: 'blur(4px)' }}
@@ -224,7 +209,7 @@ export default function Home() {
             <span className="text-[10px] font-mono opacity-30">{history.length} active</span>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
+          <div className="flex-1 overflow-y-auto p-6 space-y-6">
             {isLoading && (
               <div className="animate-pulse space-y-4 p-6 rounded-2xl border border-border/50 bg-white/[0.02]">
                 <div className="h-4 w-1/3 bg-white/10 rounded-full" />
@@ -234,15 +219,15 @@ export default function Home() {
             )}
             
             {history.length === 0 && !isLoading ? (
-              <div className="h-full flex flex-col items-center justify-center text-center opacity-60 pointer-events-none px-12 group/empty">
-                <div className="w-16 h-16 rounded-2xl border border-dashed border-white/30 mb-6 flex items-center justify-center animate-pulse-heartbeat bg-white/[0.02] shadow-[0_0_30px_rgba(255,255,255,0.02)]">
+              <div className="h-full flex flex-col items-center justify-center text-center opacity-60 px-12">
+                <div className="w-16 h-16 rounded-2xl border border-dashed border-white/30 mb-6 flex items-center justify-center animate-pulse-heartbeat bg-white/[0.02]">
                   <span className="text-2xl filter drop-shadow-[0_0_10px_rgba(255,187,0,0.5)]">⚡</span>
                 </div>
-                <p className="text-[10px] uppercase tracking-[0.25em] font-bold leading-relaxed max-w-[200px]" style={{ color: 'var(--text-muted)' }}>
+                <p className="text-[10px] uppercase tracking-[0.25em] font-bold" style={{ color: 'var(--text-muted)' }}>
                   Feed awaiting input
                 </p>
                 <div className="mt-4 w-12 h-[1px] bg-white/10" />
-                <p className="mt-4 text-[9px] uppercase tracking-[0.1em] opacity-40 leading-relaxed">
+                <p className="mt-4 text-[9px] uppercase tracking-[0.1em] opacity-40">
                   Real-time results will <br /> populate here
                 </p>
               </div>
@@ -260,9 +245,7 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer
-        className="relative py-4 z-10 border-t border-white/[0.05] backdrop-blur-md bg-white/[0.01] shrink-0"
-      >
+      <footer className="relative py-3 z-10 border-t border-white/[0.05] backdrop-blur-md bg-white/[0.01] shrink-0">
         <div className="flex items-center justify-center gap-3">
           <span className="text-[10px] uppercase tracking-[0.2em] text-muted opacity-40">© 2026</span>
           <div className="w-[1px] h-3 bg-white/10" />

@@ -167,20 +167,23 @@ body {
   filter: drop-shadow(0 0 0.5px rgba(255,255,255,0.2));
 }
 
-/* Premium Scrollbar */
+/* Completely Hide All Scrollbars (Manual/Global) */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Premium Scrollbar - Disabled for zero-scroll look */
+/* 
 .custom-scrollbar::-webkit-scrollbar {
   width: 5px;
 }
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
+... 
+*/
 
 .animate-slide-up   { animation: slide-up 0.22s ease-out forwards; }
 .animate-fade-in    { animation: fade-in 0.15s ease-out forwards; }
