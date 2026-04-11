@@ -105,7 +105,7 @@ export default function Home() {
       {/* Main Container - Absolute rigid height to prevent any jitter */}
       <div className="flex-1 h-[calc(100vh-64px)] flex items-stretch overflow-hidden relative">
         {/* Interaction Column - Fixed inside rigid parent */}
-        <div className="flex-1 h-full flex flex-col items-center justify-center p-6 overflow-y-auto relative z-10 box-border">
+        <div className="flex-1 h-full flex flex-col items-center justify-center p-6 overflow-y-auto relative z-[20000] box-border">
           <div className="w-full max-w-[540px] py-12 relative -top-[30px] scale-[1.08] transform-gpu transition-all duration-700">
             <div className="mb-6 text-center animate-fade-in">
               <div
@@ -133,22 +133,14 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="animate-slide-up" style={{ animationDelay: '0.1s' }}>
-              <KeyInput
-                value={key}
-                onProviderChange={setProvider}
-                onKeyChange={(val) => {
-                  setKey(val)
-                  if (!val) {
-                    setIsInvalid(false)
-                    setHasChecked(false)
-                  }
-                }}
-                isLoading={isLoading}
-                isInvalid={isInvalid}
-              />
-              <div className="mt-3 relative group">
-                 <div className="relative flex items-stretch rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.03] border border-[var(--border)] transition-all duration-500 shadow-2xl mt-1">
+            <div className="w-full flex flex-col-reverse gap-3">
+              {/* Note: In flex-col-reverse, the first item in DOM is at the BOTTOM visually */}
+              <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
+                <TrustStrip />
+              </div>
+
+              <div className="relative group z-0">
+                 <div className="relative flex items-stretch rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.03] border border-[var(--border)] transition-all duration-500 shadow-2xl">
                     <div className="flex-1 overflow-hidden transition-all duration-500 ease-out">
                       <VerifyButton
                         onClick={handleVerify}
@@ -193,10 +185,22 @@ export default function Home() {
                     </div>
                  </div>
               </div>
-            </div>
 
-            <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
-              <TrustStrip />
+              <div className="animate-slide-up relative z-[30000]" style={{ animationDelay: '0.1s' }}>
+                <KeyInput
+                  value={key}
+                  onProviderChange={setProvider}
+                  onKeyChange={(val) => {
+                    setKey(val)
+                    if (!val) {
+                      setIsInvalid(false)
+                      setHasChecked(false)
+                    }
+                  }}
+                  isLoading={isLoading}
+                  isInvalid={isInvalid}
+                />
+              </div>
             </div>
           </div>
         </div>

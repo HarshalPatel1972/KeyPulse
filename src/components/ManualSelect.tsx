@@ -60,7 +60,7 @@ export default function ManualSelect({ value, onChange }: Props) {
               />
             )}
             <span className="font-sans tracking-wide">
-              {value ? value.name : 'Select a provider...'}
+              {value ? value.name : 'Pick one'}
             </span>
           </div>
           
@@ -72,10 +72,10 @@ export default function ManualSelect({ value, onChange }: Props) {
           </svg>
         </button>
 
-        {/* Custom Dropdown List */}
+        {/* Custom Dropdown Grid - Elevated to absolute top priority */}
         {isOpen && (
-          <div className="absolute z-50 w-full mt-2 rounded-2xl overflow-hidden backdrop-blur-2xl bg-[#0f0d1a]/95 border border-[var(--border)] shadow-2xl animate-dropdown-open">
-            <div className="max-h-[300px] overflow-y-auto custom-scrollbar p-1.5">
+          <div className="absolute z-[99999] w-[120%] -left-[10%] mt-2 rounded-2xl overflow-hidden bg-[#161426] border border-white/20 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] animate-dropdown-open">
+            <div className="p-2 grid grid-cols-3 gap-1.5 overflow-y-auto max-h-[400px] custom-scrollbar">
               {PROVIDERS.map((p) => (
                 <button
                   key={p.id}
@@ -84,23 +84,27 @@ export default function ManualSelect({ value, onChange }: Props) {
                     setIsOpen(false)
                   }}
                   className={`
-                    w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200
-                    hover:bg-white/[0.08] group
-                    ${value?.id === p.id ? 'bg-accent/10 border-l-2 border-accent' : 'border-l-2 border-transparent'}
+                    flex items-center gap-2.5 px-3 py-2.5 rounded-xl transition-all duration-300
+                    hover:bg-white/[0.07] group border
+                    ${value?.id === p.id 
+                      ? 'bg-accent/15 border-accent/60 shadow-[0_0_20px_rgba(var(--accent-rgb),0.15)]' 
+                      : 'border-white/5 hover:border-white/20'
+                    }
                   `}
                 >
-                  <img 
-                    src={`https://www.google.com/s2/favicons?domain=${p.domain}&sz=64`} 
-                    alt="" 
-                    className="w-4 h-4 rounded-sm grayscale group-hover:grayscale-0 transition-all duration-300"
-                  />
-                  <span className={`font-sans tracking-wide text-[13px] ${value?.id === p.id ? 'text-white' : 'text-white/60 group-hover:text-white'}`}>
+                  <div className="relative shrink-0">
+                    <img 
+                      src={`https://www.google.com/s2/favicons?domain=${p.domain}&sz=64`} 
+                      alt="" 
+                      className="w-4 h-4 rounded-sm grayscale group-hover:grayscale-0 transition-all duration-300"
+                    />
+                    {value?.id === p.id && (
+                      <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-accent ring-2 ring-[#161426]" />
+                    )}
+                  </div>
+                  <span className={`font-sans tracking-tight text-[10px] font-bold truncate ${value?.id === p.id ? 'text-white' : 'text-white/70 group-hover:text-white'}`}>
                     {p.name}
                   </span>
-                  
-                  {value?.id === p.id && (
-                    <div className="ml-auto w-1 h-1 rounded-full bg-accent shadow-[0_0_8px_var(--accent)]" />
-                  )}
                 </button>
               ))}
             </div>
