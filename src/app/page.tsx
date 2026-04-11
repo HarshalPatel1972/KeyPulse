@@ -62,13 +62,15 @@ export default function Home() {
       >
         <div className="flex items-center gap-2.5 group">
           {/* Pulse icon — inline SVG with neon glow */}
-          <svg width="22" height="22" viewBox="0 0 20 20" fill="none" className="animate-pulse-heartbeat transition-all duration-500 group-hover:scale-110 filter drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]">
+          <svg width="22" height="22" viewBox="0 0 20 20" fill="none" className="animate-pulse-heartbeat transition-all duration-500 group-hover:scale-110">
             <polyline
               points="1,10 5,10 7,4 9,16 11,7 13,13 15,10 19,10"
+              stroke="white"
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="animate-stroke-flow"
+              fill="none"
+              className="animate-stroke-flow drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]"
             />
           </svg>
           <span
