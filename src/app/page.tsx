@@ -3,6 +3,7 @@ import { useState, useCallback, useEffect } from 'react'
 import { Provider } from '@/lib/types'
 import KeyInput from '@/components/KeyInput'
 import TrustBanner from '@/components/TrustBanner'
+import VerifyButton from '@/components/VerifyButton'
 import ResultCard from '@/components/ResultCard'
 
 import { verify } from '@/lib/verifiers'
