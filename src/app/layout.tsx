@@ -3,8 +3,26 @@ import { GeistMono } from 'geist/font/mono'
 import './globals.css'
 
 export const metadata = {
-  title: 'KeyPulse — Check if your key still has a pulse',
-  description: 'Paste any API key. We detect the provider, verify it live, and tell you everything — in seconds. Your key never leaves your browser.',
+  title: 'KeyPulse — The Heartbeat of your API Lifecycle',
+  description:
+    'Paste any API key. We detect the provider, verify it live, and tell you everything — in seconds. Privacy-first, zero-log API key validation.',
+  keywords: ['API key', 'validator', 'checker', 'OpenAI', 'Anthropic', 'Gemini', 'security'],
+  authors: [{ name: 'KeyPulse Team' }],
+  openGraph: {
+    title: 'KeyPulse — Check if your key still has a pulse',
+    description: 'Instant, privacy-first API key detection and validation.',
+    url: 'https://keypulse.app',
+    siteName: 'KeyPulse',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'KeyPulse — API Key Validator',
+    description: 'The heartbeat of your API lifecycle.',
+  },
+  icons: {
+    icon: 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💓</text></svg>',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
