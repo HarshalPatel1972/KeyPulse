@@ -23,7 +23,7 @@ export default function StarRiver() {
     const initStars = () => {
       stars = []
       // Number of stars scales with screen width to keep density consistent
-      const numStars = Math.floor((canvas.width * canvas.height) / 12000)
+      const numStars = Math.floor((canvas.width * canvas.height) / 8000)
       for (let i = 0; i < numStars; i++) {
         stars.push(createStar(true))
       }
@@ -33,12 +33,12 @@ export default function StarRiver() {
       return {
         x: Math.random() * canvas.width,
         y: randomY ? Math.random() * canvas.height : -10,
-        // Extremely small radius for premium subtle feel
-        radius: Math.random() * 0.8 + 0.2,
+        // Increased radius for better visibility
+        radius: Math.random() * 1.5 + 0.5,
         // Slow downward flow (river effect)
-        speed: Math.random() * 0.4 + 0.1,
-        // Subtle opacity
-        opacity: Math.random() * 0.4 + 0.1,
+        speed: Math.random() * 0.5 + 0.1,
+        // Increased opacity for better visibility
+        opacity: Math.random() * 0.6 + 0.2,
       }
     }
 
@@ -94,7 +94,7 @@ export default function StarRiver() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-[-1] opacity-60"
+      className="fixed inset-0 pointer-events-none z-[-1]"
       style={{ background: 'transparent' }}
     />
   )
