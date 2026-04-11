@@ -9,27 +9,37 @@ export default function VerifyButton({ onClick, disabled, isLoading }: Props) {
     <button
       onClick={onClick}
       disabled={disabled || isLoading}
-      className="w-full mt-4 py-3.5 rounded-xl font-medium text-sm transition-all duration-200 active:scale-[0.99]"
+      className={`
+        w-full mt-6 py-4 rounded-2xl font-heading font-bold text-[15px] tracking-[0.05em] uppercase
+        transition-all duration-300 relative overflow-hidden group
+        ${disabled || isLoading 
+          ? 'bg-white/[0.04] text-white/20 border border-white/5 cursor-not-allowed' 
+          : 'cursor-pointer hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_20px_rgba(124,58,237,0.1)] hover:shadow-[0_0_30px_rgba(124,58,237,0.3)]'
+        }
+      `}
       style={{
-        background: disabled || isLoading
-          ? 'var(--bg-elevated)'
-          : 'linear-gradient(135deg, var(--accent-btn-from), var(--accent-btn-to))',
-        color: disabled || isLoading ? 'var(--text-hint)' : '#ffffff',
-        border: `1px solid ${disabled || isLoading ? 'var(--border)' : 'transparent'}`,
-        cursor: disabled || isLoading ? 'not-allowed' : 'pointer',
-        letterSpacing: '0.02em',
+        background: !disabled && !isLoading 
+          ? 'linear-gradient(135deg, var(--accent-btn-from), var(--accent-btn-to), var(--accent-btn-from))' 
+          : undefined,
+        backgroundSize: '200% auto',
       }}
     >
+      {!disabled && !isLoading && (
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-700 bg-gradient-to-r from-transparent via-white to-transparent -translate-x-full group-hover:translate-x-full"></div>
+      )}
+      
       {isLoading ? (
-        <span className="flex items-center justify-center gap-2">
-          <span
-            className="w-4 h-4 rounded-full border-2 animate-spin"
-            style={{ borderColor: 'rgba(255,255,255,0.2)', borderTopColor: '#fff' }}
-          />
-          Checking...
+        <span className="flex items-center justify-center gap-3">
+          <span className="relative flex h-4 w-4">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-20"></span>
+            <span className="relative inline-flex rounded-full h-4 w-4 border-2 border-white/20 border-t-white animate-spin"></span>
+          </span>
+          <span className="animate-pulse">Checking Pulse...</span>
         </span>
       ) : (
-        'Check pulse'
+        <span className="relative z-10">
+          Check pulse
+        </span>
       )}
     </button>
   )
