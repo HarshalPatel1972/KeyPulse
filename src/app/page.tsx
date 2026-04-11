@@ -102,7 +102,7 @@ export default function Home() {
                 </div>
                 <span className="font-sans font-medium uppercase mt-0.5">11 providers supported</span>
               </div>
-              <h1 className="text-5xl font-heading mb-4 tracking-tight" style={{ color: 'var(--text-primary)', letterSpacing: '-0.03em' }}>
+              <h1 className="text-5xl font-heading mb-4 tracking-[-0.03em] animate-text-flow pb-2">
                 KeyPulse
               </h1>
               <p className="text-xl font-light" style={{ color: 'var(--text-muted)' }}>

@@ -135,13 +135,26 @@ body {
   animation: shimmer-button 2s linear infinite;
 }
 
-@keyframes dropdown-open {
-  from { opacity: 0; transform: translateY(-10px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+@keyframes text-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-.animate-dropdown-open {
-  animation: dropdown-open 0.2s cubic-bezier(0, 0, 0.2, 1) forwards;
+.animate-text-flow {
+  background: linear-gradient(
+    -45deg, 
+    var(--accent), 
+    var(--accent-2), 
+    #ffffff,
+    var(--accent-2),
+    var(--accent)
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-flow 12s ease infinite;
 }
 
 /* Premium Scrollbar */
