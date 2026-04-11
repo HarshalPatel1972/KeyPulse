@@ -132,7 +132,7 @@ body {
 
 .animate-shimmer-button {
   background-size: 200% auto;
-  animation: shimmer-button 4s linear infinite;
+  animation: shimmer-button 2s linear infinite;
 }
 
 @keyframes dropdown-open {

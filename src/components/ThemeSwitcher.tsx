@@ -27,21 +27,25 @@ export default function ThemeSwitcher() {
 
   return (
     <div 
-      className="p-1 rounded-full flex items-center relative gap-1"
-      style={{ 
-        background: 'rgba(255, 255, 255, 0.03)',
-        border: '1px solid rgba(255, 255, 255, 0.08)',
-        backdropFilter: 'blur(8px)'
-      }}
+      className="p-1 rounded-full flex items-center relative gap-0.5 bg-[#050505]/60 border border-white/[0.05] backdrop-blur-2xl shadow-2xl"
     >
-      {/* Sliding Highlight */}
+      {/* Liquid Ambient Highlight */}
       <div 
-        className="absolute top-1 bottom-1 rounded-full transition-all duration-300 ease-out z-0 shadow-lg"
+        className="absolute top-1 bottom-1 rounded-full transition-all duration-500 cubic-bezier(0.16, 1, 0.3, 1) z-0"
         style={{
-          width: 'calc(33.333% - 6px)',
+          width: 'calc(33.333% - 4px)',
           left: active === 'theme-aurora' ? '4px' : active === 'theme-void' ? '33.333%' : '66.666%',
-          background: 'rgba(255, 255, 255, 0.08)',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
+          background: 'rgba(255, 255, 255, 0.03)',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
+          boxShadow: `inset 0 1px 1px rgba(255,255,255,0.1), 0 0 20px ${THEMES.find(t => t.id === active)?.color}15`,
+        }}
+      />
+
+      {/* Decorative Glow Layer (Ambient Atmosphere) */}
+      <div 
+        className="absolute inset-0 rounded-full opacity-20 blur-xl transition-all duration-700 pointer-events-none"
+        style={{
+          background: `radial-gradient(circle at ${active === 'theme-aurora' ? '20%' : active === 'theme-void' ? '50%' : '80%'} 50%, ${THEMES.find(t => t.id === active)?.color} 0%, transparent 60%)`,
         }}
       />
 
@@ -49,20 +53,35 @@ export default function ThemeSwitcher() {
         <button
           key={t.id}
           onClick={() => apply(t.id)}
-          className="relative z-10 px-4 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase transition-all duration-300 flex items-center gap-2"
+          className="group relative z-10 px-5 py-2 rounded-full text-[10px] font-bold tracking-[0.18em] uppercase transition-all duration-500 flex items-center gap-2.5"
           style={{
             color: active === t.id ? 'var(--text-primary)' : 'var(--text-hint)',
+            textShadow: active === t.id ? `0 0 10px ${t.color}40` : 'none',
           }}
         >
-          <span 
-            className="w-1 h-1 rounded-full transition-all" 
-            style={{ 
-              background: t.color,
-              boxShadow: active === t.id ? `0 0 8px ${t.color}` : 'none',
-              transform: active === t.id ? 'scale(1.2)' : 'scale(1)'
-            }} 
-          />
-          {t.label}
+          <div className="relative flex items-center justify-center">
+             {/* The Jewel-Dot */}
+             <span 
+               className="block w-1.5 h-1.5 rounded-full transition-all duration-700" 
+               style={{ 
+                 background: active === t.id ? t.color : 'rgba(255,255,255,0.1)',
+                 boxShadow: active === t.id ? `0 0 12px ${t.color}, inset 0 0 2px white` : 'none',
+                 transform: active === t.id ? 'scale(1.1)' : 'scale(1)',
+               }} 
+             />
+             
+             {/* Subtle Inner Halo */}
+             {active === t.id && (
+               <span 
+                 className="absolute inset-[-4px] rounded-full border border-white/5 animate-pulse" 
+                 style={{ borderColor: `${t.color}20` }}
+               />
+             )}
+          </div>
+          
+          <span className="relative z-10 opacity-80 group-hover:opacity-100 transition-opacity duration-300 font-medium">
+            {t.label}
+          </span>
         </button>
       ))}
     </div>
