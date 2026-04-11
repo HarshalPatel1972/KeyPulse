@@ -11,7 +11,7 @@ interface Props {
 export default function ResultCard({ result, provider, onReset }: Props) {
   const [showModels, setShowModels] = useState(false)
   const isError = result.status === 'error' || result.status === 'invalid'
-  const statusColor = result.status === 'valid' ? '#22c55e' : '#ef4444'
+  const statusColor = result.status === 'valid' ? '#2dd4bf' : '#f87171'
 
   return (
     <div className="w-full bg-surface border border-border rounded-2xl p-6 shadow-2xl animate-in slide-in-from-bottom-4 duration-300">
