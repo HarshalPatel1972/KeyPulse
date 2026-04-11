@@ -16,9 +16,18 @@
   font-display: swap;
 }
 
-:root {
-  --font-cirka: 'Cirka', system-ui, sans-serif;
-  --font-season: 'Season', system-ui, sans-serif;
+@theme {
+  /* Design Tokens for Tailwind v4 */
+  --font-heading: 'Cirka', "ui-serif", "serif";
+  --font-sans: 'Season', "ui-sans-serif", "system-ui", "sans-serif";
+  
+  --color-base: #08070f;
+  --color-surface: #0f0d1a;
+  --color-elevated: #161228;
+  --color-accent: #7c3aed;
+  --color-valid: #2dd4bf;
+  --color-invalid: #f87171;
+  --color-quota: #fbbf24;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -84,6 +93,7 @@ html.theme-dusk {
 body {
   background-color: var(--bg-base);
   color: var(--text-primary);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
