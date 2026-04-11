@@ -50,12 +50,15 @@ export default function KeyInput({ onProviderChange, onKeyChange, isLoading, isI
   return (
     <div className="w-full">
       <div
-        className={[
-          'relative flex items-center border rounded-xl overflow-hidden transition-all duration-150',
-          isInvalid
-            ? 'border-invalid animate-pulse-invalid'
-            : 'border-border focus-within:border-border-hover',
-        ].join(' ')}
+        className={`key-input-wrapper relative flex items-center transition-all duration-150 ${
+          isInvalid ? 'animate-pulse-invalid' : ''
+        }`}
+        style={{
+          background: 'var(--bg-surface)',
+          border: `1px solid ${isInvalid ? 'var(--invalid)' : 'var(--border)'}`,
+          borderRadius: '12px',
+          transition: 'border-color 0.15s',
+        }}
       >
         <input
           type={showKey ? 'text' : 'password'}
@@ -63,7 +66,13 @@ export default function KeyInput({ onProviderChange, onKeyChange, isLoading, isI
           onChange={(e) => handleChange(e.target.value)}
           placeholder="Paste your API key here..."
           disabled={isLoading}
-          className="flex-1 bg-surface text-primary font-mono text-sm px-4 py-4 outline-none placeholder:text-hint disabled:opacity-50"
+          className="flex-1 px-4 py-4 outline-none placeholder:text-hint disabled:opacity-50"
+          style={{
+            background: 'transparent',
+            color: 'var(--text-primary)',
+            fontFamily: 'var(--font-geist-mono)',
+            fontSize: '13px',
+          }}
           autoComplete="off"
           autoCorrect="off"
           spellCheck={false}
@@ -71,7 +80,8 @@ export default function KeyInput({ onProviderChange, onKeyChange, isLoading, isI
         <button
           type="button"
           onClick={() => setShowKey((v) => !v)}
-          className="px-4 text-hint hover:text-muted transition-colors text-xs"
+          className="px-4 transition-colors text-xs"
+          style={{ color: 'var(--text-hint)' }}
         >
           {showKey ? 'hide' : 'show'}
         </button>

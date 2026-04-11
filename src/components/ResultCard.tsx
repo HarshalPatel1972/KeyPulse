@@ -1,14 +1,16 @@
 'use client'
 import { useState } from 'react'
 import { VerifyResult, Provider } from '@/lib/types'
+import { PROVIDERS_MAP } from '@/lib/providers'
 
 interface Props {
   result: VerifyResult
-  provider: Provider
-  onReset: () => void
+  provider?: Provider
+  onReset?: () => void
 }
 
-export default function ResultCard({ result, provider, onReset }: Props) {
+export default function ResultCard({ result, provider: manualProvider, onReset }: Props) {
+  const provider = manualProvider || PROVIDERS_MAP[result.provider]
   const [showModels, setShowModels] = useState(false)
   const isError = result.status === 'error' || result.status === 'invalid'
   const statusColor = result.status === 'valid' ? '#2dd4bf' : '#f87171'
@@ -122,12 +124,14 @@ export default function ResultCard({ result, provider, onReset }: Props) {
         <p className="text-[10px] text-hint uppercase tracking-widest font-bold">
           Checked at {new Date(result.checkedAt).toLocaleTimeString()}
         </p>
-        <button
-          onClick={onReset}
-          className="text-xs font-bold text-primary hover:text-primary/70 transition-colors uppercase tracking-widest bg-elevated px-4 py-2 rounded-lg border border-border"
-        >
-          Check another
-        </button>
+        {onReset && (
+          <button
+            onClick={onReset}
+            className="text-xs font-bold text-primary hover:text-primary/70 transition-colors uppercase tracking-widest bg-elevated px-4 py-2 rounded-lg border border-border"
+          >
+            Check another
+          </button>
+        )}
       </div>
     </div>
   )
