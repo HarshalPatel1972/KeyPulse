@@ -80,18 +80,19 @@ export default function Home() {
           {/* Hero */}
           <div className="mb-10 text-center">
             <div
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs mb-5"
+              className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full backdrop-blur-md bg-white/[0.03] border border-white/10 text-[10px] mb-6 transition-all duration-500 hover:border-white/20 group"
               style={{
-                background: 'var(--bg-elevated)',
-                border: '1px solid var(--border)',
+                letterSpacing: '0.12em',
                 color: 'var(--text-muted)',
               }}
             >
-              <span
-                className="w-1.5 h-1.5 rounded-full"
-                style={{ background: 'var(--valid)' }}
-              />
-              11 providers supported
+              <div className="relative flex items-center justify-center">
+                <span className="absolute w-2.5 h-2.5 rounded-full bg-valid/40 animate-ping" />
+                <span className="relative w-1.5 h-1.5 rounded-full bg-valid shadow-[0_0_8px_rgba(45,212,191,0.5)]" />
+              </div>
+              <span className="font-sans font-medium uppercase mt-0.5">
+                11 providers supported
+              </span>
             </div>
             <h1
               className="text-5xl font-heading mb-4 tracking-tight"
