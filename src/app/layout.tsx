@@ -3,13 +3,13 @@ import localFont from 'next/font/local'
 import './globals.css'
 
 const cirka = localFont({
-  src: '../../public/fonts/Cirka-Bold.otf',
+  src: './fonts/Cirka-Bold.otf',
   variable: '--font-cirka',
   display: 'swap',
 })
 
 const season = localFont({
-  src: '../../public/fonts/SeasonSans-TRIAL-Regular.otf',
+  src: './fonts/SeasonSans-TRIAL-Regular.otf',
   variable: '--font-season',
   display: 'swap',
 })
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${cirka.variable} ${season.variable}`}>
-      <body className="font-sans" suppressHydrationWarning>
+      <body className="font-sans antialiased" suppressHydrationWarning>
         {children}
       </body>
     </html>
