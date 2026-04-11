@@ -118,7 +118,17 @@ export default function ResultCard({ result, provider, onReset }: Props) {
         )}
       </div>
 
-      {/* Timestamp and Reset button added next */}
+      <div className="mt-8 pt-6 border-t border-border flex items-center justify-between">
+        <p className="text-[10px] text-hint uppercase tracking-widest font-bold">
+          Checked at {new Date(result.checkedAt).toLocaleTimeString()}
+        </p>
+        <button
+          onClick={onReset}
+          className="text-xs font-bold text-primary hover:text-primary/70 transition-colors uppercase tracking-widest bg-elevated px-4 py-2 rounded-lg border border-border"
+        >
+          Check another
+        </button>
+      </div>
     </div>
   )
 }
