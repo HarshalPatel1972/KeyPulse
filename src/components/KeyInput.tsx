@@ -48,7 +48,7 @@ export default function KeyInput({ onProviderChange, onKeyChange, isLoading, isI
   const showManual = detection?.confidence === 'unknown' && key.trim().length > 8
 
   return (
-    <div className="w-full">
+    <div className="w-full relative z-20">
       <div
         className={`key-input-wrapper relative flex items-center transition-all duration-150 ${
           isInvalid ? 'animate-pulse-invalid' : ''
