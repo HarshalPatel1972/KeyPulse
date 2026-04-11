@@ -1,4 +1,4 @@
-import { DetectionResult } from './types'
+import { DetectionResult, Provider } from './types'
 import { PROVIDERS } from './providers'
 
 export function detectProvider(key: string): DetectionResult {
