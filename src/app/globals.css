@@ -101,3 +101,19 @@ body {
 }
 
 .key-input-wrapper:focus-within { border-color: var(--border-hover) !important; }
+
+/* Fix for native dropdown visibility in dark themes */
+select option {
+  background-color: #161228; /* Match bg-elevated */
+  color: #f0eeff;
+}
+
+.theme-void select option {
+  background-color: #111d35;
+  color: #e2f0ff;
+}
+
+.theme-dusk select option {
+  background-color: #1e1609;
+  color: #fef3e8;
+}
