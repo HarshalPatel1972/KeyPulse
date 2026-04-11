@@ -98,6 +98,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#__next, main {
+  height: 100%;
+  overflow: hidden;
+}
+
 /* Animations */
 @keyframes slide-up {
   from { opacity: 0; transform: translateY(12px); }

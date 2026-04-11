@@ -51,13 +51,13 @@ export default function Home() {
 
   return (
     <main
-      className="min-h-screen flex flex-col relative z-0"
+      className="h-screen flex flex-col relative z-0 overflow-hidden"
       style={{ background: 'var(--bg-base)' }}
     >
       <StarRiver />
       {/* Top nav bar */}
       <nav
-        className="flex items-center justify-between px-6 py-4"
+        className="h-16 flex items-center justify-between px-6 py-4 shrink-0"
         style={{ borderBottom: '1px solid var(--border)' }}
       >
         <div className="flex items-center gap-2.5 group">
@@ -107,8 +107,8 @@ export default function Home() {
       <div className="flex-1 grid grid-cols-1 xl:grid-cols-[1fr_420px] items-stretch overflow-hidden">
         
         {/* Left column — Command Center (Mainly for interaction) */}
-        <div className="flex flex-col items-center justify-center px-4 py-16 scrollbar-hide overflow-y-auto">
-          <div className="w-full max-w-[520px]">
+        <div className="flex flex-col items-center justify-center p-8 scrollbar-hide overflow-y-auto">
+          <div className="w-full max-w-[520px] py-10">
             {/* Hero */}
             <div className="mb-10 text-center animate-fade-in">
               <div
@@ -148,29 +148,35 @@ export default function Home() {
                  {/* Single Chassis Control Frame */}
                  <div className="relative flex items-stretch rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] transition-all duration-500 shadow-2xl">
                     <div 
-                      className="transition-all duration-500 ease-out flex-shrink-0"
-                      style={{ width: hasChecked ? '65%' : '100%' }}
+                      className="flex-1 transition-all duration-500"
+                      style={{ 
+                        marginRight: hasChecked ? '0px' : '-160px',
+                        transform: hasChecked ? 'translateX(0)' : 'translateX(80px)'
+                      }}
                     >
                       <VerifyButton
                         onClick={handleVerify}
-                        disabled={!key.trim() || !provider}
                         isLoading={isLoading}
+                        disabled={!key.trim() || !provider}
+                        activeTheme={history[0]?.provider ? history[0].provider : 'default'}
                       />
                     </div>
-
-                    {hasChecked && <div className="w-[1px] bg-white/[0.08] self-stretch" />}
                     
+                    {/* Reset Button sliding in */}
                     <div 
-                      className={`transition-all duration-700 ease-out overflow-hidden flex-1`}
+                      className="w-[160px] border-l border-white/[0.08] bg-white/[0.02] flex items-center justify-center overflow-hidden transition-all duration-500 ease-out"
                       style={{ 
-                        maxWidth: hasChecked ? '100%' : '0',
+                        width: hasChecked ? '160px' : '0px',
                         opacity: hasChecked ? 1 : 0,
+                        transform: hasChecked ? 'translateX(0)' : 'translateX(20px)'
                       }}
                     >
                       <button
                         onClick={handleReset}
-                        className="group/reset w-full h-full font-bold text-[10px] uppercase tracking-[0.22em] transition-all duration-300 hover:bg-white/[0.05] active:scale-95 flex items-center justify-center gap-2 px-6"
-                        style={{ color: 'var(--text-muted)' }}
+                        className="w-full h-full flex items-center justify-center gap-2 text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-300"
+                        style={{ 
+                          color: 'var(--text-muted)'
+                        }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.color = 'var(--accent)';
                           e.currentTarget.style.textShadow = '0 0 10px var(--accent)';
@@ -213,7 +219,7 @@ export default function Home() {
           className="hidden xl:flex flex-col border-l border-white/[0.08] bg-transparent overflow-hidden"
           style={{ backdropFilter: 'blur(4px)' }}
         >
-          <div className="p-6 border-b border-white/[0.05] flex items-center justify-between bg-white/[0.02]">
+          <div className="p-6 border-b border-white/[0.05] flex items-center justify-between bg-white/[0.02] shrink-0">
             <h2 className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted">Verification Feed</h2>
             <span className="text-[10px] font-mono opacity-30">{history.length} active</span>
           </div>
@@ -253,20 +259,9 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Mobile Results — show below on smaller screens */}
-      {!isLoading && history.length > 0 && (
-        <div className="xl:hidden px-4 pb-20">
-          <div className="max-w-[520px] mx-auto space-y-6">
-             {history.map((res, idx) => (
-               <ResultCard key={res.checkedAt + idx} result={res} />
-             ))}
-          </div>
-        </div>
-      )}
-
       {/* Footer */}
       <footer
-        className="relative py-8 z-10 border-t border-white/[0.05] backdrop-blur-md bg-white/[0.01]"
+        className="relative py-4 z-10 border-t border-white/[0.05] backdrop-blur-md bg-white/[0.01] shrink-0"
       >
         <div className="flex items-center justify-center gap-3">
           <span className="text-[10px] uppercase tracking-[0.2em] text-muted opacity-40">© 2026</span>
@@ -287,4 +282,3 @@ export default function Home() {
     </main>
   )
 }
-
