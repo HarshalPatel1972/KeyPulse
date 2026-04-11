@@ -61,8 +61,12 @@ export default function Home() {
         style={{ borderBottom: '1px solid var(--border)' }}
       >
         <div className="flex items-center gap-2.5 group">
-          <svg width="24" height="24" viewBox="0 0 20 20" fill="none" className="transition-all duration-500 group-hover:scale-110">
+          <svg width="24" height="24" viewBox="0 0 20 20" fill="none" className="transition-all duration-500 group-hover:scale-110 overflow-visible">
             <defs>
+              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="1.5" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
               <linearGradient id="logo-flow" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#ffffff" />
                 <stop offset="20%" stopColor="#ff00c1" />
@@ -73,7 +77,7 @@ export default function Home() {
               </linearGradient>
             </defs>
             <polyline
-              className="drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]"
+              style={{ filter: 'url(#glow)' }}
               stroke="url(#logo-flow)"
               strokeWidth="2.5"
               strokeLinecap="round"
