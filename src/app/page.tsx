@@ -190,8 +190,8 @@ export default function Home() {
 
         {/* Right column — Results Sidebar */}
         <div 
-          className="hidden xl:flex flex-col border-l border-white/[0.08] bg-white/[0.03] overflow-hidden"
-          style={{ backdropFilter: 'blur(24px)' }}
+          className="hidden xl:flex flex-col border-l border-white/[0.08] bg-transparent overflow-hidden"
+          style={{ backdropFilter: 'blur(4px)' }}
         >
           <div className="p-6 border-b border-white/[0.05] flex items-center justify-between bg-white/[0.02]">
             <h2 className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted">Verification Feed</h2>
