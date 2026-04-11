@@ -242,41 +242,22 @@ export default function Home() {
 
       {/* Footer */}
       <footer
-        className="relative py-8 z-10 border-t border-white/[0.08] backdrop-blur-xl bg-white/[0.03]"
+        className="relative py-8 z-10 border-t border-white/[0.05] backdrop-blur-md bg-white/[0.01]"
       >
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
-          <div className="flex items-center gap-3">
-             <span className="text-[10px] uppercase tracking-[0.2em] text-muted opacity-50">Industrial Grade</span>
-             <div className="w-[1px] h-3 bg-white/10" />
-             <div className="flex items-center gap-1.5">
-               <span className="text-[10px] uppercase tracking-[0.1em] text-muted opacity-50">Built by</span>
-               <a
-                 href="https://github.com/HarshalPatel1972"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 className="text-[11px] font-bold tracking-[0.15em] uppercase text-primary transition-all duration-300 hover:text-accent hover:drop-shadow-[0_0_8px_var(--accent)]"
-               >
-                 Harshal Patel
-               </a>
-             </div>
+        <div className="flex items-center justify-center gap-3">
+          <span className="text-[10px] uppercase tracking-[0.2em] text-muted opacity-40">© 2026</span>
+          <div className="w-[1px] h-3 bg-white/10" />
+          <div className="flex items-center gap-1.5">
+            <span className="text-[10px] uppercase tracking-[0.1em] text-muted opacity-40">Built by</span>
+            <a
+              href="https://github.com/HarshalPatel1972"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[11px] font-bold tracking-[0.15em] uppercase text-primary transition-all duration-300 hover:text-accent"
+            >
+              Harshal Patel
+            </a>
           </div>
-
-          <div className="hidden md:block w-[1px] h-4 bg-white/[0.08]" />
-
-          <a
-            href="https://github.com/HarshalPatel1972/keypulse-worker"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group/source flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/[0.05] bg-white/[0.02] transition-all duration-300 hover:border-accent/30 hover:bg-accent/5"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-muted group-hover/source:text-accent transition-colors">
-              <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-              <path d="M9 18c-4.51 2-5-2-7-2" />
-            </svg>
-            <span className="text-[9px] font-black uppercase tracking-[0.2em] text-muted group-hover/source:text-accent transition-colors">
-              Proxy source
-            </span>
-          </a>
         </div>
       </footer>
     </main>
