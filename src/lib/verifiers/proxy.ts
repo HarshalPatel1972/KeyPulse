@@ -73,7 +73,7 @@ export async function proxyVerifier(key: string, providerId: ProviderId): Promis
       models: extractedModels,
       account: null,
       rateLimit: null,
-      rawError: null,
+      rawError: undefined,
     }
   } catch (err) {
     return {
