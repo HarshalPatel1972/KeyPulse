@@ -62,15 +62,33 @@ export default function Home() {
       >
         <div className="flex items-center gap-2.5 group">
           {/* Pulse icon — inline SVG with neon glow */}
-          <svg width="22" height="22" viewBox="0 0 20 20" fill="none" className="animate-pulse-heartbeat transition-all duration-500 group-hover:scale-110">
+          <svg width="24" height="24" viewBox="0 0 20 20" fill="none" className="animate-pulse-heartbeat transition-all duration-500 group-hover:scale-110">
+            <defs>
+              <linearGradient id="logo-flow" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#ffffff" />
+                <stop offset="20%" stopColor="#ff00c1" />
+                <stop offset="40%" stopColor="#00fff0" />
+                <stop offset="60%" stopColor="#ffde59" />
+                <stop offset="80%" stopColor="#7ed957" />
+                <stop offset="100%" stopColor="#ffffff" />
+                <animateTransform 
+                  attributeName="gradientTransform" 
+                  type="translate" 
+                  from="-1 0" 
+                  to="1 0" 
+                  dur="4s" 
+                  repeatCount="indefinite" 
+                />
+              </linearGradient>
+            </defs>
             <polyline
               points="1,10 5,10 7,4 9,16 11,7 13,13 15,10 19,10"
-              stroke="white"
+              stroke="url(#logo-flow)"
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
               fill="none"
-              className="animate-stroke-flow drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]"
+              className="drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
             />
           </svg>
           <span
