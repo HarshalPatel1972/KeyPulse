@@ -47,7 +47,6 @@ export default function TrustStrip() {
             style={{
               borderRight: i < signals.length - 1 ? '1px solid var(--border)' : 'none',
               borderBottom: i < signals.length - 1 ? '1px solid var(--border)' : 'none',
-              borderRightWidth: '(min-width: 768px)' ? (i < signals.length - 1 ? '1px' : '0px') : '0px',
             }}
           >
             <div className="transition-transform duration-500 group-hover:scale-110 shrink-0 text-[var(--accent)] 
