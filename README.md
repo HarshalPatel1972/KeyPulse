@@ -1,76 +1,109 @@
 # KeyPulse 💓
 
-**KeyPulse is the heartbeat of your API lifecycle.**
+**The definitive biometric for your API lifecycle.**
 
-KeyPulse is a high-performance, privacy-first API key validator. It allows developers to instantly detect the provider of an API key and verify its status live, directly from the browser, with zero server-side logging.
+KeyPulse is a high-fidelity, privacy-first API validation suite designed for developers who demand both speed and aesthetic excellence. It provides instant, pulse-accurate verification for 11+ global AI providers, ensuring your intelligence layer is always operational.
 
-## 🚀 Features
+Built with a **Zero-Persistence** philosophy, KeyPulse operates in "Ghost-Mode"—your API keys never cross a database, never touch a log, and never leave the neural isolation of your client session.
 
-- **Instant Recognition**: Automatic prefix-based detection for 11+ major AI providers.
-- **Live Verification**: Real-time status checks (Valid, Invalid, Quota Exceeded, Rate Limited).
-- **Privacy First**: Direct browser-to-API communication. Your keys never leave your device.
-- **Deep Insights**: View available models, account types, and remaining rate limits.
-- **Beautiful UI**: A focused, dark-mode experience built with Geist Mono and Tailwind CSS.
+---
 
-## 🛠 Supported Providers
+## 📽️ Elite Experience
 
-- OpenAI
-- Anthropic
-- Google Gemini
-- Groq
-- Mistral
-- Cohere
-- HuggingFace
-- Perplexity
-- Together AI
-- Replicate
-- ElevenLabs
+KeyPulse is more than a tool; it's a cinematic dashboard for your workspace.
 
-## 📦 Tech Stack
+- **Neural Isolation Architecture**: 100% client-side verification. Zero history. Zero logs.
+- **Cinematic Design System**: A high-contrast, boutique interface utilizing a "Lavender & Deep Indigo" color hierarchy.
+- **Micro-Interaction Fidelity**: Fluid animations, including the "Logo Fountain" and "Star River" background for a premium feel.
+- **Node Verification**: Beyond just "valid/invalid"—retrieve available endpoints, account subject identifiers, and real-time API exceptions.
 
-- **Framework**: [Next.js 14](https://nextjs.org/) (App Router, TypeScript)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Fonts**: [Geist](https://vercel.com/font)
-- **Proxy**: Cloudflare Workers (for CORS-restricted providers)
+---
 
-## 🛠 Setup
+## 🔒 Security & Privacy
+
+We believe in **Absolute Transparency**. Security is the core of the KeyPulse DNA.
+
+### Zero-Persistence Pattern
+Unlike traditional validators, KeyPulse does not utilize a backend database. We treat API keys as radioactive: the second your verification is complete, the state is purged.
+
+### Neural Isolation
+- **Direct-to-API**: 90% of providers are queried directly from your browser.
+- **Stateless Proxy**: For CORS-restricted providers, requests are routed through a stateless Cloudflare Worker that acts as a pass-through. No keys are ever stored or logged at the edge.
+
+---
+
+## 🧩 Supported Intelligence Sources
+
+KeyPulse provides native, prefix-aware support for:
+
+- **OpenAI** (Auto-detection for `sk-` and `sk-proj-`)
+- **Anthropic** (Native `sk-ant-` support)
+- **Google Gemini**
+- **Meta Llama / Mistral**
+- **Groq**
+- **HuggingFace**
+- **Perplexity**
+- **Cohere**
+- **Together AI**
+- **Replicate**
+- **ElevenLabs**
+
+---
+
+## 🛠️ Technical Specifications
+
+KeyPulse is engineered with the modern web's most powerful primitives:
+
+- **Framework**: [Next.js 16.2.3](https://nextjs.org/) (App Router, React 19)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) (Custom Saturated Palette)
+- **Performance**: [unavatar.io](https://unavatar.io) integration for instant sub-millisecond brand recognition.
+- **Language**: TypeScript (Strict-mode)
+
+---
+
+## 🚀 Setup & Deployment
 
 ### Prerequisites
 
-- [pnpm](https://pnpm.io/)
-- A Cloudflare Worker (optional, for proxy-dependent providers)
+- **pnpm** (Recommended package manager)
+- **Node.js 20+**
 
 ### Local Development
 
-1. **Clone the repository**:
+1. **Initialize the Repository**:
    ```bash
-   git clone https://github.com/HarshalPatel1972/keypulse.git
-   cd keypulse
+   git clone https://github.com/HarshalPatel1972/KeyPulse.git
+   cd KeyPulse
    ```
 
-2. **Install dependencies**:
+2. **Sync Dependencies**:
    ```bash
    pnpm install
    ```
 
-3. **Configure environment**:
-   Create a `.env.local` file:
+3. **Environment Configuration**:
+   Create a `.env.local` file in the root directory:
    ```env
-   NEXT_PUBLIC_CF_WORKER_URL=your_worker_url
+   NEXT_PUBLIC_CF_WORKER_URL=your_stateless_proxy_url
    ```
 
-4. **Run the development server**:
+4. **Launch Interface**:
    ```bash
    pnpm dev
    ```
 
-5. **Open the app**:
-   Navigate to `http://localhost:3000`.
+---
 
-## 🔒 Privacy & Security
+## 🌐 Connect & Contribute
 
-KeyPulse is designed with a strict zero-log policy. We utilize direct browser-to-API calls whenever possible. For providers where CORS is restricted, we use a stateless Cloudflare Worker proxy that does not log requests or keys.
+KeyPulse is a boutique project maintained by **Harshal Patel**.
+
+[**Portfolio**](http://harshal-patel-chi.vercel.app/) | [**LinkedIn**](https://www.linkedin.com/in/harshal-patel-59b9a5278/) | [**Instagram**](https://www.instagram.com/harshalpatel2819) | [**Sponsor**](https://www.chai4.me/harshalpatel)
+
+---
 
 ## 📄 License
 
-MIT
+Distributed under the **MIT License**. See `LICENSE` for more information.
+
+© 2026 **Harshal Patel**. All Rights Reserved.
