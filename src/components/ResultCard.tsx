@@ -7,9 +7,10 @@ interface Props {
   result: VerifyResult
   provider?: Provider
   onReset?: () => void
+  onDelete?: () => void
 }
 
-export default function ResultCard({ result, provider: manualProvider, onReset }: Props) {
+export default function ResultCard({ result, provider: manualProvider, onReset, onDelete }: Props) {
   const provider = manualProvider || PROVIDERS_MAP[result.provider]
   const [showModels, setShowModels] = useState(false)
   const [imgError, setImgError] = useState(false)
@@ -17,7 +18,7 @@ export default function ResultCard({ result, provider: manualProvider, onReset }
   const statusColor = result.status === 'valid' ? '#2dd4bf' : '#f87171'
 
   return (
-    <div className="w-full bg-transparent border border-[var(--border)] rounded-2xl p-5 animate-in slide-in-from-bottom-4 duration-300 group/card transition-[border-color,background-color] hover:border-[var(--border-hover)]">
+    <div className="w-full bg-transparent border border-[var(--border)] rounded-2xl p-5 animate-in slide-in-from-bottom-4 duration-300 group/card transition-[border-color,background-color] hover:border-[var(--border-hover)] relative">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
           <div
@@ -45,15 +46,28 @@ export default function ResultCard({ result, provider: manualProvider, onReset }
             </p>
           </div>
         </div>
-        <div
-          className="px-2.5 py-1 rounded-full text-[9px] font-bold tracking-[0.15em] uppercase border"
-          style={{
-            color: statusColor,
-            borderColor: statusColor + '30',
-            backgroundColor: statusColor + '05',
-          }}
-        >
-          {result.status.replace('_', ' ')}
+        <div className="flex items-center gap-2">
+          <div
+            className="px-2.5 py-1 rounded-full text-[9px] font-bold tracking-[0.15em] uppercase border"
+            style={{
+              color: statusColor,
+              borderColor: statusColor + '30',
+              backgroundColor: statusColor + '05',
+            }}
+          >
+            {result.status.replace('_', ' ')}
+          </div>
+          {onDelete && (
+            <button 
+              onClick={onDelete}
+              className="p-1.5 rounded-lg hover:bg-white/[0.05] text-muted/40 hover:text-invalid transition-colors"
+              title="Remove from history"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 6 6 18M6 6l12 12"/>
+              </svg>
+            </button>
+          )}
         </div>
       </div>
 
