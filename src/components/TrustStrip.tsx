@@ -43,7 +43,7 @@ export default function TrustStrip() {
         {signals.map((s, i) => (
           <div
             key={s.label}
-            className="flex-1 flex flex-row md:flex-col items-center md:items-center justify-start md:justify-center py-4 md:py-6 px-5 md:px-4 text-left md:text-center transition-all duration-300 hover:bg-white/[0.02] gap-4 md:gap-3"
+            className="flex-1 flex flex-row md:flex-col items-center md:items-center justify-start md:justify-center py-4 md:py-6 px-5 md:px-4 text-left md:text-center transition-all duration-300 hover:bg-white/[0.02] gap-4 md:gap-3 md:!border-b-0"
             style={{
               borderRight: i < signals.length - 1 ? '1px solid var(--border)' : 'none',
               borderBottom: i < signals.length - 1 ? '1px solid var(--border)' : 'none',
@@ -67,13 +67,6 @@ export default function TrustStrip() {
           </div>
         ))}
       </div>
-      
-      {/* Mobile Responsive Border adjustment */}
-      <style jsx>{`
-        @media (min-width: 768px) {
-          .flex-1 { border-bottom: none !important; }
-        }
-      `}</style>
     </div>
   )
 }
