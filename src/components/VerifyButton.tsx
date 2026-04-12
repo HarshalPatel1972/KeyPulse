@@ -11,22 +11,22 @@ export default function VerifyButton({ onClick, disabled, isLoading }: Props) {
       disabled={disabled || isLoading}
       className={`
         w-full py-4 rounded-2xl font-heading font-medium text-[16px] tracking-wide
-        transition-all duration-500 relative overflow-hidden group active-scale
+        transition-all duration-500 relative overflow-hidden group active-scale shadow-sm
         ${disabled || isLoading 
-          ? 'bg-white/10 text-white/30' 
-          : 'bg-[#F6F4E8] text-[#DC9B9B] hover:scale-[1.02] shadow-2xl hover:shadow-[#F6F4E8]/20'
+          ? 'bg-black/5 text-black/20' 
+          : 'bg-[#C0E1D2] text-[#4A5A4A] hover:bg-[#98B8A9] hover:scale-[1.02] active:scale-[0.98]'
         }
       `}
     >
       {isLoading ? (
         <span className="flex items-center justify-center gap-3">
           <span className="relative flex h-4 w-4">
-            <span className="relative inline-flex rounded-full h-4 w-4 border-2 border-[#DC9B9B]/20 border-t-[#DC9B9B] animate-spin"></span>
+            <span className="relative inline-flex rounded-full h-4 w-4 border-2 border-black/10 border-t-black/40 animate-spin"></span>
           </span>
-          <span className="animate-pulse">Placing...</span>
+          <span className="animate-pulse">Checking...</span>
         </span>
       ) : (
-        <span className="relative z-10">
+        <span className="relative z-10 font-bold uppercase tracking-widest text-[14px]">
           Check pulse
         </span>
       )}
