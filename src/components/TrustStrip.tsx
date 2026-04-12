@@ -49,8 +49,8 @@ export default function TrustStrip() {
               borderBottom: i < signals.length - 1 ? '1px solid var(--border)' : 'none',
             }}
           >
-            <div className="transition-transform duration-500 group-hover:scale-110 shrink-0">
-              {React.cloneElement(s.icon as React.ReactElement, { width: 24, height: 24, strokeWidth: 2.5 })}
+            <div className="transition-transform duration-500 group-hover:scale-110 shrink-0 text-[var(--accent)] [&>svg]:w-6 md:[&>svg]:w-[18px] [&>svg]:h-6 md:[&>svg]:h-[18px] [&>svg]:stroke-[2.5] md:[&>svg]:stroke-[1.5]">
+              {s.icon}
             </div>
             <div className="flex flex-col">
               <span className="font-heading font-bold text-[14px] md:text-[13px] tracking-wide uppercase mb-0.5 md:mb-1" style={{ color: 'var(--text-primary)' }}>
