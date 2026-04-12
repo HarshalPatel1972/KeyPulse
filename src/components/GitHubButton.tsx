@@ -6,12 +6,9 @@ export default function GitHubButton() {
       href="https://github.com/HarshalPatel1972/keypulse"
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-all group"
+      className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-all group dark:bg-lavender/70"
       style={{
-        background: 'rgba(255, 255, 255, 0.03)',
-        border: '1px solid var(--border)',
-        color: 'var(--text-hint)',
-        backdropFilter: 'blur(8px)',
+        background: 'rgba(244, 238, 255, 0.03)',
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.borderColor = 'var(--border-hover)'

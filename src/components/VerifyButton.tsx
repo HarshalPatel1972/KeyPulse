@@ -13,8 +13,8 @@ export default function VerifyButton({ onClick, disabled, isLoading }: Props) {
         w-full py-4 rounded-2xl font-heading font-medium text-[16px] tracking-wide
         transition-all duration-500 relative overflow-hidden group active-scale shadow-sm
         ${disabled || isLoading 
-          ? 'bg-black/5 text-black/20' 
-          : 'bg-[#C0E1D2] text-[#4A5A4A] hover:bg-[#98B8A9] hover:scale-[1.02] active:scale-[0.98]'
+          ? 'bg-primary/5 text-primary/20' 
+          : 'bg-[#424874] text-lavender hover:bg-[#A6B1E1] hover:text-[#424874] hover:scale-[1.02] active:scale-[0.98]'
         }
       `}
     >
