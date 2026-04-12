@@ -32,12 +32,12 @@ export default function ManualSelect({ value, onChange }: Props) {
       <div className="relative">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className={`w-full flex items-center justify-between px-6 py-5 bg-surface dark:bg-surface/95 shadow-[0_20px_60px_rgba(66,72,116,0.12)] rounded-[24px] transition-all duration-300 transform active:scale-[0.98] group ${isOpen ? 'ring-2 ring-primary/10' : ''}`}
+          className={`w-full flex items-center justify-between px-6 py-5 bg-surface dark:bg-surface/95 shadow-[0_15px_45px_rgba(0,0,0,0.1)] dark:shadow-[0_15px_45px_rgba(0,0,0,0.2)] rounded-[24px] transition-all duration-300 transform active:scale-[0.98] group ${isOpen ? 'ring-2 ring-primary/10' : ''}`}
         >
           <div className="flex items-center gap-4">
             {value ? (
               <>
-                <div className="w-8 h-8 rounded-xl bg-base flex items-center justify-center p-1.5 shadow-sm transition-transform group-hover:scale-110">
+                <div className="w-8 h-8 rounded-xl bg-base flex items-center justify-center p-1.5 shadow-md transition-transform group-hover:scale-110">
                   <img src={`https://www.google.com/s2/favicons?sz=64&domain=${value.domain}`} alt="" className="w-full h-full object-contain" />
                 </div>
                 <div className="flex flex-col">
@@ -60,8 +60,8 @@ export default function ManualSelect({ value, onChange }: Props) {
         </button>
 
         {isOpen && (
-          <div className="absolute top-full left-0 w-full z-[99999] mt-3 bg-surface dark:bg-surface/95 shadow-[0_40px_120px_rgba(42,48,116,0.3)] rounded-[32px] p-4 xl:w-[130%] xl:-left-[15%] backdrop-blur-2xl animate-slide-up">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 overflow-y-auto max-h-[380px] p-1 custom-scrollbar">
+          <div className="absolute top-full left-0 w-full z-[99999] mt-3 bg-surface dark:bg-surface/95 shadow-[0_30px_75px_rgba(0,0,0,0.15)] dark:shadow-[0_30px_75px_rgba(0,0,0,0.3)] rounded-[32px] p-2 backdrop-blur-2xl animate-slide-up border border-primary/5">
+            <div className="flex flex-col gap-1 overflow-y-auto max-h-[320px] p-1 custom-scrollbar">
               {PROVIDERS.map((p) => (
                 <button
                   key={p.id}
@@ -69,18 +69,22 @@ export default function ManualSelect({ value, onChange }: Props) {
                     onChange(p)
                     setIsOpen(false)
                   }}
-                  className={`flex flex-col items-center justify-center p-5 rounded-[24px] transition-all duration-300 group ${value?.id === p.id ? 'bg-primary/10 ring-1 ring-primary/20' : 'bg-base/40 hover:bg-primary/5'}`}
-                  style={{ '--hover-glow': `${p.color}15` } as React.CSSProperties}
+                  className={`flex items-center gap-4 px-4 py-3 rounded-2xl transition-all duration-200 group ${value?.id === p.id ? 'bg-primary/10' : 'hover:bg-primary/5'}`}
                 >
-                  <div className="relative mb-3">
-                    <div className="absolute inset-0 blur-lg transition-opacity opacity-0 group-hover:opacity-100" style={{ backgroundColor: p.color }} />
-                    <div className="relative w-10 h-10 rounded-2xl bg-base shadow-sm flex items-center justify-center p-2.5 transition-transform group-hover:scale-110">
-                      <img src={`https://www.google.com/s2/favicons?sz=64&domain=${p.domain}`} alt={p.name} className="w-full h-full object-contain" />
-                    </div>
+                  <div className="relative w-8 h-8 rounded-xl bg-base shadow-sm flex items-center justify-center p-1.5 transition-transform group-hover:scale-110">
+                    <img 
+                      src={`https://unavatar.io/${p.domain}?fallback=https://www.google.com/s2/favicons?domain=${p.domain}`} 
+                      alt={p.name} 
+                      className="w-full h-full object-contain" 
+                      loading="lazy"
+                    />
                   </div>
-                  <span className={`text-[11px] font-heading font-bold text-center leading-tight transition-colors ${value?.id === p.id ? 'text-primary' : 'text-primary/60 group-hover:text-primary'}`}>{p.name}</span>
+                  <div className="flex flex-col items-start overflow-hidden">
+                    <span className={`text-[13px] font-heading font-bold transition-colors ${value?.id === p.id ? 'text-primary' : 'text-primary/60 group-hover:text-primary'}`}>{p.name}</span>
+                    <span className="text-[9px] uppercase tracking-widest text-primary/30 truncate w-full">{p.domain}</span>
+                  </div>
                   {value?.id === p.id && (
-                    <div className="mt-2 w-1 h-1 rounded-full bg-primary animate-pulse" />
+                    <div className="ml-auto w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
                   )}
                 </button>
               ))}
