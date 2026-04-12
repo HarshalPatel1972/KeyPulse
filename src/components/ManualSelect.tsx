@@ -11,7 +11,6 @@ export default function ManualSelect({ value, onChange }: Props) {
   const [isOpen, setIsOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  // Close on click outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
@@ -22,112 +21,51 @@ export default function ManualSelect({ value, onChange }: Props) {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
-  // Close on Escape
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setIsOpen(false)
-    }
-    window.addEventListener('keydown', handleEscape)
-    return () => window.removeEventListener('keydown', handleEscape)
-  }, [])
-
   return (
-    <div className="mt-4 animate-fade-in" ref={containerRef}>
-      <p 
-        className="font-sans text-[10px] uppercase tracking-[0.15em] font-bold mb-2 ml-1 opacity-60"
-        style={{ color: 'var(--text-muted)' }}
-      >
-        Provider not detected — select manually:
-      </p>
-      
+    <div className="mt-4" ref={containerRef}>
       <div className="relative">
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
           className={`
-            w-full flex items-center justify-between rounded-2xl px-4 py-3.5 text-sm 
-            transition-all duration-300 backdrop-blur-xl bg-white/[0.03] border 
-            ${isOpen ? 'border-accent/40 ring-2 ring-accent/20' : 'border-[var(--border)] hover:bg-white/[0.05] hover:border-[var(--border-hover)]'}
+            w-full flex items-center justify-between rounded-2xl px-5 py-4 text-sm 
+            transition-all duration-300 bg-white/5 border border-white/10
+            ${isOpen ? 'border-accent ring-2 ring-accent/10' : 'hover:border-white/20'}
           `}
-          style={{ color: value ? 'var(--text-primary)' : 'var(--text-hint)' }}
+          style={{ color: 'var(--text-primary)' }}
         >
           <div className="flex items-center gap-3">
             {value && (
-              <img 
-                src={`https://www.google.com/s2/favicons?domain=${value.domain}&sz=64`} 
-                alt="" 
-                className="w-4 h-4 rounded-sm"
-              />
+              <img src={`https://www.google.com/s2/favicons?domain=${value.domain}&sz=64`} alt="" className="w-5 h-5 rounded-sm" />
             )}
-            <span className="font-sans tracking-wide">
-              {value ? value.name : 'Pick one'}
+            <span className="font-heading tracking-wide text-[16px]">
+              {value ? value.name : 'Pick a provider'}
             </span>
           </div>
-          
-          <svg 
-            width="12" height="12" viewBox="0 0 12 12" fill="none" 
-            className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
-          >
-            <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-40" />
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}>
+            <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
 
-        {/* Custom Dropdown Grid - Universal Downward Expansion */}
         {isOpen && (
-          <>
-            {/* Minimal focus isolation backdrop */}
-            <div 
-              className="fixed inset-0 z-[99998] bg-black/10 xl:hidden animate-fade-in"
-              onClick={() => setIsOpen(false)}
-            />
-            
-            <div className={`
-              absolute top-full left-0 w-full z-[99999] mt-2 translate-y-0
-              bg-[var(--bg-surface)] border border-black/5 shadow-2xl
-              transition-all duration-300 ease-out animate-dropdown-open
-              rounded-2xl px-2 pb-2 pt-2
-              xl:w-[120%] xl:-left-[10%]
-            `}>
-              
-              <div className="grid grid-cols-2 gap-2 overflow-y-auto max-h-[240px] sm:max-h-[300px] xl:max-h-[400px] custom-scrollbar p-1 pb-6">
-                {PROVIDERS.map((p) => (
-                  <button
-                    key={p.id}
-                    type="button"
-                    onClick={() => {
-                      onChange(p)
-                      setIsOpen(false)
-                    }}
-                    className={`
-                      flex items-center gap-2.5 px-3 py-3 rounded-2xl transition-all duration-300
-                      hover:bg-white/[0.07] group border active-scale
-                      ${value?.id === p.id 
-                        ? 'bg-accent/15 border-accent/60 shadow-[0_0_20px_rgba(var(--accent-rgb),0.15)]' 
-                        : 'border-white/5 hover:border-white/20'
-                      }
-                    `}
-                  >
-                    <div className={`
-                      w-7 h-7 rounded-xl flex items-center justify-center transition-all duration-500
-                      ${value?.id === p.id ? 'bg-accent/20 scale-110 shadow-[0_0_15px_rgba(124,58,237,0.3)]' : 'bg-white/5'}
-                      group-hover:bg-accent/20 group-hover:scale-105 overflow-hidden p-1.5
-                    `}>
-                      <img 
-                        src={`https://www.google.com/s2/favicons?domain=${p.domain}&sz=64`} 
-                        alt="" 
-                        className={`w-full h-full rounded-[4px] transition-all duration-300 ${value?.id === p.id ? 'grayscale-0' : 'grayscale-0 md:grayscale md:group-hover:grayscale-0'}`}
-                      />
-                    </div>
-                    <div className="flex flex-col items-start">
-                      <span className={`text-[10px] font-bold tracking-[0.05em] uppercase transition-colors duration-300 ${value?.id === p.id ? 'text-accent' : 'text-white'}`}>
-                        {p.name}
-                      </span>
-                    </div>
-                  </button>
-                ))}
-              </div>
+          <div className="absolute top-full left-0 w-full z-[99999] mt-2 bg-[#DC9B9B] border border-white/10 shadow-2xl rounded-3xl p-3 xl:w-[120%] xl:-left-[10%]">
+            <div className="grid grid-cols-2 gap-2 overflow-y-auto max-h-[280px] p-1 pb-4">
+              {PROVIDERS.map((p) => (
+                <button
+                  key={p.id}
+                  onClick={() => { onChange(p); setIsOpen(false); }}
+                  className={`flex items-center gap-3 px-3 py-3 rounded-2xl transition-all border ${value?.id === p.id ? 'bg-white/10 border-white/20' : 'bg-white/5 border-transparent hover:border-white/10'}`}
+                >
+                  <div className="w-8 h-8 rounded-xl bg-white shadow-sm flex items-center justify-center p-1.5 overflow-hidden">
+                    <img src={p.icon} alt="" className="w-full h-full object-contain" />
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#F6F4E8]">
+                    {p.name}
+                  </span>
+                </button>
+              ))}
             </div>
-          </>
+          </div>
         )}
       </div>
     </div>

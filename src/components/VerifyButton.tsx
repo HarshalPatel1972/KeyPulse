@@ -2,40 +2,28 @@ interface Props {
   onClick: () => void
   disabled: boolean
   isLoading: boolean
-  activeTheme?: string
 }
 
-export default function VerifyButton({ onClick, disabled, isLoading, activeTheme }: Props) {
+export default function VerifyButton({ onClick, disabled, isLoading }: Props) {
   return (
     <button
       onClick={onClick}
       disabled={disabled || isLoading}
       className={`
-        w-full py-4 rounded-none font-heading font-bold text-[15px] tracking-[0.05em] uppercase
-        transition-all duration-300 relative overflow-hidden group active-scale
+        w-full py-4 rounded-2xl font-heading font-medium text-[16px] tracking-wide
+        transition-all duration-500 relative overflow-hidden group active-scale
         ${disabled || isLoading 
-          ? 'bg-black/[0.04] text-black/20' 
-          : 'cursor-pointer hover:bg-black/5 active:scale-[0.98] text-white'
+          ? 'bg-white/10 text-white/30' 
+          : 'bg-[#F6F4E8] text-[#DC9B9B] hover:scale-[1.02] shadow-2xl hover:shadow-[#F6F4E8]/20'
         }
       `}
-      style={{
-        background: !disabled && !isLoading 
-          ? 'linear-gradient(135deg, var(--accent-btn-from), var(--accent-btn-to), var(--accent-btn-from))' 
-          : undefined,
-        backgroundSize: '200% auto',
-      }}
     >
-      {!disabled && !isLoading && (
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-700 bg-gradient-to-r from-transparent via-white to-transparent -translate-x-full group-hover:translate-x-full"></div>
-      )}
-      
       {isLoading ? (
-        <span className="flex items-center justify-center gap-3 text-black/40">
+        <span className="flex items-center justify-center gap-3">
           <span className="relative flex h-4 w-4">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black opacity-10"></span>
-            <span className="relative inline-flex rounded-full h-4 w-4 border-2 border-black/10 border-t-black/40 animate-spin"></span>
+            <span className="relative inline-flex rounded-full h-4 w-4 border-2 border-[#DC9B9B]/20 border-t-[#DC9B9B] animate-spin"></span>
           </span>
-          <span className="animate-pulse">Checking Pulse...</span>
+          <span className="animate-pulse">Placing...</span>
         </span>
       ) : (
         <span className="relative z-10">
