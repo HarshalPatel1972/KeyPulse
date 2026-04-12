@@ -25,7 +25,6 @@ export interface Provider {
   verifyEndpoint: string // the URL we call for verification
   requiresProxy: boolean // true → route through CF Worker
   icon: string // emoji or SVG path
-  model: string // primary model ID for display
 }
 
 export interface DetectionResult {

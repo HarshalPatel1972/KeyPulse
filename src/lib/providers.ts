@@ -11,7 +11,6 @@ export const PROVIDERS: Provider[] = [
     verifyEndpoint: 'https://api.openai.com/v1/models',
     requiresProxy: false,
     icon: '🤖',
-    model: 'openai/gpt-4o',
   },
   {
     id: 'anthropic',
@@ -23,7 +22,6 @@ export const PROVIDERS: Provider[] = [
     verifyEndpoint: 'https://api.anthropic.com/v1/models',
     requiresProxy: false,
     icon: '🧠',
-    model: 'anthropic/claude-3-5-sonnet',
   },
   {
     id: 'gemini',
@@ -35,7 +33,6 @@ export const PROVIDERS: Provider[] = [
     verifyEndpoint: 'https://generativelanguage.googleapis.com/v1beta/models',
     requiresProxy: false,
     icon: '♊',
-    model: 'google/gemini-1.5-pro',
   },
   {
     id: 'groq',
@@ -47,7 +44,6 @@ export const PROVIDERS: Provider[] = [
     verifyEndpoint: 'https://api.groq.com/openai/v1/models',
     requiresProxy: false,
     icon: '⚡',
-    model: 'groq/llama-3.1-70b',
   },
   {
     id: 'huggingface',
@@ -59,7 +55,6 @@ export const PROVIDERS: Provider[] = [
     verifyEndpoint: 'https://huggingface.co/api/whoami',
     requiresProxy: false,
     icon: '🤗',
-    model: 'hf/meta-llama-3',
   },
   {
     id: 'replicate',
@@ -71,7 +66,6 @@ export const PROVIDERS: Provider[] = [
     verifyEndpoint: 'https://api.replicate.com/v1/account',
     requiresProxy: false,
     icon: '🚀',
-    model: 'replicate/stable-diffusion',
   },
   {
     id: 'perplexity',
@@ -83,7 +77,6 @@ export const PROVIDERS: Provider[] = [
     verifyEndpoint: 'https://api.perplexity.ai/models',
     requiresProxy: true,
     icon: '🔍',
-    model: 'pplx/sonar-medium',
   },
   {
     id: 'mistral',
@@ -95,7 +88,6 @@ export const PROVIDERS: Provider[] = [
     verifyEndpoint: 'https://api.mistral.ai/v1/models',
     requiresProxy: true,
     icon: '🌪️',
-    model: 'mistral/mistral-large',
   },
   {
     id: 'cohere',
@@ -107,7 +99,6 @@ export const PROVIDERS: Provider[] = [
     verifyEndpoint: 'https://api.cohere.com/v1/models',
     requiresProxy: true,
     icon: '🤝',
-    model: 'cohere/command-r',
   },
   {
     id: 'together',
@@ -119,7 +110,6 @@ export const PROVIDERS: Provider[] = [
     verifyEndpoint: 'https://api.together.xyz/v1/models',
     requiresProxy: true,
     icon: '🏗️',
-    model: 'together/llama-3-70b',
   },
   {
     id: 'elevenlabs',
@@ -131,7 +121,6 @@ export const PROVIDERS: Provider[] = [
     verifyEndpoint: 'https://api.elevenlabs.io/v1/user',
     requiresProxy: true,
     icon: '🗣️',
-    model: 'elevenlabs/v1-voice',
   },
 ]
 

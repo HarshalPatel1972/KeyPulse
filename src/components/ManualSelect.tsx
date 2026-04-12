@@ -122,9 +122,6 @@ export default function ManualSelect({ value, onChange }: Props) {
                       <span className={`text-[10px] font-bold tracking-[0.05em] uppercase transition-colors duration-300 ${value?.id === p.id ? 'text-accent' : 'text-white'}`}>
                         {p.name}
                       </span>
-                      <span className="text-[8px] uppercase tracking-[0.05em] opacity-40 font-mono">
-                        {p.model.split('/')[1] || p.model}
-                      </span>
                     </div>
                   </button>
                 ))}
