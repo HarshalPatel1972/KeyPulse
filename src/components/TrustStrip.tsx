@@ -39,7 +39,7 @@ export default function TrustStrip() {
       {/* Container Background Glow */}
       <div className="absolute -inset-0.5 bg-gradient-to-r from-accent/20 via-valid/20 to-accent/20 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
       
-      <div className="relative flex flex-col md:flex-row items-stretch justify-center gap-0 rounded-2xl md:rounded-3xl overflow-hidden backdrop-blur-xl bg-white/[0.03] border border-white/[0.08]">
+      <div className="relative flex flex-col md:flex-row items-stretch justify-center gap-0 rounded-2xl md:rounded-[32px] overflow-hidden backdrop-blur-xl bg-white/[0.03] border border-white/[0.08]">
         {signals.map((s, i) => (
           <div
             key={s.label}
@@ -47,16 +47,21 @@ export default function TrustStrip() {
             style={{
               borderRight: i < signals.length - 1 ? '1px solid var(--border)' : 'none',
               borderBottom: i < signals.length - 1 ? '1px solid var(--border)' : 'none',
+              borderRightWidth: '(min-width: 768px)' ? (i < signals.length - 1 ? '1px' : '0px') : '0px',
             }}
           >
-            <div className="transition-transform duration-500 group-hover:scale-110 shrink-0 text-[var(--accent)] [&>svg]:w-6 md:[&>svg]:w-[18px] [&>svg]:h-6 md:[&>svg]:h-[18px] [&>svg]:stroke-[2.5] md:[&>svg]:stroke-[1.5]">
+            <div className="transition-transform duration-500 group-hover:scale-110 shrink-0 text-[var(--accent)] 
+              [&>svg]:w-[24px] md:[&>svg]:w-[18px] 
+              [&>svg]:h-[24px] md:[&>svg]:h-[18px] 
+              [&>svg]:stroke-[2.5] md:[&>svg]:stroke-[1.5]"
+            >
               {s.icon}
             </div>
             <div className="flex flex-col">
-              <span className="font-heading font-bold text-[14px] md:text-[13px] tracking-wide uppercase mb-0.5 md:mb-1" style={{ color: 'var(--text-primary)' }}>
+              <span className="font-heading font-bold text-[14px] md:text-[13px] md:font-bold tracking-wide uppercase mb-0.5 md:mb-1" style={{ color: 'var(--text-primary)' }}>
                 {s.label}
               </span>
-              <span className="font-sans text-[11px] md:text-[11px] font-medium opacity-60" style={{ color: 'var(--text-muted)' }}>
+              <span className="font-sans text-[11px] md:text-[11px] font-medium opacity-60 md:opacity-60" style={{ color: 'var(--text-muted)' }}>
                 {s.desc}
               </span>
             </div>

@@ -86,13 +86,13 @@ export default function Home() {
       <StarRiver />
       
       
-      {/* Navigation - Compact for Mobile */}
+      {/* Navigation - Mobile Optimized / Desktop Main */}
       <nav
-        className="h-14 md:h-16 flex items-center justify-between px-4 md:px-6 shrink-0 relative z-50"
+        className="h-16 flex items-center justify-between px-6 shrink-0 relative z-50 transition-all duration-300"
         style={{ borderBottom: '1px solid var(--border)' }}
       >
         <div className="flex items-center gap-1 group">
-          <div className="text-lg md:text-xl font-heading font-bold tracking-tight flex">
+          <div className="text-xl font-heading font-bold tracking-tight flex">
             {"KeyPulse".split('').map((char, i) => (
               <span 
                 key={i} 
@@ -104,7 +104,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <div className="flex items-center gap-2 md:gap-3">
+        <div className="flex items-center gap-3">
           <div className="hidden sm:block">
             <ThemeSwitcher />
           </div>
@@ -117,11 +117,11 @@ export default function Home() {
         {/* Interaction Column - Pulse Tab */}
         <div className={`flex-1 h-full flex flex-col items-center justify-center p-4 md:p-6 overflow-y-auto relative z-[20000] box-border ${activeTab === 'pulse' ? 'flex' : 'hidden xl:flex'}`}>
           <div className="w-full max-w-[540px] py-6 md:py-12 relative xl:-top-[30px] xl:scale-[1.08] transform-gpu transition-all duration-700">
-            <div className="mb-6 md:mb-8 text-center animate-fade-in px-2">
+            <div className="mb-8 text-center animate-fade-in px-2">
               <button
                 type="button"
                 onClick={() => setForceManual(v => !v)}
-                className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full backdrop-blur-md bg-white/[0.03] border border-white/10 text-[9px] md:text-[10px] mb-3 md:mb-4 transition-all duration-500 hover:border-white/20 active:scale-95 cursor-pointer"
+                className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full backdrop-blur-md bg-white/[0.03] border border-white/10 text-[10px] mb-4 transition-all duration-500 hover:border-white/20 active:scale-95 cursor-pointer"
                 style={{ letterSpacing: '0.12em', color: 'var(--text-muted)' }}
               >
                 <div className="relative flex items-center justify-center">
@@ -136,7 +136,7 @@ export default function Home() {
                 </svg>
               </button>
               <h1 
-                className="text-2xl md:text-4xl font-heading mb-1 md:mb-2 tracking-[-0.03em] interactive-text-flow pb-1 md:pb-2 cursor-default"
+                className="text-4xl font-heading mb-2 tracking-[-0.03em] interactive-text-flow pb-2 cursor-default"
                 onMouseMove={handleMouseMove}
                 style={{ 
                   '--mouse-x': `${mousePos.x}%`, 
@@ -145,7 +145,7 @@ export default function Home() {
               >
                 KeyPulse
               </h1>
-              <p className="text-sm md:text-lg font-light opacity-80" style={{ color: 'var(--text-muted)' }}>
+              <p className="text-lg font-light opacity-80" style={{ color: 'var(--text-muted)' }}>
                 Check if your key still has a pulse.
               </p>
             </div>
