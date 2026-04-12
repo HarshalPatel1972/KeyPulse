@@ -45,14 +45,14 @@ export default function ResultCard({ result, provider: manualProvider, onDelete 
 
         <div className="grid grid-cols-1 gap-4">
           {result.account && (
-            <div className="bg-base/30 dark:bg-base/70 backdrop-blur-sm p-6 rounded-[32px] group transition-all">
+            <div className="bg-base/70 dark:bg-base/95 backdrop-blur-sm p-6 rounded-[32px] group transition-all">
               <p className="text-[10px] text-primary/30 mb-2 uppercase tracking-[0.3em] font-bold">Authenticated Subject</p>
               <p className="text-[16px] text-primary font-heading font-bold">{result.account.name || 'Anonymous Identifier'}</p>
               {result.account.email && <p className="text-[12px] text-primary/40 mt-1 font-sans">{result.account.email}</p>}
             </div>
           )}
 
-          <div className="bg-base/20 dark:bg-base/70 rounded-[32px] overflow-hidden flex flex-col transition-all hover:bg-base/30 shadow-[0_4px_15px_rgba(66,72,116,0.04)]">
+          <div className="bg-base/60 dark:bg-base/90 rounded-[32px] overflow-hidden flex flex-col transition-all hover:bg-base/30 shadow-[0_4px_15px_rgba(66,72,116,0.04)]">
             <div className="flex items-center justify-between p-6 border-b border-primary/5">
               <p className="text-[10px] text-primary/60 font-bold uppercase tracking-[0.4em]">Available Endpoints</p>
               <span className="text-[10px] py-1 px-3 bg-primary/10 rounded-full text-primary/60 font-bold">{result.models.length} Nodes</span>
