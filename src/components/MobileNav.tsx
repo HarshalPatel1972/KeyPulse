@@ -29,7 +29,7 @@ export default function MobileNav({ activeTab, onTabChange, historyCount }: Prop
             <path d="M12 20v-6M6 20V10M18 20V4" />
           </svg>
           {historyCount > 0 && (
-            <span className="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 bg-accent text-[8px] font-bold rounded-full flex items-center justify-center text-white ring-2 ring-base">
+            <span className="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 bg-accent text-[8px] font-bold rounded-full flex items-center justify-center text-lavender ring-2 ring-base">
               {historyCount}
             </span>
           )}
@@ -49,7 +49,7 @@ export default function MobileNav({ activeTab, onTabChange, historyCount }: Prop
   ]
 
   return (
-    <div className="fixed bottom-0 left-0 w-full xl:hidden bg-base/80 backdrop-blur-xl border-t border-white/10 z-[100000] flex items-center justify-around px-6 pb-[env(safe-area-inset-bottom,12px)] pt-3 h-auto min-h-[64px]">
+    <div className="fixed bottom-0 left-0 w-full xl:hidden bg-base/80 backdrop-blur-xl border-t border-lavender/10 z-[100000] flex items-center justify-around px-6 pb-[env(safe-area-inset-bottom,12px)] pt-3 h-auto min-h-[64px]">
       {tabs.map((tab) => (
         <button
           key={tab.id}
