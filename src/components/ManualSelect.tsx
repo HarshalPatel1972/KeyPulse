@@ -38,7 +38,7 @@ export default function ManualSelect({ value, onChange }: Props) {
             {value ? (
               <>
                 <div className="w-8 h-8 rounded-xl bg-base flex items-center justify-center p-1.5 shadow-md transition-transform group-hover:scale-110">
-                  <img src={`https://www.google.com/s2/favicons?sz=64&domain=${value.domain}`} alt="" className="w-full h-full object-contain" />
+                  <img src={`https://unavatar.io/${value.domain}`} alt="" className="w-full h-full object-contain" />
                 </div>
                 <div className="flex flex-col">
                   <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/40 leading-none mb-1.5">Selected Provider</span>
@@ -73,7 +73,7 @@ export default function ManualSelect({ value, onChange }: Props) {
                 >
                   <div className="relative w-8 h-8 rounded-xl bg-base shadow-sm flex items-center justify-center p-1.5 transition-transform group-hover:scale-110">
                     <img 
-                      src={`https://unavatar.io/${p.domain}?fallback=https://www.google.com/s2/favicons?domain=${p.domain}`} 
+                      src={`https://unavatar.io/${p.domain}`} 
                       alt={p.name} 
                       className="w-full h-full object-contain" 
                       loading="lazy"

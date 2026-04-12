@@ -9,7 +9,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
-  manifest: '/manifest.json',
   keywords: ['API key', 'validator', 'checker', 'OpenAI', 'Anthropic', 'Gemini', 'security', 'key pulse'],
   authors: [{ name: 'KeyPulse Team' }],
   openGraph: {

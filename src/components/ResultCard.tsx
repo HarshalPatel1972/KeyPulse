@@ -18,7 +18,7 @@ export default function ResultCard({ result, provider: manualProvider, onDelete 
       <div className="flex items-center justify-between mb-10">
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 rounded-2xl bg-base flex items-center justify-center p-2.5 shadow-inner">
-            <img src={`https://unavatar.io/${domain}?fallback=https://www.google.com/s2/favicons?domain=${domain}`} alt="" className="w-full h-full object-contain brightness-110" />
+            <img src={`https://unavatar.io/${domain}`} alt="" className="w-full h-full object-contain brightness-110" />
           </div>
         </div>
         
