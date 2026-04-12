@@ -37,7 +37,7 @@ export default function ResultCard({ result, provider: manualProvider, onDelete 
 
       <div className="space-y-6">
         {result.rawError && (
-          <div className="p-5 rounded-[24px] bg-indigo-deep/5 dark:bg-black/20 border border-indigo-deep/10 dark:border-lavender/10 text-primary/80 dark:text-lavender/80 text-[12px] font-medium italic animate-fade-in font-sans leading-relaxed">
+          <div className="p-5 rounded-[24px] bg-indigo-deep/5 dark:bg-black/20 border border-indigo-deep/10 dark:border-lavender/10 text-primary dark:text-lavender/80 text-[12px] font-medium italic animate-fade-in font-sans leading-relaxed">
             <span className="block text-[9px] uppercase tracking-widest font-bold mb-1 opacity-50">API Exception</span>
             {result.rawError}
           </div>
