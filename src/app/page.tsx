@@ -3,88 +3,86 @@ import React, { useState, useCallback, useEffect } from 'react'
 import { Provider } from '@/lib/types'
 import { verify } from '@/lib/verifiers'
 import { VerifyResult } from '@/lib/types'
+import { PROVIDERS_MAP } from '@/lib/providers'
 import KeyInput from '@/components/KeyInput'
 import VerifyButton from '@/components/VerifyButton'
+import ResultCard from '@/components/ResultCard'
 import TrustStrip from '@/components/TrustStrip'
 import ThemeSwitcher from '@/components/ThemeSwitcher'
-import ResultCard from '@/components/ResultCard'
-import StarRiver from '@/components/StarRiver'
 import GitHubButton from '@/components/GitHubButton'
 import MobileNav, { TabType } from '@/components/MobileNav'
+import StarRiver from '@/components/StarRiver'
 
 export default function Home() {
   const [key, setKey] = useState('')
   const [provider, setProvider] = useState<Provider | null>(null)
   const [isLoading, setIsLoading] = useState(false)
-  const [isInvalid, setIsInvalid] = useState(false)
   const [history, setHistory] = useState<VerifyResult[]>([])
   const [hasChecked, setHasChecked] = useState(false)
-  const [mousePos, setMousePos] = useState({ x: 50, y: 50 })
-  const [activeTab, setActiveTab] = useState<TabType>('pulse')
+  const [isInvalid, setIsInvalid] = useState(false)
   const [forceManual, setForceManual] = useState(false)
-  const [isMounted, setIsMounted] = useState(false)
-
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
+  const [activeTab, setActiveTab] = useState<TabType>('pulse')
+  const [mousePos, setMousePos] = useState({ x: 50, y: 50 })
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect()
-    const x = ((e.clientX - rect.left) / rect.width) * 100
-    const y = ((e.clientY - rect.top) / rect.height) * 100
-    setMousePos({ x, y })
+    setMousePos({
+      x: ((e.clientX - rect.left) / rect.width) * 100,
+      y: ((e.clientY - rect.top) / rect.height) * 100,
+    })
   }
 
-  // Heart Easter Egg State
-  const [hearts, setHearts] = useState<{ id: number; x: number }[]>([])
-  const [isHoveringName, setIsHoveringName] = useState(false)
-
+  // Load history from localStorage
   useEffect(() => {
-    let interval: NodeJS.Timeout
-    if (isHoveringName) {
-      interval = setInterval(() => {
-        setHearts(prev => [...prev.slice(-20), { id: Math.random(), x: Math.random() * 80 + 10 }])
-      }, 150)
+    const saved = localStorage.getItem('kp_history')
+    if (saved) {
+      try {
+        setHistory(JSON.parse(saved))
+      } catch (e) {
+        console.error('Failed to load history', e)
+      }
     }
-    return () => clearInterval(interval)
-  }, [isHoveringName])
+  }, [])
 
+  // Auto-switch to Live Activity Feed on mobile when verification starts
   const handleVerify = useCallback(async () => {
     if (!key.trim() || !provider || isLoading) return
     setIsLoading(true)
     setHasChecked(true)
-    if (window.innerWidth < 1280) setActiveTab('history')
+    
+    // Switch to Activity tab on small screens immediately
+    if (typeof window !== 'undefined' && window.innerWidth < 1280) {
+      setActiveTab('history')
+    }
     
     const r = await verify(key.trim(), provider.id)
-    if (r.status === 'invalid') setIsInvalid(true)
     
-    setHistory(prev => [r, ...prev])
     setIsLoading(false)
-  }, [key, provider, isLoading])
-
-  const handleReset = useCallback(() => {
-    setKey('')
-    setProvider(null)
-    setIsInvalid(false)
-    setHistory([])
-    setHasChecked(false)
-  }, [])
-
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Enter') handleVerify()
+    if (r.status === 'error' && (r.rawError?.toLowerCase().includes('invalid') || r.rawError?.toLowerCase().includes('unauthorized'))) {
+      setIsInvalid(true)
+    } else {
+      setIsInvalid(false)
+      const newHistory = [r, ...history].slice(0, 50)
+      setHistory(newHistory)
+      localStorage.setItem('kp_history', JSON.stringify(newHistory))
     }
-    window.addEventListener('keydown', handler)
-    return () => window.removeEventListener('keydown', handler)
-  }, [handleVerify])
+  }, [key, provider, isLoading, history])
+
+  const handleReset = () => {
+    setKey('')
+    setHasChecked(false)
+    setIsInvalid(false)
+  }
+
+  const handleDeleteItem = (id: string, timestamp: string) => {
+    const newHistory = history.filter(item => !(item.provider === id && item.checkedAt === timestamp))
+    setHistory(newHistory)
+    localStorage.setItem('kp_history', JSON.stringify(newHistory))
+  }
 
   return (
-    <main
-      className="h-screen flex flex-col relative z-0 overflow-hidden"
-      style={{ background: 'var(--bg-base)' }}
-    >
+    <main className="min-h-screen bg-base text-primary font-sans flex flex-col overflow-hidden">
       <StarRiver />
-      
       
       {/* Navigation - Mobile Optimized / Desktop Main */}
       <nav
@@ -115,7 +113,7 @@ export default function Home() {
       {/* Main Container - Absolute rigid height to prevent any jitter */}
       <div className="flex-1 h-[calc(100vh-64px)] flex items-stretch overflow-hidden relative">
         {/* Interaction Column - Pulse Tab */}
-        <div className={`flex-1 h-full flex flex-col items-center justify-start md:justify-center p-4 md:p-6 overflow-y-auto relative z-[20000] box-border ${activeTab === 'pulse' ? 'flex' : 'hidden xl:flex'}`}>
+        <div className={`flex-1 h-full flex flex-col items-center justify-center p-4 md:p-6 overflow-hidden relative z-[20000] box-border ${activeTab === 'pulse' ? 'flex' : 'hidden xl:flex'}`}>
           <div className="w-full max-w-[540px] py-6 md:py-12 relative xl:-top-[30px] xl:scale-[1.08] transform-gpu transition-all duration-700">
             <div className="mb-8 text-center animate-fade-in px-2">
               <button
@@ -228,138 +226,57 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Mobile History View */}
-        <div className={`flex-1 flex flex-col h-full bg-transparent overflow-hidden relative z-20 xl:hidden ${activeTab === 'history' ? 'flex' : 'hidden'}`}>
-          <div className="w-full border-b border-[var(--border)] bg-white/[0.02] shrink-0 p-6 flex items-center justify-between">
-            <h2 className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted">Verification Feed</h2>
-            <span className="text-[10px] font-mono opacity-30">{history.length} active</span>
-          </div>
-          <div className="flex-1 w-full overflow-y-auto p-4 md:p-6 space-y-6 pb-24">
-            {history.length === 0 && !isLoading ? (
-              <div className="h-full flex flex-col items-center justify-center text-center opacity-60 px-12">
-                <div className="w-16 h-16 rounded-2xl border border-dashed border-white/30 mb-6 flex items-center justify-center animate-pulse-heartbeat bg-white/[0.02]">
-                  <span className="text-2xl">⚡</span>
-                </div>
-                <p className="text-[10px] uppercase tracking-[0.25em] font-bold">Feed awaiting input</p>
-              </div>
-            ) : (
-              <div className="flex flex-col gap-4">
-                {history.map((res, idx) => (
-                  <div key={res.checkedAt + idx} className="animate-slide-up">
-                    <ResultCard result={res} />
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Mobile Settings/Theme View */}
-        <div className={`flex-1 flex flex-col h-full items-center justify-center p-6 relative z-20 xl:hidden ${activeTab === 'settings' ? 'flex' : 'hidden'}`}>
-          <div className="w-full max-w-sm space-y-8 animate-fade-in text-center">
-            <div>
-              <h2 className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted mb-6">Select Atmosphere</h2>
-              <div className="bg-white/[0.03] border border-white/10 rounded-3xl p-6">
-                <ThemeSwitcher />
-              </div>
-            </div>
-            
-            <div className="pt-8 border-t border-white/5">
-              <h2 className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted mb-6">Open Source</h2>
-              <GitHubButton />
-            </div>
-          </div>
-        </div>
-
-        {/* Fixed Vertical Divider - Desktop Only */}
-        <div className="hidden xl:block fixed top-16 bottom-0 right-[420px] w-[1px] z-[9999] bg-[var(--border)] pointer-events-none">
-          <div className="absolute inset-x-[-1px] inset-y-0 bg-accent/20 blur-[1px]" />
-        </div>
-
-        {/* Sidebar Column - Desktop Only */}
-        <div 
-          className="hidden xl:flex flex-col h-full bg-transparent overflow-hidden shrink-0 w-[420px] relative z-20"
-          style={{ backdropFilter: 'blur(4px)' }}
-        >
+        {/* Results Sidebar - Activity Tab on Mobile / Verification Feed on Desktop */}
+        <aside className={`w-full xl:w-[420px] border-l border-[var(--border)] bg-white/[0.01] flex-col relative z-40 transition-all duration-500 ${activeTab === 'history' ? 'flex' : 'hidden xl:flex'}`}>
           <div className="w-full border-b border-[var(--border)] bg-white/[0.02] shrink-0">
             <div className="p-6 flex items-center justify-between">
               <h2 className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted">Verification Feed</h2>
               <span className="text-[10px] font-mono opacity-30">{history.length} active</span>
             </div>
           </div>
-
-          <div className="flex-1 w-full overflow-y-auto p-6 space-y-6">
-            {isLoading && (
-              <div className="animate-pulse space-y-4 p-6 rounded-2xl border border-border/50 bg-white/[0.02]">
-                <div className="h-4 w-1/3 bg-white/10 rounded-full" />
-                <div className="h-12 w-full bg-white/5 rounded-xl" />
-                <div className="h-8 w-full bg-white/5 rounded-xl" />
-              </div>
-            )}
-            
+          <div className="flex-1 w-full overflow-y-auto p-4 md:p-6 space-y-6 pb-24">
             {history.length === 0 && !isLoading ? (
               <div className="h-full flex flex-col items-center justify-center text-center opacity-60 px-12">
                 <div className="w-16 h-16 rounded-2xl border border-dashed border-white/30 mb-6 flex items-center justify-center animate-pulse-heartbeat bg-white/[0.02]">
-                  <span className="text-2xl filter drop-shadow-[0_0_10px_rgba(255,187,0,0.5)]">⚡</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-muted">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                  </svg>
                 </div>
-                <p className="text-[10px] uppercase tracking-[0.25em] font-bold" style={{ color: 'var(--text-muted)' }}>
-                  Feed awaiting input
-                </p>
-                <div className="mt-4 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                <p className="mt-4 text-[9px] uppercase tracking-[0.15em] opacity-70 text-muted font-bold">
-                  Real-time results will <br /> populate here
-                </p>
+                <h3 className="font-heading font-medium text-lg mb-2">Awaiting Pulse</h3>
+                <p className="text-sm font-sans" style={{ color: 'var(--text-muted)' }}>Check a key to see live activity and results here.</p>
               </div>
             ) : (
-              <div className="flex flex-col gap-6">
-                {history.map((res, idx) => (
-                  <div key={res.checkedAt + idx} className="animate-slide-up">
-                    <ResultCard result={res} />
+              <>
+                {isLoading && (
+                  <div className="animate-pulse flex flex-col gap-4 opacity-50">
+                    <div className="h-40 bg-white/5 rounded-2xl" />
+                  </div>
+                )}
+                {history.map((result, i) => (
+                  <div key={`${result.provider}-${result.checkedAt}`} className="animate-slide-up" style={{ animationDelay: `${i * 0.1}s` }}>
+                    <ResultCard 
+                      result={result} 
+                      onDelete={() => handleDeleteItem(result.provider, result.checkedAt)} 
+                    />
                   </div>
                 ))}
-              </div>
+              </>
             )}
           </div>
+        </aside>
+
+        {/* Footer Credit - Mobile Only (Ensuring visibility on scroll) */}
+        <div className="fixed bottom-20 left-0 w-full flex flex-col items-center justify-center py-4 px-6 md:hidden opacity-40 select-none z-0">
+          <p className="text-[10px] font-mono tracking-widest uppercase mb-1">© 2026 KeyPulse Platform</p>
+          <p className="text-[9px] font-bold tracking-tighter uppercase opacity-80">Developed by Harshal Patel</p>
         </div>
       </div>
 
-      <MobileNav activeTab={activeTab} onTabChange={setActiveTab} historyCount={history.length} />
-
-      {/* Footer - Fixed to absolute bottom with increased presence */}
-      <footer className="fixed bottom-0 left-0 w-full pt-2 pb-[33px] z-[50000] bg-base/5 backdrop-blur-xs border-white/[0.01]">
-        <div className="flex items-center justify-center gap-3 xl:pr-[420px]">
-          <span className="text-[10px] uppercase tracking-[0.25em] text-muted opacity-30">© 2026</span>
-          <div className="w-[1px] h-2 bg-[var(--border)]" />
-          <div className="flex items-center gap-1.5 relative">
-            <span className="text-[10px] uppercase tracking-[0.1em] text-muted opacity-30">Built by</span>
-            <div 
-              className="relative inline-flex items-center group/name"
-              onMouseEnter={() => setIsHoveringName(true)}
-              onMouseLeave={() => setIsHoveringName(false)}
-            >
-              <a
-                href="https://github.com/HarshalPatel1972"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[11px] font-bold tracking-[0.2em] uppercase text-primary transition-all duration-300 hover:text-accent hover:opacity-100 opacity-60 z-10 relative"
-                style={{ letterSpacing: '0.15em' }}
-              >
-                Harshal Patel
-              </a>
-              {/* Heart Particles - Client Side Only */}
-              {isMounted && hearts.map(h => (
-                <span 
-                  key={h.id}
-                  className="absolute animate-heart pointer-events-none z-0"
-                  style={{ left: `${h.x}%`, top: '-10px' }}
-                >
-                  ❤️
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </footer>
+      <MobileNav 
+        activeTab={activeTab} 
+        onTabChange={setActiveTab} 
+        historyCount={history.length} 
+      />
     </main>
   )
 }
