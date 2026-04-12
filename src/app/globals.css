@@ -24,11 +24,33 @@
   --color-periwinkle: #DCD6F7;
   --color-blue-soft: #A6B1E1;
   --color-indigo-deep: #424874;
+  --color-success: #00B894;
+  --color-error: #FB7185;
+
+  @keyframes brew-fountain {
+    0% { 
+      opacity: 0; 
+      transform: translate(var(--x, 0), 10px) scale(0.5) rotate(0deg); 
+    }
+    20% { 
+      opacity: 1; 
+      transform: translate(var(--x, 0), -5px) scale(1) rotate(5deg); 
+    }
+    40% { 
+      transform: translate(calc(var(--x, 0) * 1.2), -15px) scale(0.9) rotate(-5deg); 
+    }
+    100% { 
+      opacity: 0; 
+      transform: translate(calc(var(--x, 0) * 1.5), -50px) scale(0.4) rotate(10deg); 
+    }
+  }
+
+  --animate-fountain: brew-fountain 1.8s linear infinite;
 }
 
 :root {
-  --bg-base: #F4EEFF;       /* Lavender Mist */
-  --bg-surface: #F4EEFF;    /* Lavender Mist (Pure) */
+  --bg-base: #dccbfa;       /* Lavender Mist */
+  --bg-surface: #c8b5e8;    /* Lavender Mist (Pure) */
   --text-primary: #424874;  /* Deep Indigo */
   --text-secondary: rgba(66, 72, 116, 0.65);
   --border-primary: rgba(66, 72, 116, 0.02); /* Near invisible */
@@ -36,11 +58,11 @@
 }
 
 [data-theme='dark'] {
-  --bg-base: #424874;       /* Deep Indigo (Strict) */
-  --bg-surface: #424874;    /* Deep Indigo (Pure) */
+  --bg-base: #2D3250;       /* Void Indigo */
+  --bg-surface: #424874;    /* Deep Indigo */
   --text-primary: #F4EEFF;  /* Lavender Mist Text */
-  --text-secondary: rgba(244, 238, 255, 0.7);
-  --border-primary: rgba(244, 238, 255, 0.7); /* Hardened Border */
+  --text-secondary: rgba(244, 238, 255, 0.6);
+  --border-primary: rgba(244, 238, 255, 0.1); /* Subtle Border */
   --accent: #A6B1E1;        /* Soft Blue */
 }
 
@@ -78,7 +100,7 @@ html, body {
   background-color: var(--bg-surface);
   color: var(--text-primary);
   border: none;
-  box-shadow: 0 30px 100px -20px rgba(66, 72, 116, 0.15);
+  box-shadow: 0 30px 80px -20px rgba(66, 72, 116, 0.15);
 }
 
 
@@ -104,6 +126,8 @@ html, body {
 
 .animate-slide-up { animation: slide-up 0.3s ease-out forwards; }
 .animate-fade-in  { animation: fade-in 0.2s ease-out forwards; }
+
+
 
 * {
   scrollbar-width: none;
