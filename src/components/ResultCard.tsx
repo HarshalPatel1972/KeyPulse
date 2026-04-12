@@ -14,24 +14,17 @@ export default function ResultCard({ result, provider: manualProvider, onDelete 
   const domain = provider?.domain || 'google.com'
   
   return (
-    <div className="w-full bg-surface shadow-[0_15px_60px_rgba(66,72,116,0.12)] rounded-[40px] p-6 md:p-8 relative animate-slide-up transition-colors duration-500 overflow-hidden">
-      {/* Premium Status Header */}
+    <div className="w-full bg-surface shadow-[0_15px_45px_rgba(66,72,116,0.12)] rounded-[40px] p-6 md:p-8 relative animate-slide-up transition-colors duration-500 overflow-hidden">
       <div className="flex items-center justify-between mb-10">
-        <div className="flex items-center gap-5">
-          <div className="w-14 h-14 rounded-[20px] bg-base flex items-center justify-center p-3 shadow-inner">
-            <img src={`https://www.google.com/s2/favicons?sz=64&domain=${domain}`} alt="" className="w-full h-full object-contain brightness-110 opacity-70 group-hover:opacity-100 transition-all" />
-          </div>
-          <div>
-            <h3 className="text-primary text-[20px] font-heading font-bold leading-none mb-2 tracking-tight">{providerName}</h3>
-            <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary/30 animate-pulse" />
-              <p className="text-[10px] text-primary/40 uppercase tracking-[0.3em] font-bold">Identity Integrity</p>
-            </div>
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 rounded-2xl bg-base flex items-center justify-center p-2.5 shadow-inner">
+            <img src={`https://unavatar.io/${domain}?fallback=https://www.google.com/s2/favicons?domain=${domain}`} alt="" className="w-full h-full object-contain brightness-110" />
           </div>
         </div>
         
         <div className="flex items-center gap-3">
-          <div className={`px-5 py-2 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase border ${result.status === 'valid' ? 'bg-[#DCD6F7]/20 border-[#DCD6F7]/30 text-primary' : 'bg-[#424874]/10 dark:bg-[#424874]/80 border-[#424874]/20 text-[#424874] dark:text-lavender'}`}>
+          <span className="text-[14px] font-heading font-black text-primary/80 tracking-tight">{providerName}</span>
+          <div className={`px-5 py-2 rounded-full text-[11px] font-black tracking-[0.2em] uppercase border ${result.status === 'valid' ? 'bg-success/20 border-success/40 text-success' : 'bg-error/20 border-error/40 text-error'}`}>
             {result.status}
           </div>
           {onDelete && (
@@ -44,7 +37,7 @@ export default function ResultCard({ result, provider: manualProvider, onDelete 
 
       <div className="space-y-6">
         {result.rawError && (
-          <div className="p-5 rounded-[24px] bg-[#424874]/5 border border-[#424874]/10 text-[#424874]/80 text-[12px] font-medium italic animate-fade-in font-sans leading-relaxed">
+          <div className="p-5 rounded-[24px] bg-indigo-deep/5 dark:bg-black/20 border border-indigo-deep/10 dark:border-lavender/10 text-primary/80 dark:text-lavender/80 text-[12px] font-medium italic animate-fade-in font-sans leading-relaxed">
             <span className="block text-[9px] uppercase tracking-widest font-bold mb-1 opacity-50">API Exception</span>
             {result.rawError}
           </div>
@@ -59,7 +52,7 @@ export default function ResultCard({ result, provider: manualProvider, onDelete 
             </div>
           )}
 
-          <div className="bg-base/20 dark:bg-base/70 rounded-[32px] overflow-hidden flex flex-col transition-all hover:bg-base/30 shadow-sm">
+          <div className="bg-base/20 dark:bg-base/70 rounded-[32px] overflow-hidden flex flex-col transition-all hover:bg-base/30 shadow-[0_4px_15px_rgba(66,72,116,0.04)]">
             <div className="flex items-center justify-between p-6 border-b border-primary/5">
               <p className="text-[10px] text-primary/60 font-bold uppercase tracking-[0.4em]">Available Endpoints</p>
               <span className="text-[10px] py-1 px-3 bg-primary/10 rounded-full text-primary/60 font-bold">{result.models.length} Nodes</span>
@@ -79,7 +72,7 @@ export default function ResultCard({ result, provider: manualProvider, onDelete 
                         <span className="w-1.5 h-1.5 bg-primary/20 rounded-full group-hover:bg-primary/40 transition-colors" />
                         <span className="font-sans font-medium">{m}</span>
                       </div>
-                      <span className="text-[8px] uppercase tracking-widest opacity-0 group-hover:opacity-40 transition-opacity">Active</span>
+                      <span className="text-[8px] uppercase tracking-widest text-primary/60 font-black">Active</span>
                     </div>
                   ))
                 ) : (
