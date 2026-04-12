@@ -18,7 +18,7 @@ export default function ResultCard({ result, provider: manualProvider, onDelete 
       <div className="flex items-center justify-between mb-10">
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 rounded-2xl bg-base flex items-center justify-center p-2.5 shadow-inner">
-            <img src={`https://logo.clearbit.com/${domain}`} alt="" className="w-full h-full object-contain brightness-110" />
+            <img src={`https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${domain}&size=128`} alt="" className="w-full h-full object-contain brightness-110" />
           </div>
         </div>
         
