@@ -115,7 +115,7 @@ export default function ManualSelect({ value, onChange }: Props) {
                       <img 
                         src={`https://www.google.com/s2/favicons?domain=${p.domain}&sz=64`} 
                         alt="" 
-                        className={`w-full h-full rounded-[4px] transition-all duration-300 ${value?.id === p.id ? 'grayscale-0' : 'grayscale group-hover:grayscale-0'}`}
+                        className={`w-full h-full rounded-[4px] transition-all duration-300 ${value?.id === p.id ? 'grayscale-0' : 'grayscale-0 md:grayscale md:group-hover:grayscale-0'}`}
                       />
                     </div>
                     <div className="flex flex-col items-start">
