@@ -5,6 +5,7 @@ import ManualSelect from './ManualSelect'
 
 interface Props {
   value: string
+  selectedProvider: Provider | null
   onProviderChange: (provider: Provider | null) => void
   onKeyChange: (key: string) => void
   isLoading: boolean
@@ -12,7 +13,7 @@ interface Props {
   forceManual?: boolean
 }
 
-export default function KeyInput({ value, onProviderChange, onKeyChange, isLoading, isInvalid, forceManual }: Props) {
+export default function KeyInput({ value, selectedProvider, onProviderChange, onKeyChange, isLoading, isInvalid, forceManual }: Props) {
   const [showKey, setShowKey] = useState(false)
   const [detection, setDetection] = useState<ReturnType<typeof detectProvider> | null>(null)
   
@@ -28,7 +29,7 @@ export default function KeyInput({ value, onProviderChange, onKeyChange, isLoadi
 
   return (
     <div className="w-full">
-      <div className={`relative flex items-center transition-all bg-surface rounded-2xl p-1 shadow-[0_10px_40px_rgba(66,72,116,0.08)] ${isInvalid ? 'ring-1 ring-primary/20' : ''}`}>
+      <div className={`relative flex items-center transition-all bg-surface rounded-2xl p-1 border border-primary/10 dark:border-lavender/20 shadow-[0_10px_40px_rgba(66,72,116,0.08)] ${isInvalid ? 'ring-2 ring-error/50 border-error/50' : ''}`}>
         <input
           type="text"
           value={value}
@@ -56,7 +57,7 @@ export default function KeyInput({ value, onProviderChange, onKeyChange, isLoadi
       </div>
 
       {(forceManual || (detection?.confidence === 'unknown' && value.length > 8)) && (
-        <ManualSelect value={null} onChange={p => onProviderChange(p)} />
+        <ManualSelect value={selectedProvider} onChange={p => onProviderChange(p)} />
       )}
     </div>
   )
