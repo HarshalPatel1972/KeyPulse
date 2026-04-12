@@ -47,7 +47,7 @@ export default function ProviderBadge({ provider }: Props) {
           className="text-[9px] font-black uppercase tracking-[0.15em] relative z-10"
           style={{ 
             color: 'var(--text-primary)',
-            filter: `drop-shadow(0 0 2px ${provider.color}40)` 
+            filter: `drop-shadow(0 0 3px ${provider.color}40)` 
           }}
         >
           detected
