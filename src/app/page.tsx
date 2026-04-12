@@ -78,7 +78,7 @@ export default function Home() {
     <main className="min-h-screen xl:h-screen bg-base text-primary font-sans flex flex-col relative transition-colors duration-500 overflow-x-hidden">
       <StarRiver />
       
-      <nav className="h-16 w-full fixed top-0 left-0 bg-base/70 backdrop-blur-xl z-[110] border-b border-primary/5 flex items-center justify-between px-6 shrink-0 transition-colors duration-500">
+      <nav className="h-16 w-full fixed top-0 left-0 bg-base/70 dark:bg-base/90 backdrop-blur-xl z-[110] shadow-[0_4px_30px_rgba(66,72,116,0.05)] flex items-center justify-between px-6 shrink-0 transition-colors duration-500">
         <div className="flex items-center gap-6">
           <button onClick={scrollToPulse} className="text-2xl font-heading font-bold tracking-tight text-primary drop-shadow-sm active:scale-95 transition-transform flex gap-[1px]">
             {"KeyPulse".split("").map((char, i) => (
@@ -103,7 +103,7 @@ export default function Home() {
       <div className="flex-1 min-h-0 flex flex-col xl:flex-row relative transition-colors duration-500 pt-16 overflow-visible xl:overflow-hidden">
         <div ref={pulseRef} className="flex-1 flex flex-col items-center justify-center p-4 md:p-8 relative z-10 shrink-0 min-h-[calc(100vh-164px)] xl:min-h-0 xl:overflow-y-auto custom-scrollbar">
           <div className="w-full max-w-[560px] animate-fade-in py-12 md:p-0">
-            <div className="interaction-card rounded-[40px] p-8 md:p-14 shadow-2xl shadow-black/5 relative overflow-visible transition-colors duration-500">
+            <div className="interaction-card rounded-[40px] p-8 md:p-14 shadow-2xl shadow-primary/5 relative overflow-visible transition-colors duration-500">
               <div className="mb-10 text-center">
                 <button
                   onClick={() => setForceManual(v => !v)}
@@ -145,7 +145,7 @@ export default function Home() {
 
         <aside 
           ref={resultsRef}
-          className="w-full xl:w-[460px] border-t xl:border-t-0 xl:border-l border-primary/5 bg-black/[0.01] flex flex-col relative z-20 transition-colors duration-500 min-h-[645px] xl:min-h-0 xl:overflow-y-auto custom-scrollbar"
+          className="w-full xl:w-[460px] xl:shadow-[-20px_0_100px_rgba(66,72,116,0.05)] bg-primary/5 dark:bg-primary/70 flex flex-col relative z-20 transition-colors duration-500 min-h-[645px] xl:min-h-0 xl:overflow-y-auto custom-scrollbar"
         >
           <div className="px-6 xl:px-10 py-6 xl:py-8 border-b border-primary/5 flex items-center justify-between sticky top-[64px] xl:top-0 bg-base z-[95] transition-colors duration-500">
             <h2 className="text-[12px] font-bold tracking-[0.4em] uppercase text-primary/80">Result Feed</h2>
@@ -170,7 +170,7 @@ export default function Home() {
       </div>
 
       {/* Global Footer: Unified, visible everywhere at the bottom */}
-      <footer className="w-full py-8 flex flex-col xl:flex-row items-center justify-center xl:justify-between px-10 border-t border-primary/5 bg-base relative z-30 shrink-0">
+      <footer className="w-full py-4 flex flex-col xl:flex-row items-center justify-center xl:justify-between px-10 shadow-[0_-10px_60px_rgba(66,72,116,0.03)] bg-base relative z-30 shrink-0">
         <p className="text-[11px] font-black tracking-[0.4em] uppercase mb-2 xl:mb-0 text-primary">KeyPulse</p>
         <p className="text-[10px] font-bold tracking-wider text-primary/60">© 2026 HARSHAL PATEL. ALL RIGHTS RESERVED.</p>
       </footer>
