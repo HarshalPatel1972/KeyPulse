@@ -89,7 +89,7 @@ export default function ManualSelect({ value, onChange }: Props) {
               xl:w-[120%] xl:-left-[10%]
             `}>
               
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-1.5 overflow-y-auto max-h-[60vh] xl:max-h-[400px] custom-scrollbar">
+              <div className="grid grid-cols-3 gap-1.5 overflow-y-auto max-h-[60vh] xl:max-h-[400px] custom-scrollbar">
                 {PROVIDERS.map((p) => (
                   <button
                     key={p.id}
