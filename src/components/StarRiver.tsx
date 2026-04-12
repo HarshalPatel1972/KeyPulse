@@ -30,8 +30,8 @@ export default function StarRiver() {
     }
 
     const createParticle = (randomY = false) => {
-      // Pick color from the organic palette
-      const colors = ['#C0E1D2', '#E5EEE4', '#DC9B9B']
+      // Pick higher contrast colors from the organic palette for the Rose backdrop
+      const colors = ['#F6F4E8', '#C0E1D2', '#E5EEE4']
       const color = colors[Math.floor(Math.random() * colors.length)]
       
       return {
