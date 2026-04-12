@@ -52,14 +52,14 @@ export default function Home() {
   const handleVerify = useCallback(async () => {
     if (!key.trim() || !provider || isLoading) return
     setIsLoading(true)
-    setIsInvalid(false)
+    setHasChecked(true)
+    if (window.innerWidth < 1280) setActiveTab('history')
     
     const r = await verify(key.trim(), provider.id)
     if (r.status === 'invalid') setIsInvalid(true)
     
     setHistory(prev => [r, ...prev])
     setIsLoading(false)
-    setHasChecked(true)
   }, [key, provider, isLoading])
 
   const handleReset = useCallback(() => {
