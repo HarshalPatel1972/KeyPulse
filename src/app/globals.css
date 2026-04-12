@@ -17,64 +17,70 @@
 }
 
 @theme {
-  /* Strictly Rose Dominant Palette */
   --font-heading: 'Cirka', "ui-serif", "serif";
   --font-sans: 'Season', "ui-sans-serif", "system-ui", "sans-serif";
   
-  --color-base: #DC9B9B;
-  --color-surface: #DC9B9B;
-  --color-elevated: #C0E1D2;
-  --color-accent: #F6F4E8;
-  
   --color-valid: #98B8A9;
-  --color-invalid: #F6F4E8;
-  --color-quota: #E5EEE4;
+  --color-mint: #C0E1D2;
+  --color-sage: #E5EEE4;
+  --color-cream: #F6F4E8;
+  --color-deep-sage: #4A5A4A;
 }
 
-*, *::before, *::after { box-sizing: border-box; }
+:root {
+  --bg-base:#C0E1D2;
+  --bg-surface: #FFFFFF; /* Brighter surface for high contrast */
+  --text-primary: #4A5A4A;
+  --text-secondary: rgba(74, 90, 74, 0.6);
+  --border-primary: rgba(74, 90, 74, 0.05); /* Softer borders everywhere */
+  --accent: #C0E1D2;
+}
 
-html {
-  --bg-base:      #DC9B9B;
-  --bg-surface:   #DC9B9B;
-  --bg-elevated:  #C0E1D2;
-  --border:       rgba(246, 244, 232, 0.2);
-  --border-hover: rgba(246, 244, 232, 0.4);
+[data-theme='dark'] {
+  --bg-base: #151A17;      /* Much darker base */
+  --bg-surface: #202D27;   /* Highly contrasting surface */
   --text-primary: #F6F4E8;
-  --text-inverse: #DC9B9B;
-  --text-muted:   #E5EEE4;
-  --text-hint:    #C0E1D2;
-  --accent:       #F6F4E8;
-  
-  background-color: var(--bg-base);
-  color: var(--text-primary);
+  --text-secondary: rgba(246, 244, 232, 0.5);
+  --border-primary: rgba(246, 244, 232, 0.05); /* Softer borders everywhere */
+  --accent: #98B8A9;
 }
 
 html, body {
-  overflow: hidden !important;
-  height: 100% !important;
-  width: 100% !important;
   margin: 0;
   padding: 0;
-  position: fixed;
-  background-color: #DC9B9B;
-}
-
-body {
-  background-color: #DC9B9B;
+  background-color: var(--bg-base);
   color: var(--text-primary);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Mobile: Natural Scrolling Foundation */
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: auto;
+  min-height: 100%;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Desktop: Fixed Dashboard Lock */
+@media (min-width: 1280px) {
+  html, body {
+    overflow: hidden !important;
+    height: 100vh !important;
+    position: fixed;
+    width: 100vw;
+  }
 }
 
 .interaction-card {
-  background-color: #DC9B9B;
+  background-color: var(--bg-surface);
   color: var(--text-primary);
-  border: 1px solid var(--border);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border-primary);
+  box-shadow: 0 40px 80px -15px rgba(0, 0, 0, 0.1);
 }
-
-.animate-slide-up { animation: slide-up 0.3s ease-out forwards; }
-.animate-fade-in  { animation: fade-in 0.2s ease-out forwards; }
 
 @keyframes slide-up {
   from { opacity: 0; transform: translateY(12px); }
@@ -85,6 +91,19 @@ body {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
+
+@keyframes text-wave {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.animate-text-wave {
+  display: inline-block;
+  animation: text-wave 2s ease-in-out infinite;
+}
+
+.animate-slide-up { animation: slide-up 0.3s ease-out forwards; }
+.animate-fade-in  { animation: fade-in 0.2s ease-out forwards; }
 
 * {
   scrollbar-width: none;
