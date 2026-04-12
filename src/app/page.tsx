@@ -151,13 +151,34 @@ export default function Home() {
             </div>
 
             {/* Unified Action Card for Mobile */}
-            <div className="w-full flex flex-col-reverse md:flex-col gap-3 md:gap-4 p-1.5 md:p-0 bg-white/[0.03] md:bg-transparent rounded-[32px] md:rounded-none border border-white/5 md:border-none shadow-2xl md:shadow-none">
+            {/* Interaction Flow: Reordered for Desktop Natural Flow vs Mobile Thumb-First */}
+            <div className="w-full flex flex-col gap-3 md:gap-4 p-1.5 md:p-0 bg-white/[0.03] md:bg-transparent rounded-[32px] md:rounded-none border border-white/5 md:border-none shadow-2xl md:shadow-none">
               
-              <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
+              {/* 1. Key Input (Top for Desktop) */}
+              <div className="animate-slide-up relative z-[30000] order-1 md:order-1" style={{ animationDelay: '0.1s' }}>
+                <KeyInput
+                  value={key}
+                  onProviderChange={setProvider}
+                  forceManual={forceManual}
+                  onKeyChange={(val) => {
+                    setKey(val)
+                    if (!val) {
+                      setIsInvalid(false)
+                      setHasChecked(false)
+                    }
+                  }}
+                  isLoading={isLoading}
+                  isInvalid={isInvalid}
+                />
+              </div>
+
+              {/* 2. Trust Strip (Middle for Desktop, Bottom for Mobile) */}
+              <div className="animate-slide-up order-3 md:order-2" style={{ animationDelay: '0.2s' }}>
                 <TrustStrip />
               </div>
 
-              <div className="relative group z-[1]">
+              {/* 3. Action Logic (Middle for Mobile, Bottom for Desktop) */}
+              <div className="relative group z-[1] order-2 md:order-3">
                  <div className="relative flex items-stretch rounded-[22px] md:rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.03] border border-[var(--border)] transition-all duration-500 shadow-2xl mt-1">
                     <div className="flex-1 overflow-hidden transition-all duration-500 ease-out">
                       <VerifyButton
@@ -202,23 +223,6 @@ export default function Home() {
                       </button>
                     </div>
                  </div>
-              </div>
-
-              <div className="animate-slide-up relative z-[30000]" style={{ animationDelay: '0.1s' }}>
-                <KeyInput
-                  value={key}
-                  onProviderChange={setProvider}
-                  forceManual={forceManual}
-                  onKeyChange={(val) => {
-                    setKey(val)
-                    if (!val) {
-                      setIsInvalid(false)
-                      setHasChecked(false)
-                    }
-                  }}
-                  isLoading={isLoading}
-                  isInvalid={isInvalid}
-                />
               </div>
             </div>
           </div>
