@@ -49,7 +49,7 @@ export default function MobileNav({ activeTab, onTabChange, historyCount }: Prop
   ]
 
   return (
-    <div className="fixed bottom-0 left-0 w-full h-16 xl:hidden bg-base/80 backdrop-blur-xl border-t border-white/10 z-[100000] flex items-center justify-around px-6 pb-2">
+    <div className="fixed bottom-0 left-0 w-full xl:hidden bg-base/80 backdrop-blur-xl border-t border-white/10 z-[100000] flex items-center justify-around px-6 pb-[env(safe-area-inset-bottom,12px)] pt-3 h-auto min-h-[64px]">
       {tabs.map((tab) => (
         <button
           key={tab.id}

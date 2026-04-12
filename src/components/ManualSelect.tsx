@@ -72,43 +72,62 @@ export default function ManualSelect({ value, onChange }: Props) {
           </svg>
         </button>
 
-        {/* Custom Dropdown Grid - High Contrast Adaptive Grid */}
+        {/* Custom Dropdown Grid - High Contrast Adaptive Grid / Mobile Bottom Sheet */}
         {isOpen && (
-          <div className="absolute z-[99999] w-[100%] sm:w-[120%] left-0 sm:-left-[10%] mt-2 rounded-2xl overflow-hidden bg-[#161426] border border-white/20 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] animate-dropdown-open">
-            <div className="p-2 grid grid-cols-2 md:grid-cols-3 gap-1.5 overflow-y-auto max-h-[400px] custom-scrollbar">
-              {PROVIDERS.map((p) => (
-                <button
-                  key={p.id}
-                  onClick={() => {
-                    onChange(p)
-                    setIsOpen(false)
-                  }}
-                  className={`
-                    flex items-center gap-2.5 px-3 py-2.5 rounded-xl transition-all duration-300
-                    hover:bg-white/[0.07] group border active-scale
-                    ${value?.id === p.id 
-                      ? 'bg-accent/15 border-accent/60 shadow-[0_0_20px_rgba(var(--accent-rgb),0.15)]' 
-                      : 'border-white/5 hover:border-white/20'
-                    }
-                  `}
-                >
-                  <div className="relative shrink-0">
-                    <img 
-                      src={`https://www.google.com/s2/favicons?domain=${p.domain}&sz=64`} 
-                      alt="" 
-                      className="w-4 h-4 rounded-sm grayscale group-hover:grayscale-0 transition-all duration-300"
-                    />
-                    {value?.id === p.id && (
-                      <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-accent ring-2 ring-[#161426]" />
-                    )}
-                  </div>
-                  <span className={`font-sans tracking-tight text-[10px] font-bold truncate ${value?.id === p.id ? 'text-white' : 'text-white/70 group-hover:text-white'}`}>
-                    {p.name}
-                  </span>
-                </button>
-              ))}
+          <>
+            {/* Backdrop for Mobile */}
+            <div 
+              className="fixed inset-0 z-[99998] bg-black/60 backdrop-blur-sm xl:hidden animate-fade-in"
+              onClick={() => setIsOpen(false)}
+            />
+            
+            <div className={`
+              fixed left-0 bottom-0 w-full z-[99999] bg-[#161426] border-t border-white/20 shadow-[0_-25px_60px_-15px_rgba(0,0,0,0.7)]
+              transition-all duration-300 ease-out animate-slide-up-drawer
+              rounded-t-[32px] px-4 pb-12 pt-2
+              xl:absolute xl:bottom-auto xl:top-full xl:left-0 xl:w-[120%] xl:sm:-left-[10%] xl:mt-2 xl:rounded-2xl xl:p-2 xl:border xl:pb-2 xl:animate-dropdown-open
+            `}>
+              {/* Drag Handle - Mobile Only */}
+              <div className="w-12 h-1.5 bg-white/10 rounded-full mx-auto my-3 xl:hidden" />
+              
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-1.5 overflow-y-auto max-h-[60vh] xl:max-h-[400px] custom-scrollbar">
+                {PROVIDERS.map((p) => (
+                  <button
+                    key={p.id}
+                    type="button"
+                    onClick={() => {
+                      onChange(p)
+                      setIsOpen(false)
+                    }}
+                    className={`
+                      flex items-center gap-2.5 px-3 py-3 rounded-2xl transition-all duration-300
+                      hover:bg-white/[0.07] group border active-scale
+                      ${value?.id === p.id 
+                        ? 'bg-accent/15 border-accent/60 shadow-[0_0_20px_rgba(var(--accent-rgb),0.15)]' 
+                        : 'border-white/5 hover:border-white/20'
+                      }
+                    `}
+                  >
+                    <div className={`
+                      w-7 h-7 rounded-xl flex items-center justify-center transition-all duration-500
+                      ${value?.id === p.id ? 'bg-accent/20 scale-110 shadow-[0_0_15px_rgba(124,58,237,0.3)]' : 'bg-white/5'}
+                      group-hover:bg-accent/20 group-hover:scale-105
+                    `}>
+                      <span className="text-sm scale-110 group-hover:animate-pulse-heartbeat">{p.icon}</span>
+                    </div>
+                    <div className="flex flex-col items-start">
+                      <span className={`text-[10px] font-bold tracking-[0.05em] uppercase transition-colors duration-300 ${value?.id === p.id ? 'text-accent' : 'text-white'}`}>
+                        {p.name}
+                      </span>
+                      <span className="text-[8px] uppercase tracking-[0.05em] opacity-40 font-mono">
+                        {p.model.split('/')[1] || p.model}
+                      </span>
+                    </div>
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
+          </>
         )}
       </div>
     </div>

@@ -93,7 +93,7 @@ export default function ResultCard({ result, provider: manualProvider, onReset }
           <div className="bg-white/[0.02] rounded-xl border border-white/[0.03] overflow-hidden transition-all">
             <button
               onClick={() => setShowModels(!showModels)}
-              className="w-full flex items-center justify-between p-3 hover:bg-white/[0.03] transition-colors"
+              className="w-full flex items-center justify-between p-3 md:p-4 hover:bg-white/[0.03] transition-colors"
             >
               <div>
                 <p className="text-[9px] text-muted mb-1 text-left uppercase tracking-[0.15em] font-bold opacity-40">

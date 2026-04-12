@@ -86,13 +86,13 @@ export default function Home() {
       <StarRiver />
       
       
-      {/* Navigation */}
+      {/* Navigation - Compact for Mobile */}
       <nav
-        className="h-16 flex items-center justify-between px-6 shrink-0"
+        className="h-14 md:h-16 flex items-center justify-between px-4 md:px-6 shrink-0 relative z-50"
         style={{ borderBottom: '1px solid var(--border)' }}
       >
         <div className="flex items-center gap-1 group">
-          <div className="text-xl font-heading font-bold tracking-tight flex">
+          <div className="text-lg md:text-xl font-heading font-bold tracking-tight flex">
             {"KeyPulse".split('').map((char, i) => (
               <span 
                 key={i} 
@@ -104,8 +104,10 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <div className="flex items-center gap-3">
-          <ThemeSwitcher />
+        <div className="flex items-center gap-2 md:gap-3">
+          <div className="hidden sm:block">
+            <ThemeSwitcher />
+          </div>
           <GitHubButton />
         </div>
       </nav>
@@ -115,11 +117,11 @@ export default function Home() {
         {/* Interaction Column - Pulse Tab */}
         <div className={`flex-1 h-full flex flex-col items-center justify-center p-4 md:p-6 overflow-y-auto relative z-[20000] box-border ${activeTab === 'pulse' ? 'flex' : 'hidden xl:flex'}`}>
           <div className="w-full max-w-[540px] py-6 md:py-12 relative xl:-top-[30px] xl:scale-[1.08] transform-gpu transition-all duration-700">
-            <div className="mb-6 text-center animate-fade-in">
+            <div className="mb-6 md:mb-8 text-center animate-fade-in px-2">
               <button
                 type="button"
                 onClick={() => setForceManual(v => !v)}
-                className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full backdrop-blur-md bg-white/[0.03] border border-white/10 text-[10px] mb-4 transition-all duration-500 hover:border-white/20 active:scale-95 cursor-pointer"
+                className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full backdrop-blur-md bg-white/[0.03] border border-white/10 text-[9px] md:text-[10px] mb-3 md:mb-4 transition-all duration-500 hover:border-white/20 active:scale-95 cursor-pointer"
                 style={{ letterSpacing: '0.12em', color: 'var(--text-muted)' }}
               >
                 <div className="relative flex items-center justify-center">
@@ -134,7 +136,7 @@ export default function Home() {
                 </svg>
               </button>
               <h1 
-                className="text-4xl font-heading mb-2 tracking-[-0.03em] interactive-text-flow pb-2 cursor-default"
+                className="text-2xl md:text-4xl font-heading mb-1 md:mb-2 tracking-[-0.03em] interactive-text-flow pb-1 md:pb-2 cursor-default"
                 onMouseMove={handleMouseMove}
                 style={{ 
                   '--mouse-x': `${mousePos.x}%`, 
@@ -143,19 +145,20 @@ export default function Home() {
               >
                 KeyPulse
               </h1>
-              <p className="text-lg font-light opacity-80" style={{ color: 'var(--text-muted)' }}>
+              <p className="text-sm md:text-lg font-light opacity-80" style={{ color: 'var(--text-muted)' }}>
                 Check if your key still has a pulse.
               </p>
             </div>
 
-            <div className="w-full flex flex-col-reverse gap-3">
-              {/* Note: In flex-col-reverse, the first item in DOM is at the BOTTOM visually */}
+            {/* Unified Action Card for Mobile */}
+            <div className="w-full flex flex-col-reverse md:flex-col gap-3 md:gap-4 p-1.5 md:p-0 bg-white/[0.03] md:bg-transparent rounded-[32px] md:rounded-none border border-white/5 md:border-none shadow-2xl md:shadow-none">
+              
               <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
                 <TrustStrip />
               </div>
 
-              <div className="relative group z-0">
-                 <div className="relative flex items-stretch rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.03] border border-[var(--border)] transition-all duration-500 shadow-2xl">
+              <div className="relative group z-[1]">
+                 <div className="relative flex items-stretch rounded-[22px] md:rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.03] border border-[var(--border)] transition-all duration-500 shadow-2xl mt-1">
                     <div className="flex-1 overflow-hidden transition-all duration-500 ease-out">
                       <VerifyButton
                         onClick={handleVerify}
@@ -166,16 +169,16 @@ export default function Home() {
                     </div>
                     
                     <div 
-                      className="w-[160px] border-l border-[var(--border)] bg-white/[0.02] flex items-center justify-center overflow-hidden transition-all duration-500 ease-out"
+                      className="w-[120px] md:w-[160px] border-l border-[var(--border)] bg-white/[0.02] flex items-center justify-center overflow-hidden transition-all duration-500 ease-out"
                       style={{ 
-                        width: hasChecked ? '160px' : '0px',
+                        width: hasChecked ? '120px' : '0px',
                         opacity: hasChecked ? 1 : 0,
                         transform: hasChecked ? 'translateX(0)' : 'translateX(20px)'
                       }}
                     >
                       <button
                         onClick={handleReset}
-                        className="w-full h-full flex items-center justify-center gap-2 text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-300"
+                        className="w-full h-full flex items-center justify-center gap-2 text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-300"
                         style={{ color: 'var(--text-muted)' }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.color = 'var(--accent)';
