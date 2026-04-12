@@ -28,7 +28,7 @@ export default function KeyInput({ value, onProviderChange, onKeyChange, isLoadi
 
   return (
     <div className="w-full">
-      <div className={`relative flex items-center transition-all bg-surface border rounded-2xl p-1 shadow-sm ${isInvalid ? 'border-primary' : 'border-primary'}`}>
+      <div className={`relative flex items-center transition-all bg-surface rounded-2xl p-1 shadow-[0_10px_40px_rgba(66,72,116,0.08)] ${isInvalid ? 'ring-1 ring-primary/20' : ''}`}>
         <input
           type="text"
           value={value}
@@ -48,8 +48,8 @@ export default function KeyInput({ value, onProviderChange, onKeyChange, isLoadi
 
       <div className="mt-4 h-8 flex items-center">
         {detection?.confidence === 'high' && detection.provider && (
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-primary/5 rounded-full border border-primary animate-fade-in">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#98B8A9]" />
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-primary/5 dark:bg-primary/70 rounded-full border border-primary animate-fade-in">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#A6B1E1]" />
             <span className="text-[9px] font-bold uppercase tracking-widest text-primary">{detection.provider.name} Identified</span>
           </div>
         )}
