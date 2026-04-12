@@ -39,6 +39,7 @@ export interface VerifyResult {
   account: {
     name?: string // org or username if API returned it
     type?: string // 'personal' | 'org' | etc.
+    email?: string // user email
   } | null
   rateLimit: {
     remaining?: number
