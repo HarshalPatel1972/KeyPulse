@@ -8,7 +8,6 @@ import KeyInput from '@/components/KeyInput'
 import VerifyButton from '@/components/VerifyButton'
 import ResultCard from '@/components/ResultCard'
 import TrustStrip from '@/components/TrustStrip'
-import ThemeSwitcher from '@/components/ThemeSwitcher'
 import GitHubButton from '@/components/GitHubButton'
 import MobileNav, { TabType } from '@/components/MobileNav'
 import StarRiver from '@/components/StarRiver'
@@ -103,9 +102,6 @@ export default function Home() {
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <div className="hidden sm:block">
-            <ThemeSwitcher />
-          </div>
           <GitHubButton />
         </div>
       </nav>
@@ -119,12 +115,12 @@ export default function Home() {
               <button
                 type="button"
                 onClick={() => setForceManual(v => !v)}
-                className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full backdrop-blur-md bg-white/[0.03] border border-white/10 text-[10px] mb-4 transition-all duration-500 hover:border-white/20 active:scale-95 cursor-pointer"
+                className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full backdrop-blur-md bg-white/[0.03] border border-black/5 text-[10px] mb-4 transition-all duration-500 hover:border-black/10 active:scale-95 cursor-pointer"
                 style={{ letterSpacing: '0.12em', color: 'var(--text-muted)' }}
               >
                 <div className="relative flex items-center justify-center">
                   <span className="absolute w-2.5 h-2.5 rounded-full bg-valid/40 animate-ping" />
-                  <span className="relative w-1.5 h-1.5 rounded-full bg-valid shadow-[0_0_8px_rgba(45,212,191,0.5)]" />
+                  <span className="relative w-1.5 h-1.5 rounded-full bg-valid shadow-[0_0_8px_rgba(152,184,169,0.5)]" />
                 </div>
                 <span className="font-sans font-medium uppercase mt-0.5">
                   {forceManual ? 'Pick a provider' : '11 providers supported'}
@@ -149,10 +145,8 @@ export default function Home() {
             </div>
 
             {/* Unified Action Card for Mobile */}
-            {/* Interaction Flow: Reordered for Desktop Natural Flow vs Mobile Thumb-First */}
-            <div className="w-full flex flex-col gap-3 md:gap-4 p-1.5 md:p-0 bg-white/[0.03] md:bg-transparent rounded-[32px] md:rounded-none border border-white/5 md:border-none shadow-2xl md:shadow-none">
+            <div className="w-full flex flex-col gap-3 md:gap-4 p-1.5 md:p-0 bg-black/[0.03] md:bg-transparent rounded-[32px] md:rounded-none border border-black/5 md:border-none shadow-2xl md:shadow-none">
               
-              {/* 1. Key Input (Top for Desktop) */}
               <div className="animate-slide-up relative z-[30000] order-1 md:order-1" style={{ animationDelay: '0.1s' }}>
                 <KeyInput
                   value={key}
@@ -170,7 +164,6 @@ export default function Home() {
                 />
               </div>
 
-              {/* 2. Action Logic (Middle for Action Momentum) */}
               <div className="relative group z-[1] order-2 md:order-2">
                  <div className="relative flex items-stretch rounded-[22px] md:rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.03] border border-[var(--border)] transition-all duration-500 shadow-2xl mt-1">
                     <div className="flex-1 overflow-hidden transition-all duration-500 ease-out">
@@ -183,7 +176,7 @@ export default function Home() {
                     </div>
                     
                     <div 
-                      className="w-[120px] md:w-[160px] border-l border-[var(--border)] bg-white/[0.02] flex items-center justify-center overflow-hidden transition-all duration-500 ease-out"
+                      className="w-[120px] md:w-[160px] border-l border-[var(--border)] bg-black/[0.01] flex items-center justify-center overflow-hidden transition-all duration-500 ease-out"
                       style={{ 
                         width: hasChecked ? '120px' : '0px',
                         opacity: hasChecked ? 1 : 0,
@@ -194,14 +187,6 @@ export default function Home() {
                         onClick={handleReset}
                         className="w-full h-full flex items-center justify-center gap-2 text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-300"
                         style={{ color: 'var(--text-muted)' }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.color = 'var(--accent)';
-                          e.currentTarget.style.textShadow = '0 0 10px var(--accent)';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.color = 'var(--text-muted)';
-                          e.currentTarget.style.textShadow = 'none';
-                        }}
                       >
                         <svg 
                           xmlns="http://www.w3.org/2000/svg" 
@@ -218,7 +203,6 @@ export default function Home() {
                  </div>
               </div>
 
-              {/* 3. Trust Strip (Support Metadata at the bottom) */}
               <div className="animate-slide-up order-3 md:order-3" style={{ animationDelay: '0.2s' }}>
                 <TrustStrip />
               </div>
@@ -227,8 +211,8 @@ export default function Home() {
         </div>
 
         {/* Results Sidebar - Activity Tab on Mobile / Verification Feed on Desktop */}
-        <aside className={`w-full xl:w-[420px] border-l border-[var(--border)] bg-white/[0.01] flex-col relative z-40 transition-all duration-500 ${activeTab === 'history' ? 'flex' : 'hidden xl:flex'}`}>
-          <div className="w-full border-b border-[var(--border)] bg-white/[0.02] shrink-0">
+        <aside className={`w-full xl:w-[420px] border-l border-[var(--border)] bg-black/[0.01] flex-col relative z-40 transition-all duration-500 ${activeTab === 'history' ? 'flex' : 'hidden xl:flex'}`}>
+          <div className="w-full border-b border-[var(--border)] bg-black/[0.02] shrink-0">
             <div className="p-6 flex items-center justify-between">
               <h2 className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted">Verification Feed</h2>
               <span className="text-[10px] font-mono opacity-30">{history.length} active</span>
@@ -237,7 +221,7 @@ export default function Home() {
           <div className="flex-1 w-full overflow-y-auto p-4 md:p-6 space-y-6 pb-24">
             {history.length === 0 && !isLoading ? (
               <div className="h-full flex flex-col items-center justify-center text-center opacity-60 px-12">
-                <div className="w-16 h-16 rounded-2xl border border-dashed border-white/30 mb-6 flex items-center justify-center animate-pulse-heartbeat bg-white/[0.02]">
+                <div className="w-16 h-16 rounded-2xl border border-dashed border-black/10 mb-6 flex items-center justify-center animate-pulse-heartbeat bg-black/[0.01]">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-muted">
                     <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
                   </svg>
@@ -249,7 +233,7 @@ export default function Home() {
               <>
                 {isLoading && (
                   <div className="animate-pulse flex flex-col gap-4 opacity-50">
-                    <div className="h-40 bg-white/5 rounded-2xl" />
+                    <div className="h-40 bg-black/5 rounded-2xl" />
                   </div>
                 )}
                 {history.map((result, i) => (
@@ -266,7 +250,7 @@ export default function Home() {
         </aside>
 
         {/* Footer Credit - Mobile Only (Ensuring visibility on scroll) */}
-        <div className="fixed bottom-20 left-0 w-full flex flex-col items-center justify-center py-4 px-6 md:hidden opacity-40 select-none z-0">
+        <div className="fixed bottom-20 left-0 w-full flex flex-col items-center justify-center py-4 px-6 md:hidden opacity-30 select-none z-0">
           <p className="text-[10px] font-mono tracking-widest uppercase mb-1">© 2026 KeyPulse Platform</p>
           <p className="text-[9px] font-bold tracking-tighter uppercase opacity-80">Developed by Harshal Patel</p>
         </div>

@@ -83,7 +83,7 @@ export default function ManualSelect({ value, onChange }: Props) {
             
             <div className={`
               absolute top-full left-0 w-full z-[99999] mt-2 translate-y-0
-              bg-[#161426] border border-white/20 shadow-2xl
+              bg-[var(--bg-surface)] border border-black/5 shadow-2xl
               transition-all duration-300 ease-out animate-dropdown-open
               rounded-2xl px-2 pb-2 pt-2
               xl:w-[120%] xl:-left-[10%]

@@ -35,18 +35,14 @@ export default function TrustStrip() {
   ]
 
   return (
-    <div className="mt-8 relative group">
-      {/* Container Background Glow */}
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-accent/20 via-valid/20 to-accent/20 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
-      
-      <div className="relative flex flex-col md:flex-row items-stretch justify-center gap-0 rounded-2xl md:rounded-[32px] overflow-hidden backdrop-blur-xl bg-white/[0.03] border border-white/[0.08]">
+      <div className="relative flex flex-col md:flex-row items-stretch justify-center gap-0 rounded-2xl md:rounded-[32px] overflow-hidden bg-[var(--bg-surface)] border border-black/[0.05] shadow-sm">
         {signals.map((s, i) => (
           <div
             key={s.label}
-            className="flex-1 flex flex-row md:flex-col items-center md:items-center justify-start md:justify-center py-4 md:py-6 px-5 md:px-4 text-left md:text-center transition-all duration-300 hover:bg-white/[0.02] gap-4 md:gap-3 md:!border-b-0"
+            className="flex-1 flex flex-row md:flex-col items-center md:items-center justify-start md:justify-center py-4 md:py-6 px-5 md:px-4 text-left md:text-center transition-all duration-300 hover:bg-black/[0.01] gap-4 md:gap-3 md:!border-b-0"
             style={{
-              borderRight: i < signals.length - 1 ? '1px solid var(--border)' : 'none',
-              borderBottom: i < signals.length - 1 ? '1px solid var(--border)' : 'none',
+              borderRight: i < signals.length - 1 ? '1px solid rgba(0,0,0,0.05)' : 'none',
+              borderBottom: i < signals.length - 1 ? '1px solid rgba(0,0,0,0.05)' : 'none',
             }}
           >
             <div className="transition-transform duration-500 group-hover:scale-110 shrink-0 text-[var(--accent)] 

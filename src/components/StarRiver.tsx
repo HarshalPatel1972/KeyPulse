@@ -12,69 +12,65 @@ export default function StarRiver() {
     if (!ctx) return
 
     let animationFrameId: number
-    let stars: { x: number; y: number; radius: number; speed: number; opacity: number }[] = []
+    let particles: { x: number; y: number; radius: number; speed: number; opacity: number; color: string }[] = []
 
     const resize = () => {
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
-      initStars()
+      initParticles()
     }
 
-    const initStars = () => {
-      stars = []
-      // Number of stars scales with screen width to keep density consistent
-      const numStars = Math.floor((canvas.width * canvas.height) / 8000)
-      for (let i = 0; i < numStars; i++) {
-        stars.push(createStar(true))
+    const initParticles = () => {
+      particles = []
+      // Fewer, larger particles for an organic feel
+      const numParticles = Math.floor((canvas.width * canvas.height) / 15000)
+      for (let i = 0; i < numParticles; i++) {
+        particles.push(createParticle(true))
       }
     }
 
-    const createStar = (randomY = false) => {
+    const createParticle = (randomY = false) => {
+      // Pick color from the organic palette
+      const colors = ['#C0E1D2', '#E5EEE4', '#DC9B9B']
+      const color = colors[Math.floor(Math.random() * colors.length)]
+      
       return {
         x: Math.random() * canvas.width,
-        y: randomY ? Math.random() * canvas.height : -10,
-        // Increased radius for better visibility
-        radius: Math.random() * 1.5 + 0.5,
-        // Slow downward flow (river effect)
-        speed: Math.random() * 0.5 + 0.1,
-        // Increased opacity for better visibility
-        opacity: Math.random() * 0.6 + 0.2,
+        y: randomY ? Math.random() * canvas.height : -20,
+        // Larger, softer orbs
+        radius: Math.random() * 8 + 2,
+        // Very slow drifting downwards
+        speed: Math.random() * 0.3 + 0.1,
+        opacity: Math.random() * 0.3 + 0.1,
+        color: color
       }
     }
 
     const render = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      // Get computed CSS variable for accent color to match the active theme
-      const style = getComputedStyle(document.documentElement)
-      const accent = style.getPropertyValue('--accent').trim() || '#7c3aed'
-
-      stars.forEach((star) => {
-        // Subtle glow effect
+      particles.forEach((p) => {
         ctx.beginPath()
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2)
         
-        // Add a very faint tint of the theme accent color to some stars
-        if (star.radius > 0.6) {
-           ctx.shadowBlur = 8
-           ctx.shadowColor = accent
-        } else {
-           ctx.shadowBlur = 0
-        }
+        // Use the assigned palette color with individual opacity
+        ctx.fillStyle = p.color
+        ctx.globalAlpha = p.opacity
+        
+        ctx.shadowBlur = 15
+        ctx.shadowColor = p.color
         
         ctx.fill()
+        ctx.globalAlpha = 1 // reset alpha
 
-        // Move star down
-        star.y += star.speed
-        
-        // Slight horizontal drift (river effect)
-        star.x -= star.speed * 0.3
+        // Slow drifting movement
+        p.y += p.speed
+        p.x += Math.sin(p.y / 50) * 0.2 // subtle sway
 
-        // Reset if off screen
-        if (star.y > canvas.height + 10 || star.x < -10) {
-          Object.assign(star, createStar(false))
-          star.x = Math.random() * canvas.width + 50 // starting slightly to the right to drift left
+        // Reset if off bottom
+        if (p.y > canvas.height + 20) {
+          Object.assign(p, createParticle(false))
+          p.x = Math.random() * canvas.width
         }
       })
 

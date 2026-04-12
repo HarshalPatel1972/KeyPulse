@@ -17,77 +17,42 @@
 }
 
 @theme {
-  /* Design Tokens for Tailwind v4 */
+  /* Organic Palette Tokens - v4 */
   --font-heading: 'Cirka', "ui-serif", "serif";
   --font-sans: 'Season', "ui-sans-serif", "system-ui", "sans-serif";
   
-  --color-base: #08070f;
-  --color-surface: #0f0d1a;
-  --color-elevated: #161228;
-  --color-accent: #7c3aed;
-  --color-valid: #2dd4bf;
-  --color-invalid: #f87171;
-  --color-quota: #fbbf24;
+  --color-base: #F6F4E8;
+  --color-surface: #E5EEE4;
+  --color-elevated: #C0E1D2;
+  --color-accent: #DC9B9B;
+  --color-valid: #98B8A9;
+  --color-invalid: #DC9B9B;
+  --color-quota: #D4B483;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 
-/* Default theme applied on html element */
+/* Fixed Organic Theme Identity */
 html {
-  --bg-base:      #08070f;
-  --bg-surface:   #0f0d1a;
-  --bg-elevated:  #161228;
-  --border:       rgba(255, 255, 255, 0.12);
-  --border-hover: rgba(255, 255, 255, 0.25);
-  --text-primary: #f0eeff;
-  --text-muted:   #a78bfa;
-  --text-hint:    #6d5fa0;
-  --accent:       #7c3aed;
-  --accent-2:     #06b6d4;
-  --accent-btn-from: #7c3aed;
-  --accent-btn-to:   #06b6d4;
-  --valid:        #2dd4bf;
-  --invalid:      #f87171;
-  --quota:        #fbbf24;
-  --unknown:      #6d5fa0;
-}
-
-html.theme-void {
-  --bg-base:      #060812;
-  --bg-surface:   #0b1121;
-  --bg-elevated:  #111d35;
-  --border:       rgba(255, 255, 255, 0.12);
-  --border-hover: rgba(255, 255, 255, 0.25);
-  --text-primary: #e2f0ff;
-  --text-muted:   #38bdf8;
-  --text-hint:    #3a5a7a;
-  --accent:       #0ea5e9;
-  --accent-2:     #f43f5e;
-  --accent-btn-from: #0ea5e9;
-  --accent-btn-to:   #f43f5e;
-  --valid:        #34d399;
-  --invalid:      #f43f5e;
-  --quota:        #fbbf24;
-  --unknown:      #3a5a7a;
-}
-
-html.theme-dusk {
-  --bg-base:      #0c0a08;
-  --bg-surface:   #150f08;
-  --bg-elevated:  #1e1609;
-  --border:       rgba(255, 255, 255, 0.12);
-  --border-hover: rgba(255, 255, 255, 0.25);
-  --text-primary: #fef3e8;
-  --text-muted:   #fb923c;
-  --text-hint:    #6b4a26;
-  --accent:       #f97316;
-  --accent-2:     #e879f9;
-  --accent-btn-from: #f97316;
-  --accent-btn-to:   #e879f9;
-  --valid:        #4ade80;
-  --invalid:      #f87171;
-  --quota:        #facc15;
-  --unknown:      #6b4a26;
+  --bg-base:      #F6F4E8;
+  --bg-surface:   #E5EEE4;
+  --bg-elevated:  #C0E1D2;
+  --border:       rgba(0, 0, 0, 0.08);
+  --border-hover: rgba(0, 0, 0, 0.15);
+  --text-primary: #1a1c18;
+  --text-muted:   #5b6256;
+  --text-hint:    #8e9185;
+  --accent:       #DC9B9B;
+  --accent-2:     #C0E1D2;
+  --accent-btn-from: #DC9B9B;
+  --accent-btn-to:   #DC9B9B;
+  --valid:        #98B8A9;
+  --invalid:      #DC9B9B;
+  --quota:        #D4B483;
+  --unknown:      #8e9185;
+  
+  background-color: var(--bg-base);
+  color: var(--text-primary);
 }
 
 html, body {
@@ -158,15 +123,13 @@ body {
 .animate-text-flow {
   background: linear-gradient(
     135deg, 
-    #ffffff 10%, 
-    #a78bfa 20%, 
-    #ff00c1 30%, 
-    #00fff0 40%, 
-    #fbbf24 50%, 
-    #2dd4bf 60%, 
-    #7c3aed 70%, 
-    #ffffff 80%,
-    #a78bfa 90%
+    #1a1c18 10%, 
+    #DC9B9B 20%, 
+    #98B8A9 35%, 
+    #C0E1D2 50%, 
+    #DC9B9B 65%, 
+    #1a1c18 80%,
+    #5b6256 95%
   );
   background-size: 400% 400%;
   -webkit-background-clip: text;
@@ -179,13 +142,13 @@ body {
 .interactive-text-flow {
   background: linear-gradient(
     135deg, 
-    #ffffff 0%, 
-    #ffffff 25%,
-    #ff00c1 35%, 
-    #00fff0 50%, 
-    #7c3aed 65%, 
-    #ffffff 75%,
-    #ffffff 100%
+    #1a1c18 0%, 
+    #1a1c18 25%,
+    #DC9B9B 35%, 
+    #98B8A9 50%, 
+    #C0E1D2 65%, 
+    #1a1c18 75%,
+    #1a1c18 100%
   );
   background-size: 300% 300%;
   -webkit-background-clip: text;

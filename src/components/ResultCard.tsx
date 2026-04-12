@@ -79,7 +79,7 @@ export default function ResultCard({ result, provider: manualProvider, onReset, 
         )}
 
         {result.account && (
-          <div className="bg-white/[0.02] p-3 rounded-xl border border-white/[0.03]">
+          <div className="bg-black/[0.02] p-3 rounded-xl border border-black/5">
             <p className="text-[9px] text-muted mb-1 uppercase tracking-widest font-bold opacity-40">Account</p>
             <p className="text-xs text-primary font-medium truncate">
               {result.account.name || 'Anonymous'}{' '}
@@ -90,11 +90,11 @@ export default function ResultCard({ result, provider: manualProvider, onReset, 
 
         {result.rateLimit && (
           <div className="grid grid-cols-2 gap-3">
-            <div className="bg-white/[0.02] p-3 rounded-xl border border-white/[0.03]">
+            <div className="bg-black/[0.02] p-3 rounded-xl border border-black/5">
               <p className="text-[9px] text-muted mb-1 uppercase tracking-widest font-bold opacity-40">Limit</p>
               <p className="text-xs text-primary font-medium">{result.rateLimit.limit}</p>
             </div>
-            <div className="bg-white/[0.02] p-3 rounded-xl border border-white/[0.03]">
+            <div className="bg-black/[0.02] p-3 rounded-xl border border-black/5">
               <p className="text-[9px] text-muted mb-1 uppercase tracking-widest font-bold opacity-40">
                 Remaining
               </p>
@@ -104,10 +104,10 @@ export default function ResultCard({ result, provider: manualProvider, onReset, 
         )}
 
         {result.models.length > 0 && (
-          <div className="bg-white/[0.02] rounded-xl border border-white/[0.03] overflow-hidden transition-all">
+            <div className="bg-black/[0.02] rounded-xl border border-black/5 overflow-hidden transition-all">
             <button
               onClick={() => setShowModels(!showModels)}
-              className="w-full flex items-center justify-between p-3 md:p-4 hover:bg-white/[0.03] transition-colors"
+              className="w-full flex items-center justify-between p-3 md:p-4 hover:bg-black/[0.03] transition-colors"
             >
               <div>
                 <p className="text-[9px] text-muted mb-1 text-left uppercase tracking-[0.15em] font-bold opacity-40">

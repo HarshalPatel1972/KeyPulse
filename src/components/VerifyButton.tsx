@@ -14,8 +14,8 @@ export default function VerifyButton({ onClick, disabled, isLoading, activeTheme
         w-full py-4 rounded-none font-heading font-bold text-[15px] tracking-[0.05em] uppercase
         transition-all duration-300 relative overflow-hidden group active-scale
         ${disabled || isLoading 
-          ? 'bg-white/[0.04] text-white/20' 
-          : 'cursor-pointer hover:bg-white/5 active:scale-[0.98]'
+          ? 'bg-black/[0.04] text-black/20' 
+          : 'cursor-pointer hover:bg-black/5 active:scale-[0.98] text-white'
         }
       `}
       style={{
@@ -30,10 +30,10 @@ export default function VerifyButton({ onClick, disabled, isLoading, activeTheme
       )}
       
       {isLoading ? (
-        <span className="flex items-center justify-center gap-3">
+        <span className="flex items-center justify-center gap-3 text-black/40">
           <span className="relative flex h-4 w-4">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-20"></span>
-            <span className="relative inline-flex rounded-full h-4 w-4 border-2 border-white/20 border-t-white animate-spin"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black opacity-10"></span>
+            <span className="relative inline-flex rounded-full h-4 w-4 border-2 border-black/10 border-t-black/40 animate-spin"></span>
           </span>
           <span className="animate-pulse">Checking Pulse...</span>
         </span>

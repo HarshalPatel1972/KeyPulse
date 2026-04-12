@@ -89,7 +89,7 @@ export default function KeyInput({ value, onProviderChange, onKeyChange, isLoadi
             <button
               type="button"
               onClick={() => handleChange('')}
-              className="p-2 rounded-lg transition-all duration-300 hover:bg-white/[0.05] group/clear active:scale-95"
+              className="p-2 rounded-lg transition-all duration-300 hover:bg-black/[0.05] group/clear active:scale-95"
               title="Clear input"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-muted opacity-40 group-hover/clear:opacity-100 transition-opacity">
