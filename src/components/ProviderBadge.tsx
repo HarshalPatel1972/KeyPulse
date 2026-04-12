@@ -16,7 +16,7 @@ export default function ProviderBadge({ provider }: Props) {
       <div className="relative">
         {!imgError ? (
           <img
-            src={`https://unavatar.io/${provider.domain}`}
+            src={`https://logo.clearbit.com/${provider.domain}`}
             alt={provider.name}
             className="w-4 h-4 rounded-full shadow-[0_0_10px_var(--provider-color)] transition-transform duration-500 group-hover/badge:scale-110"
             onError={() => setImgError(true)}

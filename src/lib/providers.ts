@@ -28,7 +28,7 @@ export const PROVIDERS: Provider[] = [
     name: 'Google Gemini',
     prefixes: ['AIza'],
     color: '#4285F4',
-    domain: 'ai.google.dev',
+    domain: 'google.com',
     docsUrl: 'https://ai.google.dev',
     verifyEndpoint: 'https://generativelanguage.googleapis.com/v1beta/models',
     requiresProxy: false,
