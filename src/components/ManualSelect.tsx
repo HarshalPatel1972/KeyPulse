@@ -111,9 +111,13 @@ export default function ManualSelect({ value, onChange }: Props) {
                     <div className={`
                       w-7 h-7 rounded-xl flex items-center justify-center transition-all duration-500
                       ${value?.id === p.id ? 'bg-accent/20 scale-110 shadow-[0_0_15px_rgba(124,58,237,0.3)]' : 'bg-white/5'}
-                      group-hover:bg-accent/20 group-hover:scale-105
+                      group-hover:bg-accent/20 group-hover:scale-105 overflow-hidden p-1.5
                     `}>
-                      <span className="text-sm scale-110 group-hover:animate-pulse-heartbeat">{p.icon}</span>
+                      <img 
+                        src={`https://www.google.com/s2/favicons?domain=${p.domain}&sz=64`} 
+                        alt="" 
+                        className={`w-full h-full rounded-[4px] transition-all duration-300 ${value?.id === p.id ? 'grayscale-0' : 'grayscale group-hover:grayscale-0'}`}
+                      />
                     </div>
                     <div className="flex flex-col items-start">
                       <span className={`text-[10px] font-bold tracking-[0.05em] uppercase transition-colors duration-300 ${value?.id === p.id ? 'text-accent' : 'text-white'}`}>
