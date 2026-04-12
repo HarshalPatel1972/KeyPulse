@@ -1,7 +1,6 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback } from 'react'
 import { detectProvider } from '@/lib/detect'
 import { Provider } from '@/lib/types'
-import ProviderBadge from './ProviderBadge'
 import ManualSelect from './ManualSelect'
 
 interface Props {
@@ -29,26 +28,29 @@ export default function KeyInput({ value, onProviderChange, onKeyChange, isLoadi
 
   return (
     <div className="w-full">
-      <div className={`relative flex items-center transition-all bg-white/5 border border-white/10 rounded-2xl p-1 ${isInvalid ? 'border-[#F6F4E8] shadow-[0_0_20px_rgba(246,244,232,0.3)]' : ''}`}>
+      <div className={`relative flex items-center transition-all bg-surface border rounded-2xl p-1 shadow-sm ${isInvalid ? 'border-primary' : 'border-primary'}`}>
         <input
           type="text"
           value={value}
           onChange={(e) => handleChange(e.target.value)}
           placeholder="Paste API key..."
           disabled={isLoading}
-          className="flex-1 px-5 py-4 outline-none text-[#F6F4E8] placeholder:opacity-40 text-sm font-heading"
-          style={{ background: 'transparent', WebkitTextSecurity: showKey ? 'none' : 'disc' } as any}
+          className="flex-1 px-5 py-4 outline-none text-primary placeholder:text-primary/30 text-sm font-heading bg-transparent"
+          style={{ WebkitTextSecurity: showKey ? 'none' : 'disc' } as any}
         />
-        <button onClick={() => setShowKey(!showKey)} className="p-3 text-[#F6F4E8] opacity-40 hover:opacity-100 transition-opacity">
+        <button 
+          onClick={() => setShowKey(!showKey)} 
+          className="px-4 py-2 text-[10px] uppercase font-bold tracking-widest text-primary/40 hover:text-primary transition-colors"
+        >
           {showKey ? 'Hide' : 'Show'}
         </button>
       </div>
 
-      <div className="mt-4">
+      <div className="mt-4 h-8 flex items-center">
         {detection?.confidence === 'high' && detection.provider && (
-          <div className="flex items-center gap-3 animate-fade-in bg-white/5 p-3 rounded-2xl border border-white/10">
-            <img src={detection.provider.icon} className="w-4 h-4 object-contain" alt="" />
-            <span className="text-[10px] font-bold uppercase tracking-widest text-[#F6F4E8]">{detection.provider.name} detected</span>
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-primary/5 rounded-full border border-primary animate-fade-in">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#98B8A9]" />
+            <span className="text-[9px] font-bold uppercase tracking-widest text-primary">{detection.provider.name} Identified</span>
           </div>
         )}
       </div>
