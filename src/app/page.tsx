@@ -172,13 +172,8 @@ export default function Home() {
                 />
               </div>
 
-              {/* 2. Trust Strip (Middle for Desktop, Bottom for Mobile) */}
-              <div className="animate-slide-up order-3 md:order-2" style={{ animationDelay: '0.2s' }}>
-                <TrustStrip />
-              </div>
-
-              {/* 3. Action Logic (Middle for Mobile, Bottom for Desktop) */}
-              <div className="relative group z-[1] order-2 md:order-3">
+              {/* 2. Action Logic (Middle for Action Momentum) */}
+              <div className="relative group z-[1] order-2 md:order-2">
                  <div className="relative flex items-stretch rounded-[22px] md:rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.03] border border-[var(--border)] transition-all duration-500 shadow-2xl mt-1">
                     <div className="flex-1 overflow-hidden transition-all duration-500 ease-out">
                       <VerifyButton
@@ -223,6 +218,11 @@ export default function Home() {
                       </button>
                     </div>
                  </div>
+              </div>
+
+              {/* 3. Trust Strip (Support Metadata at the bottom) */}
+              <div className="animate-slide-up order-3 md:order-3" style={{ animationDelay: '0.2s' }}>
+                <TrustStrip />
               </div>
             </div>
           </div>
