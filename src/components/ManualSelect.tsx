@@ -72,23 +72,22 @@ export default function ManualSelect({ value, onChange }: Props) {
           </svg>
         </button>
 
-        {/* Custom Dropdown Grid - High Contrast Adaptive Grid / Mobile Bottom Sheet */}
+        {/* Custom Dropdown Grid - Universal Downward Expansion */}
         {isOpen && (
           <>
-            {/* Backdrop for Mobile */}
+            {/* Backdrop for focus isolation */}
             <div 
-              className="fixed inset-0 z-[99998] bg-black/60 backdrop-blur-sm xl:hidden animate-fade-in"
+              className="fixed inset-0 z-[99998] bg-black/20 backdrop-blur-[2px] xl:hidden animate-fade-in"
               onClick={() => setIsOpen(false)}
             />
             
             <div className={`
-              fixed left-0 bottom-0 w-full z-[99999] bg-[#161426] border-t border-white/20 shadow-[0_-25px_60px_-15px_rgba(0,0,0,0.7)]
-              transition-all duration-300 ease-out animate-slide-up-drawer
-              rounded-t-[32px] px-4 pb-12 pt-2
-              xl:absolute xl:bottom-auto xl:top-full xl:left-0 xl:w-[120%] xl:sm:-left-[10%] xl:mt-2 xl:rounded-2xl xl:p-2 xl:border xl:pb-2 xl:animate-dropdown-open
+              absolute top-full left-0 w-full z-[99999] mt-2 translate-y-0
+              bg-[#161426] border border-white/20 shadow-2xl
+              transition-all duration-300 ease-out animate-dropdown-open
+              rounded-2xl px-2 pb-2 pt-2
+              xl:w-[120%] xl:-left-[10%]
             `}>
-              {/* Drag Handle - Mobile Only */}
-              <div className="w-12 h-1.5 bg-white/10 rounded-full mx-auto my-3 xl:hidden" />
               
               <div className="grid grid-cols-2 md:grid-cols-3 gap-1.5 overflow-y-auto max-h-[60vh] xl:max-h-[400px] custom-scrollbar">
                 {PROVIDERS.map((p) => (
