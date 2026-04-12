@@ -21,21 +21,22 @@ export default function StarRiver() {
 
     const initParticles = () => {
       particles = []
-      const numParticles = Math.floor((canvas.width * canvas.height) / 25000)
+      const numParticles = Math.floor((canvas.width * canvas.height) / 20000)
       for (let i = 0; i < numParticles; i++) {
         particles.push(createParticle(true))
       }
     }
 
     const createParticle = (randomY = false) => {
-      const colors = ['#F6F4E8', '#C0E1D2']
+      // Using all organic colors for the background drift
+      const colors = ['#F6F4E8', '#C0E1D2', '#E5EEE4']
       const color = colors[Math.floor(Math.random() * colors.length)]
       return {
         x: Math.random() * canvas.width,
         y: randomY ? Math.random() * canvas.height : -50,
-        radius: Math.random() * 25 + 10,
-        speed: Math.random() * 0.15 + 0.05,
-        opacity: Math.random() * 0.1 + 0.05,
+        radius: Math.random() * 20 + 8,
+        speed: Math.random() * 0.12 + 0.04,
+        opacity: Math.random() * 0.12 + 0.05,
         color: color,
         angle: Math.random() * Math.PI * 2
       }
@@ -48,7 +49,7 @@ export default function StarRiver() {
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2)
         ctx.fillStyle = p.color
         ctx.globalAlpha = p.opacity
-        ctx.shadowBlur = 50
+        ctx.shadowBlur = 40
         ctx.shadowColor = p.color
         ctx.fill()
         ctx.globalAlpha = 1
