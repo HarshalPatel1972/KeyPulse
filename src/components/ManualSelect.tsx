@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { PROVIDERS } from '@/lib/providers'
 import { Provider } from '@/lib/types'
 
@@ -22,46 +22,50 @@ export default function ManualSelect({ value, onChange }: Props) {
   }, [])
 
   return (
-    <div className="mt-4" ref={containerRef}>
+    <div className="relative w-full" ref={containerRef}>
+      <div className="flex items-center gap-3 mb-3">
+        <div className="h-[1px] flex-1 bg-primary/10" />
+        <span className="text-[9px] uppercase tracking-[0.3em] font-bold text-primary/30">Manual Selection</span>
+        <div className="h-[1px] flex-1 bg-primary/10" />
+      </div>
+
       <div className="relative">
         <button
-          type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className={`
-            w-full flex items-center justify-between rounded-2xl px-5 py-4 text-sm 
-            transition-all duration-300 bg-white/5 border border-white/10
-            ${isOpen ? 'border-accent ring-2 ring-accent/10' : 'hover:border-white/20'}
-          `}
-          style={{ color: 'var(--text-primary)' }}
+          className="w-full flex items-center justify-between px-5 py-4 bg-surface border border-primary rounded-2xl hover:border-primary/30 transition-all text-left group"
         >
           <div className="flex items-center gap-3">
-            {value && (
-              <img src={`https://www.google.com/s2/favicons?domain=${value.domain}&sz=64`} alt="" className="w-5 h-5 rounded-sm" />
+            {value ? (
+              <>
+                <img src={`https://www.google.com/s2/favicons?sz=64&domain=${value.domain}`} alt="" className="w-5 h-5 object-contain" />
+                <span className="text-sm font-heading font-bold text-primary">{value.name}</span>
+              </>
+            ) : (
+              <span className="text-sm font-heading font-bold text-primary/40">Choose AI Provider</span>
             )}
-            <span className="font-heading tracking-wide text-[16px]">
-              {value ? value.name : 'Pick a provider'}
-            </span>
           </div>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}>
-            <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          <svg 
+            width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" 
+            className={`text-primary/20 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+          >
+            <path d="M6 9l6 6 6-6"/>
           </svg>
         </button>
 
         {isOpen && (
-          <div className="absolute top-full left-0 w-full z-[99999] mt-2 bg-[#DC9B9B] border border-white/10 shadow-2xl rounded-3xl p-3 xl:w-[120%] xl:-left-[10%]">
+          <div className="absolute top-full left-0 w-full z-[99999] mt-2 bg-surface border border-primary shadow-2xl rounded-3xl p-3 xl:w-[120%] xl:-left-[10%] backdrop-blur-xl">
             <div className="grid grid-cols-2 gap-2 overflow-y-auto max-h-[280px] p-1 pb-4">
               {PROVIDERS.map((p) => (
                 <button
                   key={p.id}
-                  onClick={() => { onChange(p); setIsOpen(false); }}
-                  className={`flex items-center gap-3 px-3 py-3 rounded-2xl transition-all border ${value?.id === p.id ? 'bg-white/10 border-white/20' : 'bg-white/5 border-transparent hover:border-white/10'}`}
+                  onClick={() => {
+                    onChange(p)
+                    setIsOpen(false)
+                  }}
+                  className="flex flex-col items-center justify-center p-4 rounded-2xl bg-base/40 border border-primary hover:bg-primary/5 transition-all group"
                 >
-                  <div className="w-8 h-8 rounded-xl bg-white shadow-sm flex items-center justify-center p-1.5 overflow-hidden">
-                    <img src={p.icon} alt="" className="w-full h-full object-contain" />
-                  </div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#F6F4E8]">
-                    {p.name}
-                  </span>
+                  <img src={`https://www.google.com/s2/favicons?sz=64&domain=${p.domain}`} alt={p.name} className="w-6 h-6 object-contain mb-3 grayscale group-hover:grayscale-0 transition-all" />
+                  <span className="text-[10px] font-heading font-bold text-primary">{p.name}</span>
                 </button>
               ))}
             </div>
