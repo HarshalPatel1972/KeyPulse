@@ -20,29 +20,28 @@
   --font-heading: 'Cirka', "ui-serif", "serif";
   --font-sans: 'Season', "ui-sans-serif", "system-ui", "sans-serif";
   
-  --color-valid: #98B8A9;
-  --color-mint: #C0E1D2;
-  --color-sage: #E5EEE4;
-  --color-cream: #F6F4E8;
-  --color-deep-sage: #4A5A4A;
+  --color-lavender: #F4EEFF;
+  --color-periwinkle: #DCD6F7;
+  --color-blue-soft: #A6B1E1;
+  --color-indigo-deep: #424874;
 }
 
 :root {
-  --bg-base:#C0E1D2;
-  --bg-surface: #FFFFFF; /* Brighter surface for high contrast */
-  --text-primary: #4A5A4A;
-  --text-secondary: rgba(74, 90, 74, 0.6);
-  --border-primary: rgba(74, 90, 74, 0.05); /* Softer borders everywhere */
-  --accent: #C0E1D2;
+  --bg-base: #F4EEFF;       /* Lavender Mist */
+  --bg-surface: #F4EEFF;    /* Lavender Mist (Pure) */
+  --text-primary: #424874;  /* Deep Indigo */
+  --text-secondary: rgba(66, 72, 116, 0.65);
+  --border-primary: rgba(66, 72, 116, 0.02); /* Near invisible */
+  --accent: #A6B1E1;        /* Soft Blue */
 }
 
 [data-theme='dark'] {
-  --bg-base: #151A17;      /* Much darker base */
-  --bg-surface: #202D27;   /* Highly contrasting surface */
-  --text-primary: #F6F4E8;
-  --text-secondary: rgba(246, 244, 232, 0.5);
-  --border-primary: rgba(246, 244, 232, 0.05); /* Softer borders everywhere */
-  --accent: #98B8A9;
+  --bg-base: #424874;       /* Deep Indigo (Strict) */
+  --bg-surface: #424874;    /* Deep Indigo (Pure) */
+  --text-primary: #F4EEFF;  /* Lavender Mist Text */
+  --text-secondary: rgba(244, 238, 255, 0.7);
+  --border-primary: rgba(244, 238, 255, 0.7); /* Hardened Border */
+  --accent: #A6B1E1;        /* Soft Blue */
 }
 
 html, body {
@@ -78,9 +77,10 @@ html, body {
 .interaction-card {
   background-color: var(--bg-surface);
   color: var(--text-primary);
-  border: 1px solid var(--border-primary);
-  box-shadow: 0 40px 80px -15px rgba(0, 0, 0, 0.1);
+  border: none;
+  box-shadow: 0 30px 100px -20px rgba(66, 72, 116, 0.15);
 }
+
 
 @keyframes slide-up {
   from { opacity: 0; transform: translateY(12px); }
