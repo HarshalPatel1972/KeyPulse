@@ -1,5 +1,5 @@
 'use client'
-import { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { Provider } from '@/lib/types'
 import { verify } from '@/lib/verifiers'
 import { VerifyResult } from '@/lib/types'
