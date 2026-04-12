@@ -14,12 +14,12 @@ export default function ResultCard({ result, provider: manualProvider, onDelete 
   const domain = provider?.domain || 'google.com'
   
   return (
-    <div className="w-full bg-surface shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-primary/5 rounded-[40px] p-6 md:p-8 relative animate-slide-up transition-colors duration-500 overflow-hidden">
+    <div className="w-full bg-surface shadow-[0_15px_60px_rgba(66,72,116,0.12)] rounded-[40px] p-6 md:p-8 relative animate-slide-up transition-colors duration-500 overflow-hidden">
       {/* Premium Status Header */}
       <div className="flex items-center justify-between mb-10">
         <div className="flex items-center gap-5">
-          <div className="w-14 h-14 rounded-[20px] bg-base border border-primary/5 flex items-center justify-center p-3 shadow-inner">
-            <img src={`https://www.google.com/s2/favicons?sz=64&domain=${domain}`} alt="" className="w-full h-full object-contain brightness-110" />
+          <div className="w-14 h-14 rounded-[20px] bg-base flex items-center justify-center p-3 shadow-inner">
+            <img src={`https://www.google.com/s2/favicons?sz=64&domain=${domain}`} alt="" className="w-full h-full object-contain brightness-110 opacity-70 group-hover:opacity-100 transition-all" />
           </div>
           <div>
             <h3 className="text-primary text-[20px] font-heading font-bold leading-none mb-2 tracking-tight">{providerName}</h3>
@@ -31,7 +31,7 @@ export default function ResultCard({ result, provider: manualProvider, onDelete 
         </div>
         
         <div className="flex items-center gap-3">
-          <div className={`px-5 py-2 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase border ${result.status === 'valid' ? 'bg-[#C0E1D2]/20 border-[#C0E1D2]/30 text-[#4A5A4A]' : 'bg-red-500/10 border-red-500/20 text-red-500'}`}>
+          <div className={`px-5 py-2 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase border ${result.status === 'valid' ? 'bg-[#DCD6F7]/20 border-[#DCD6F7]/30 text-primary' : 'bg-[#424874]/10 dark:bg-[#424874]/80 border-[#424874]/20 text-[#424874] dark:text-lavender'}`}>
             {result.status}
           </div>
           {onDelete && (
@@ -44,7 +44,7 @@ export default function ResultCard({ result, provider: manualProvider, onDelete 
 
       <div className="space-y-6">
         {result.rawError && (
-          <div className="p-5 rounded-[24px] bg-red-500/5 border border-red-500/10 text-red-500/80 text-[12px] font-medium italic animate-fade-in font-sans leading-relaxed">
+          <div className="p-5 rounded-[24px] bg-[#424874]/5 border border-[#424874]/10 text-[#424874]/80 text-[12px] font-medium italic animate-fade-in font-sans leading-relaxed">
             <span className="block text-[9px] uppercase tracking-widest font-bold mb-1 opacity-50">API Exception</span>
             {result.rawError}
           </div>
@@ -52,14 +52,14 @@ export default function ResultCard({ result, provider: manualProvider, onDelete 
 
         <div className="grid grid-cols-1 gap-4">
           {result.account && (
-            <div className="bg-base/30 backdrop-blur-sm p-6 rounded-[32px] border border-primary/10 group hover:border-primary/20 transition-all">
+            <div className="bg-base/30 dark:bg-base/70 backdrop-blur-sm p-6 rounded-[32px] group transition-all">
               <p className="text-[10px] text-primary/30 mb-2 uppercase tracking-[0.3em] font-bold">Authenticated Subject</p>
               <p className="text-[16px] text-primary font-heading font-bold">{result.account.name || 'Anonymous Identifier'}</p>
               {result.account.email && <p className="text-[12px] text-primary/40 mt-1 font-sans">{result.account.email}</p>}
             </div>
           )}
 
-          <div className="bg-base/20 rounded-[32px] border border-primary/10 overflow-hidden flex flex-col transition-all hover:bg-base/30">
+          <div className="bg-base/20 dark:bg-base/70 rounded-[32px] overflow-hidden flex flex-col transition-all hover:bg-base/30 shadow-sm">
             <div className="flex items-center justify-between p-6 border-b border-primary/5">
               <p className="text-[10px] text-primary/60 font-bold uppercase tracking-[0.4em]">Available Endpoints</p>
               <span className="text-[10px] py-1 px-3 bg-primary/10 rounded-full text-primary/60 font-bold">{result.models.length} Nodes</span>

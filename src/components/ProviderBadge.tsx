@@ -10,7 +10,7 @@ export default function ProviderBadge({ provider }: Props) {
 
   return (
     <div
-      className="flex items-center gap-3 animate-fade-in group/badge px-2 py-1 rounded-full bg-white/[0.02] border border-white/[0.05] backdrop-blur-sm"
+      className="flex items-center gap-3 animate-fade-in group/badge px-2 py-1 rounded-full bg-lavender/[0.02] dark:bg-lavender/70 border border-lavender/[0.05] backdrop-blur-sm"
       style={{ '--provider-color': provider.color } as React.CSSProperties}
     >
       <div className="relative">
@@ -33,9 +33,9 @@ export default function ProviderBadge({ provider }: Props) {
         {provider.name}
       </span>
 
-      <div className="relative flex items-center gap-2 px-2.5 py-1 rounded-full border border-white/[0.1] bg-white/[0.03] overflow-hidden group/pill">
+      <div className="relative flex items-center gap-2 px-2.5 py-1 rounded-full border border-lavender/[0.1] bg-lavender/[0.03] dark:bg-lavender/80 overflow-hidden group/pill">
         {/* Shimmer Sweep */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.05] to-transparent -translate-x-full animate-shimmer-button pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-lavender/[0.05] to-transparent -translate-x-full animate-shimmer-button pointer-events-none" />
         
         {/* Live Pulse Dot */}
         <div className="relative flex h-1.5 w-1.5">
