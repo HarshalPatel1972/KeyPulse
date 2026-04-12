@@ -37,25 +37,27 @@ export default function TrustStrip() {
       {/* Container Background Glow */}
       <div className="absolute -inset-0.5 bg-gradient-to-r from-accent/20 via-valid/20 to-accent/20 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
       
-      <div className="relative flex flex-col md:flex-row items-stretch justify-center gap-0 rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.03] border border-white/[0.08]">
+      <div className="relative flex flex-col md:flex-row items-stretch justify-center gap-0 rounded-2xl md:rounded-3xl overflow-hidden backdrop-blur-xl bg-white/[0.03] border border-white/[0.08]">
         {signals.map((s, i) => (
           <div
             key={s.label}
-            className="flex-1 flex flex-col items-center py-6 px-4 text-center transition-all duration-300 hover:bg-white/[0.02]"
+            className="flex-1 flex flex-row md:flex-col items-center md:items-center justify-start md:justify-center py-4 md:py-6 px-5 md:px-4 text-left md:text-center transition-all duration-300 hover:bg-white/[0.02] gap-4 md:gap-3"
             style={{
               borderRight: i < signals.length - 1 ? '1px solid var(--border)' : 'none',
               borderBottom: i < signals.length - 1 ? '1px solid var(--border)' : 'none',
             }}
           >
-            <div className="mb-3 transition-transform duration-500 group-hover:scale-110">
-              {s.icon}
+            <div className="transition-transform duration-500 group-hover:scale-110 shrink-0">
+              {React.cloneElement(s.icon as React.ReactElement, { width: 24, height: 24, strokeWidth: 2.5 })}
             </div>
-            <span className="font-heading font-bold text-[13px] tracking-wider uppercase mb-1" style={{ color: 'var(--text-primary)' }}>
-              {s.label}
-            </span>
-            <span className="font-sans text-[11px] font-medium opacity-60" style={{ color: 'var(--text-muted)' }}>
-              {s.desc}
-            </span>
+            <div className="flex flex-col">
+              <span className="font-heading font-bold text-[14px] md:text-[13px] tracking-wide uppercase mb-0.5 md:mb-1" style={{ color: 'var(--text-primary)' }}>
+                {s.label}
+              </span>
+              <span className="font-sans text-[11px] md:text-[11px] font-medium opacity-60" style={{ color: 'var(--text-muted)' }}>
+                {s.desc}
+              </span>
+            </div>
           </div>
         ))}
       </div>
