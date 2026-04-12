@@ -63,6 +63,5 @@ export default function TrustStrip() {
           </div>
         ))}
       </div>
-    </div>
   )
 }
