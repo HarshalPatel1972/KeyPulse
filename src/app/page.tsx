@@ -18,6 +18,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false)
   const [isInvalid, setIsInvalid] = useState(false)
   const [history, setHistory] = useState<VerifyResult[]>([])
+  const [hasChecked, setHasChecked] = useState(false)
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 })
   const [activeTab, setActiveTab] = useState<TabType>('pulse')
   const [forceManual, setForceManual] = useState(false)
