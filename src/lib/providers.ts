@@ -10,6 +10,7 @@ export const PROVIDERS: Provider[] = [
     docsUrl: 'https://platform.openai.com/docs',
     verifyEndpoint: 'https://api.openai.com/v1/models',
     requiresProxy: false,
+    icon: '🤖',
   },
   {
     id: 'anthropic',
@@ -20,6 +21,7 @@ export const PROVIDERS: Provider[] = [
     docsUrl: 'https://docs.anthropic.com',
     verifyEndpoint: 'https://api.anthropic.com/v1/models',
     requiresProxy: false,
+    icon: '🧠',
   },
   {
     id: 'gemini',
@@ -30,6 +32,7 @@ export const PROVIDERS: Provider[] = [
     docsUrl: 'https://ai.google.dev',
     verifyEndpoint: 'https://generativelanguage.googleapis.com/v1beta/models',
     requiresProxy: false,
+    icon: '♊',
   },
   {
     id: 'groq',
@@ -40,6 +43,7 @@ export const PROVIDERS: Provider[] = [
     docsUrl: 'https://console.groq.com/docs',
     verifyEndpoint: 'https://api.groq.com/openai/v1/models',
     requiresProxy: false,
+    icon: '⚡',
   },
   {
     id: 'huggingface',
@@ -50,6 +54,7 @@ export const PROVIDERS: Provider[] = [
     docsUrl: 'https://huggingface.co/docs',
     verifyEndpoint: 'https://huggingface.co/api/whoami',
     requiresProxy: false,
+    icon: '🤗',
   },
   {
     id: 'replicate',
@@ -60,6 +65,7 @@ export const PROVIDERS: Provider[] = [
     docsUrl: 'https://replicate.com/docs',
     verifyEndpoint: 'https://api.replicate.com/v1/account',
     requiresProxy: false,
+    icon: '🚀',
   },
   {
     id: 'perplexity',
@@ -70,6 +76,7 @@ export const PROVIDERS: Provider[] = [
     docsUrl: 'https://docs.perplexity.ai',
     verifyEndpoint: 'https://api.perplexity.ai/models',
     requiresProxy: true,
+    icon: '🔍',
   },
   {
     id: 'mistral',
@@ -80,6 +87,7 @@ export const PROVIDERS: Provider[] = [
     docsUrl: 'https://docs.mistral.ai',
     verifyEndpoint: 'https://api.mistral.ai/v1/models',
     requiresProxy: true,
+    icon: '🌪️',
   },
   {
     id: 'cohere',
@@ -90,6 +98,7 @@ export const PROVIDERS: Provider[] = [
     docsUrl: 'https://docs.cohere.com',
     verifyEndpoint: 'https://api.cohere.com/v1/models',
     requiresProxy: true,
+    icon: '🤝',
   },
   {
     id: 'together',
@@ -100,6 +109,7 @@ export const PROVIDERS: Provider[] = [
     docsUrl: 'https://docs.together.ai',
     verifyEndpoint: 'https://api.together.xyz/v1/models',
     requiresProxy: true,
+    icon: '🏗️',
   },
   {
     id: 'elevenlabs',
@@ -110,6 +120,7 @@ export const PROVIDERS: Provider[] = [
     docsUrl: 'https://elevenlabs.io/docs',
     verifyEndpoint: 'https://api.elevenlabs.io/v1/user',
     requiresProxy: true,
+    icon: '🗣️',
   },
 ]
 
