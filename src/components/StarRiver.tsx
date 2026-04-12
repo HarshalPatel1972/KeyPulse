@@ -28,8 +28,8 @@ export default function StarRiver() {
     }
 
     const createParticle = (randomY = false) => {
-      // Using all organic colors for the background drift
-      const colors = ['#F6F4E8', '#C0E1D2', '#E5EEE4']
+      // Strictly using only the 4-color identity palette
+      const colors = ['#F4EEFF', '#DCD6F7', '#A6B1E1']
       const color = colors[Math.floor(Math.random() * colors.length)]
       return {
         x: Math.random() * canvas.width,
