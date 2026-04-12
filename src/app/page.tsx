@@ -115,7 +115,7 @@ export default function Home() {
       {/* Main Container - Absolute rigid height to prevent any jitter */}
       <div className="flex-1 h-[calc(100vh-64px)] flex items-stretch overflow-hidden relative">
         {/* Interaction Column - Pulse Tab */}
-        <div className={`flex-1 h-full flex flex-col items-center justify-center p-4 md:p-6 overflow-y-auto relative z-[20000] box-border ${activeTab === 'pulse' ? 'flex' : 'hidden xl:flex'}`}>
+        <div className={`flex-1 h-full flex flex-col items-center justify-start md:justify-center p-4 md:p-6 overflow-y-auto relative z-[20000] box-border ${activeTab === 'pulse' ? 'flex' : 'hidden xl:flex'}`}>
           <div className="w-full max-w-[540px] py-6 md:py-12 relative xl:-top-[30px] xl:scale-[1.08] transform-gpu transition-all duration-700">
             <div className="mb-8 text-center animate-fade-in px-2">
               <button

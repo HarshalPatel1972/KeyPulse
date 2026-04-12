@@ -75,9 +75,9 @@ export default function ManualSelect({ value, onChange }: Props) {
         {/* Custom Dropdown Grid - Universal Downward Expansion */}
         {isOpen && (
           <>
-            {/* Backdrop for focus isolation */}
+            {/* Minimal focus isolation backdrop */}
             <div 
-              className="fixed inset-0 z-[99998] bg-black/20 backdrop-blur-[2px] xl:hidden animate-fade-in"
+              className="fixed inset-0 z-[99998] bg-black/10 xl:hidden animate-fade-in"
               onClick={() => setIsOpen(false)}
             />
             
@@ -89,7 +89,7 @@ export default function ManualSelect({ value, onChange }: Props) {
               xl:w-[120%] xl:-left-[10%]
             `}>
               
-              <div className="grid grid-cols-2 gap-2 overflow-y-auto max-h-[45vh] md:max-h-[60vh] xl:max-h-[400px] custom-scrollbar">
+              <div className="grid grid-cols-2 gap-2 overflow-y-auto max-h-[60vh] xl:max-h-[400px] custom-scrollbar pb-6">
                 {PROVIDERS.map((p) => (
                   <button
                     key={p.id}
