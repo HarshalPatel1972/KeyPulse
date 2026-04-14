@@ -23,8 +23,16 @@ export async function proxyVerifier(key: string, providerId: ProviderId): Promis
       ? { 'xi-api-key': key }
       : { Authorization: `Bearer ${key}` }
 
-    const res = await fetch(workerUrl, {
+    // Security: Only allow HTTPS connections to prevent MITM attacks
+    const secureWorkerUrl = workerUrl.startsWith('http://localhost') ? workerUrl : workerUrl.replace(/^http:/, 'https:')
+    
+    // Add a controller for timeout handling
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), 10000)
+
+    const res = await fetch(secureWorkerUrl, {
       method: 'POST',
+      signal: controller.signal,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         url: provider.verifyEndpoint,
@@ -32,6 +40,7 @@ export async function proxyVerifier(key: string, providerId: ProviderId): Promis
         headers,
       }),
     })
+    clearTimeout(timeout)
 
     if (!res.ok) {
       const errorData = await res.json().catch(() => ({}))
