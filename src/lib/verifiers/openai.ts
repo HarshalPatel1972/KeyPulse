@@ -7,9 +7,14 @@ export async function verifyOpenAI(key: string): Promise<VerifyResult> {
   }
 
   try {
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), 15000)
+
     const res = await fetch('https://api.openai.com/v1/models', {
       headers: { Authorization: `Bearer ${key}` },
+      signal: controller.signal,
     })
+    clearTimeout(timeout)
 
     if (res.status === 401 || res.status === 403) {
       return {
