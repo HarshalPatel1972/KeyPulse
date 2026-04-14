@@ -36,6 +36,10 @@ export default function KeyInput({ value, selectedProvider, onProviderChange, on
           onChange={(e) => handleChange(e.target.value)}
           placeholder="Paste API key..."
           disabled={isLoading}
+          autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="off"
+          spellCheck="false"
           className="flex-1 px-5 py-4 outline-none text-primary placeholder:text-primary/50 dark:placeholder:text-lavender/40 text-sm font-heading bg-transparent"
           style={{ WebkitTextSecurity: showKey ? 'none' : 'disc' } as any}
         />
