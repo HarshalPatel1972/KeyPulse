@@ -4,13 +4,18 @@ export async function verifyAnthropic(key: string): Promise<VerifyResult> {
   const base = { provider: 'anthropic' as const, checkedAt: new Date().toISOString() }
 
   try {
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), 15000)
+
     const res = await fetch('https://api.anthropic.com/v1/models', {
       headers: {
         'x-api-key': key,
         'anthropic-version': '2023-06-01',
         'anthropic-dangerous-direct-browser-access': 'true',
       },
+      signal: controller.signal,
     })
+    clearTimeout(timeout)
 
     if (res.status === 401 || res.status === 403) {
       return {
