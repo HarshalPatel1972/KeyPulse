@@ -4,9 +4,14 @@ export async function verifyGemini(key: string): Promise<VerifyResult> {
   const base = { provider: 'gemini' as const, checkedAt: new Date().toISOString() }
 
   try {
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), 15000)
+
     const res = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models?key=${encodeURIComponent(key)}`
+      `https://generativelanguage.googleapis.com/v1beta/models?key=${encodeURIComponent(key)}`,
+      { signal: controller.signal }
     )
+    clearTimeout(timeout)
 
     if (res.status === 400 || res.status === 401 || res.status === 403) {
       return {
