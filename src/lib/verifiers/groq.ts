@@ -4,9 +4,14 @@ export async function verifyGroq(key: string): Promise<VerifyResult> {
   const base = { provider: 'groq' as const, checkedAt: new Date().toISOString() }
 
   try {
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), 15000)
+
     const res = await fetch('https://api.groq.com/openai/v1/models', {
       headers: { Authorization: `Bearer ${key}` },
+      signal: controller.signal,
     })
+    clearTimeout(timeout)
 
     if (res.status === 401 || res.status === 403) {
       return {
