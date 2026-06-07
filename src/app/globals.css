@@ -17,8 +17,8 @@
 }
 
 @theme {
-  --font-heading: 'Cirka', "ui-serif", "serif";
-  --font-sans: 'Season', "ui-sans-serif", "system-ui", "sans-serif";
+  --font-heading: 'Inter', "ui-sans-serif", "system-ui", "sans-serif";
+  --font-sans: 'Inter', "ui-sans-serif", "system-ui", "sans-serif";
   
   --color-lavender: #F4EEFF;
   --color-periwinkle: #DCD6F7;
