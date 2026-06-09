@@ -11,9 +11,10 @@ interface Props {
   isLoading: boolean
   isInvalid: boolean
   forceManual?: boolean
+  rightAction?: React.ReactNode
 }
 
-export default function KeyInput({ value, selectedProvider, onProviderChange, onKeyChange, isLoading, isInvalid, forceManual }: Props) {
+export default function KeyInput({ value, selectedProvider, onProviderChange, onKeyChange, isLoading, isInvalid, forceManual, rightAction }: Props) {
   const [showKey, setShowKey] = useState(false)
   const [detection, setDetection] = useState<ReturnType<typeof detectProvider> | null>(null)
   
@@ -28,8 +29,8 @@ export default function KeyInput({ value, selectedProvider, onProviderChange, on
   }, [onKeyChange, onProviderChange])
 
   return (
-    <div className="w-full">
-      <div className={`relative flex items-center transition-all bg-surface rounded-2xl p-1 border border-primary/10 dark:border-lavender/20 shadow-[0_10px_40px_rgba(66,72,116,0.08)] ${isInvalid ? 'ring-2 ring-error/50 border-error/50' : ''}`}>
+    <div className="w-full relative">
+      <div className={`relative flex items-center transition-all bg-base rounded-2xl p-1.5 border border-border-primary shadow-inner focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary/30 ${isInvalid ? 'ring-2 ring-error/50 border-error/50' : ''}`}>
         <input
           type="text"
           value={value}
@@ -40,22 +41,27 @@ export default function KeyInput({ value, selectedProvider, onProviderChange, on
           autoCorrect="off"
           autoCapitalize="off"
           spellCheck="false"
-          className="flex-1 px-5 py-4 outline-none text-primary placeholder:text-primary/50 dark:placeholder:text-lavender/40 text-sm font-heading bg-transparent"
+          className="flex-1 px-4 py-3.5 outline-none text-primary placeholder:text-primary/40 text-sm font-sans bg-transparent min-w-0"
           style={{ WebkitTextSecurity: showKey ? 'none' : 'disc' } as any}
         />
         <button 
           onClick={() => setShowKey(!showKey)} 
-          className="px-4 py-2 text-[10px] uppercase font-bold tracking-widest text-primary/40 hover:text-primary transition-colors"
+          className="px-3 py-2 text-[10px] uppercase font-bold tracking-widest text-primary/30 hover:text-primary transition-colors shrink-0"
         >
           {showKey ? 'Hide' : 'Show'}
         </button>
+        {rightAction && (
+          <div className="shrink-0 ml-1">
+            {rightAction}
+          </div>
+        )}
       </div>
 
       <div className="mt-4 h-8 flex items-center">
         {detection?.confidence === 'high' && detection.provider && (
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-primary/5 dark:bg-primary/70 rounded-full border border-primary animate-fade-in">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#A6B1E1]" />
-            <span className="text-[9px] font-bold uppercase tracking-widest text-primary">{detection.provider.name} Identified</span>
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-success/10 rounded-full border border-success/20 animate-fade-in">
+            <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
+            <span className="text-[9px] font-bold uppercase tracking-widest text-success">{detection.provider.name} Identified</span>
           </div>
         )}
       </div>
@@ -66,3 +72,4 @@ export default function KeyInput({ value, selectedProvider, onProviderChange, on
     </div>
   )
 }
+
