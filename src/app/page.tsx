@@ -78,10 +78,8 @@ export default function Home() {
       
       <nav className="h-16 w-full fixed top-0 left-0 bg-base/70 dark:bg-base/90 backdrop-blur-xl z-[110] shadow-[0_4px_30px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.15)] flex items-center justify-between px-6 shrink-0 transition-colors duration-500">
         <div className="flex items-center gap-6">
-          <button onClick={scrollToPulse} className="text-2xl font-heading font-bold tracking-tight text-primary drop-shadow-sm active:scale-95 transition-transform flex gap-[1px]">
-            {"KeyPulse".split("").map((char, i) => (
-              <span key={i} className="animate-text-wave" style={{ animationDelay: `${i * 0.1}s` }}>{char}</span>
-            ))}
+          <button onClick={scrollToPulse} className="text-xl font-heading font-bold tracking-tight text-primary transition-transform hover:opacity-80 active:scale-95">
+            KeyPulse
           </button>
         </div>
 
