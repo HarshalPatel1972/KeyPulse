@@ -99,7 +99,7 @@ export default function Home() {
       <div className="flex-1 min-h-0 flex flex-col xl:flex-row relative transition-colors duration-500 pt-16 overflow-visible xl:overflow-hidden">
         <div ref={pulseRef} className="flex-1 flex flex-col items-center justify-center p-4 md:p-8 relative z-10 shrink-0 min-h-[calc(100vh-164px)] xl:min-h-0 xl:overflow-y-auto custom-scrollbar">
           <div className="w-full max-w-[560px] animate-fade-in py-12 md:p-0">
-            <div className="interaction-card rounded-[40px] p-8 md:p-14 shadow-2xl shadow-primary/5 relative overflow-visible transition-colors duration-500">
+            <div className="interaction-card rounded-3xl p-8 md:p-12 relative overflow-visible transition-colors duration-500">
               <div className="mb-10 text-center">
                 <button
                   onClick={() => setForceManual(v => !v)}
