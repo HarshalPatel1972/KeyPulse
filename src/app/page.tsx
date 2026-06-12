@@ -142,7 +142,7 @@ export default function Home() {
 
         <aside 
           ref={resultsRef}
-          className="w-full xl:w-[460px] xl:shadow-[-20px_0_80px_rgba(0,0,0,0.08)] dark:xl:shadow-[-20px_0_80px_rgba(0,0,0,0.2)] bg-primary/5 dark:bg-primary/70 flex flex-col relative z-20 transition-colors duration-500 min-h-[645px] xl:min-h-0 xl:overflow-y-auto custom-scrollbar"
+          className={`w-full transition-all duration-700 ease-in-out flex flex-col relative z-20 xl:min-h-0 xl:overflow-y-auto custom-scrollbar border-l border-border-primary bg-base\n            ${lastResult ? 'xl:w-[460px] opacity-100' : 'xl:w-[400px] opacity-80 hover:opacity-100'}\n          `}
         >
           <div className="px-6 xl:px-10 py-6 xl:py-8 border-b border-primary/5 flex items-center justify-between sticky top-[64px] xl:top-0 bg-base z-[95] transition-colors duration-500">
             <h2 className="text-[12px] font-bold tracking-[0.4em] uppercase text-primary/80">Result Feed</h2>
