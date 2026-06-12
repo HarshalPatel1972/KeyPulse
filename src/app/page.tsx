@@ -103,7 +103,7 @@ export default function Home() {
               <div className="mb-10 text-center">
                 <button
                   onClick={() => setForceManual(v => !v)}
-                  className="px-4 py-1.5 rounded-full bg-primary/5 border border-primary/5 text-[10px] uppercase tracking-[0.2em] font-bold mb-6 transition-all hover:bg-primary/10 text-primary"
+                  className="px-3 py-1 rounded-full bg-primary text-base font-bold text-[10px] uppercase tracking-wider mb-6 transition-transform hover:scale-105 active:scale-95"
                 >
                   {forceManual ? 'Pick a provider' : '11 providers supported'}
                 </button>
