@@ -14,22 +14,22 @@ export default function ResultCard({ result, provider: manualProvider, onDelete 
   const domain = provider?.domain || 'google.com'
   
   return (
-    <div className="w-full bg-surface shadow-[0_15px_45px_rgba(66,72,116,0.12)] rounded-[40px] p-6 md:p-8 relative animate-slide-up transition-colors duration-500 overflow-hidden">
+    <div className="w-full bg-[#18252C] border-2 border-[#2A3A43] shadow-[0_8px_0_0_#111C21] rounded-[32px] p-6 md:p-8 relative animate-[bounce-scale_0.4s_ease-out] transition-colors duration-500 overflow-hidden">
       <div className="flex items-center justify-between mb-10">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-2xl bg-base flex items-center justify-center p-2.5 shadow-inner">
+          <div className="w-14 h-14 rounded-2xl bg-[#202F36] border-2 border-[#2A3A43] flex items-center justify-center p-3">
             <img src={`https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${domain}&size=128`} alt="" className="w-full h-full object-contain brightness-110" />
           </div>
         </div>
         
         <div className="flex items-center gap-3">
-          <span className="text-[14px] font-heading font-black text-primary/80 tracking-tight">{providerName}</span>
-          <div className={`px-5 py-2 rounded-full text-[11px] font-black tracking-[0.2em] uppercase border ${result.status === 'valid' ? 'bg-success/20 border-success/40 text-success' : 'bg-error/20 border-error/40 text-error'}`}>
+          <span className="text-[16px] font-heading font-black text-white tracking-tight">{providerName}</span>
+          <div className={`px-5 py-2 rounded-full text-[12px] font-black tracking-widest uppercase border-2 ${result.status === 'valid' ? 'bg-success/20 border-success text-success' : 'bg-error/20 border-error text-error'}`}>
             {result.status}
           </div>
           {onDelete && (
-            <button onClick={onDelete} className="p-2.5 rounded-xl bg-primary/5 border border-primary/10 text-primary/20 hover:text-primary/60 transition-all hover:scale-110">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            <button onClick={onDelete} className="p-2.5 rounded-xl bg-[#202F36] border-2 border-[#2A3A43] text-white/50 hover:text-white transition-all hover:scale-110 active:scale-95">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
             </button>
           )}
         </div>
@@ -37,25 +37,25 @@ export default function ResultCard({ result, provider: manualProvider, onDelete 
 
       <div className="space-y-6">
         {result.rawError && (
-          <div className="p-5 rounded-[24px] bg-indigo-deep/5 dark:bg-black/20 border border-indigo-deep/10 dark:border-lavender/10 text-primary dark:text-lavender/80 text-[12px] font-medium italic animate-fade-in font-sans leading-relaxed">
-            <span className="block text-[9px] uppercase tracking-widest font-bold mb-1 opacity-50">API Exception</span>
+          <div className="p-5 rounded-[24px] bg-error/10 border-2 border-error/30 text-white text-[13px] font-bold animate-fade-in font-sans leading-relaxed">
+            <span className="block text-[10px] uppercase tracking-widest font-black mb-1 opacity-50 text-error">API Exception</span>
             {result.rawError}
           </div>
         )}
 
         <div className="grid grid-cols-1 gap-4">
           {result.account && (
-            <div className="bg-base/70 dark:bg-base/95 backdrop-blur-sm p-6 rounded-[32px] group transition-all">
-              <p className="text-[10px] text-primary/30 mb-2 uppercase tracking-[0.3em] font-bold">Authenticated Subject</p>
-              <p className="text-[16px] text-primary font-heading font-bold">{result.account.name || 'Anonymous Identifier'}</p>
-              {result.account.email && <p className="text-[12px] text-primary/40 mt-1 font-sans">{result.account.email}</p>}
+            <div className="bg-[#202F36] border-2 border-[#2A3A43] p-6 rounded-[24px] group transition-all">
+              <p className="text-[11px] text-white/50 mb-2 uppercase tracking-[0.2em] font-black">Authenticated Subject</p>
+              <p className="text-[18px] text-white font-heading font-black">{result.account.name || 'Anonymous Identifier'}</p>
+              {result.account.email && <p className="text-[14px] text-white/60 mt-1 font-bold">{result.account.email}</p>}
             </div>
           )}
 
-          <div className="bg-base/60 dark:bg-base/90 rounded-[32px] overflow-hidden flex flex-col transition-all hover:bg-base/30 shadow-[0_4px_15px_rgba(66,72,116,0.04)]">
-            <div className="flex items-center justify-between p-6 border-b border-primary/5">
-              <p className="text-[10px] text-primary/60 font-bold uppercase tracking-[0.4em]">Available Endpoints</p>
-              <span className="text-[10px] py-1 px-3 bg-primary/10 rounded-full text-primary/60 font-bold">{result.models.length} Nodes</span>
+          <div className="bg-[#202F36] border-2 border-[#2A3A43] rounded-[24px] overflow-hidden flex flex-col transition-all">
+            <div className="flex items-center justify-between p-6 border-b-2 border-[#2A3A43]">
+              <p className="text-[11px] text-white/50 font-black uppercase tracking-[0.2em]">Available Endpoints</p>
+              <span className="text-[11px] py-1 px-3 bg-accent/20 border-2 border-accent/40 rounded-full text-accent font-black">{result.models.length} Nodes</span>
             </div>
             
             {/* Liquid Scrollable Model Zone */}
