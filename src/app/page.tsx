@@ -80,7 +80,7 @@ export default function Home() {
       
       <nav className="h-16 w-full fixed top-0 left-0 bg-base/70 dark:bg-base/90 backdrop-blur-xl z-[110] border-b border-border-primary flex items-center justify-between px-8 shrink-0 transition-colors duration-500">
         <div className="flex items-center">
-          <button onClick={scrollToPulse} className="text-xl font-heading font-bold tracking-tight text-primary transition-transform hover:opacity-80 active:scale-95">
+          <button onClick={scrollToPulse} className="text-2xl font-heading font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-accent transition-transform hover:opacity-80 active:scale-95">
             KeyPulse
           </button>
         </div>
