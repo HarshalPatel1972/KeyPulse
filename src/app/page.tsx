@@ -78,9 +78,9 @@ export default function Home() {
   return (
     <main className="min-h-screen xl:h-screen bg-base text-primary font-sans flex flex-col relative transition-colors duration-500 overflow-x-hidden">
       
-      <nav className="h-16 w-full fixed top-0 left-0 bg-[#131F24] z-[110] border-b-2 border-[#2A3A43] flex items-center justify-between px-8 shrink-0">
+      <nav className="h-16 w-full fixed top-0 left-0 bg-base z-[110] border-b-2 border-border-primary flex items-center justify-between px-8 shrink-0">
         <div className="flex items-center">
-          <button onClick={scrollToPulse} className="text-2xl font-heading font-black tracking-tight text-[#58CC02] transition-transform hover:opacity-80 active:scale-95">
+          <button onClick={scrollToPulse} className="text-2xl font-heading font-black tracking-tight text-success transition-transform hover:opacity-80 active:scale-95">
             keypulse
           </button>
         </div>
@@ -168,13 +168,13 @@ export default function Home() {
           <div className="flex-1 px-6 xl:px-10 py-10 xl:py-12 space-y-8 relative z-10 transition-colors duration-500 h-auto">
             {!lastResult ? (
               <div className="flex flex-col gap-4 opacity-50 pointer-events-none select-none animate-[bounce-scale_2s_ease-in-out_infinite]">
-                <div className="h-32 w-full bg-[#18252C] rounded-3xl border-2 border-[#2A3A43] flex flex-col p-6 gap-4">
-                  <div className="w-1/3 h-4 bg-[#2A3A43] rounded-full"></div>
-                  <div className="w-full h-8 bg-[#2A3A43] rounded-full mt-auto"></div>
+                <div className="h-32 w-full bg-surface rounded-3xl border-2 border-border-primary flex flex-col p-6 gap-4">
+                  <div className="w-1/3 h-4 bg-border-primary rounded-full"></div>
+                  <div className="w-full h-8 bg-border-primary rounded-full mt-auto"></div>
                 </div>
-                <div className="h-24 w-full bg-[#18252C] rounded-3xl border-2 border-[#2A3A43] flex flex-col p-6 gap-4">
-                  <div className="w-1/4 h-3 bg-[#2A3A43] rounded-full"></div>
-                  <div className="w-2/3 h-6 bg-[#2A3A43] rounded-full mt-auto"></div>
+                <div className="h-24 w-full bg-surface rounded-3xl border-2 border-border-primary flex flex-col p-6 gap-4">
+                  <div className="w-1/4 h-3 bg-border-primary rounded-full"></div>
+                  <div className="w-2/3 h-6 bg-border-primary rounded-full mt-auto"></div>
                 </div>
               </div>
             ) : (
@@ -190,10 +190,10 @@ export default function Home() {
       </div>
 
       {/* Global Footer: Playful Gamified Theme */}
-      <footer className="w-full py-6 flex flex-col xl:flex-row items-center justify-center xl:justify-between px-10 border-t-2 border-[#2A3A43] bg-[#111C21] relative z-30 shrink-0">
+      <footer className="w-full py-6 flex flex-col xl:flex-row items-center justify-center xl:justify-between px-10 border-t-2 border-border-primary bg-base relative z-30 shrink-0">
         <div className="flex flex-col items-center xl:items-start gap-1">
           <p className="text-[13px] font-heading font-black tracking-widest text-success">keypulse</p>
-          <p className="text-[10px] font-bold tracking-widest text-white/40 uppercase">By Harshal Patel</p>
+          <p className="text-[10px] font-bold tracking-widest text-primary/40 uppercase">By Harshal Patel</p>
         </div>
 
         {/* Professional Connections */}
@@ -210,7 +210,7 @@ export default function Home() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 bg-[#202F36] border-2 border-[#2A3A43] rounded-xl text-[10px] font-black uppercase tracking-wider text-white/60 hover:text-white hover:border-[#3B4C56] hover:translate-y-0.5 active:translate-y-1 transition-all"
+              className="px-4 py-2 bg-primary/5 dark:bg-white/5 border-2 border-border-primary rounded-xl text-[10px] font-black uppercase tracking-wider text-primary/60 hover:text-primary hover:border-primary/20 hover:translate-y-0.5 active:translate-y-1 transition-all"
             >
               {link.label}
             </a>

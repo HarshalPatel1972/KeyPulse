@@ -13,7 +13,7 @@ export default function VerifyButton({ onClick, disabled, isLoading }: Props) {
         flex items-center justify-center h-[42px] px-8 rounded-full font-sans font-bold text-[14px] uppercase tracking-widest
         transition-all duration-150 relative overflow-hidden group
         ${disabled || isLoading 
-           ? 'bg-[#2A3A43] text-white/30 border-b-4 border-[#18252C] cursor-not-allowed' 
+           ? 'bg-primary/20 text-primary/30 border-b-4 border-border-primary cursor-not-allowed' 
            : 'bg-accent text-white border-b-4 border-accent-shadow hover:bg-[#40C4FF] active:border-b-0 active:translate-y-1 active:mt-1'
         }
       `}

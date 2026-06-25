@@ -12,16 +12,16 @@ export default function TrustStrip() {
       {signals.map((s, i) => (
         <div 
           key={s.label} 
-          className="flex-1 flex items-center gap-3 bg-[#202F36] rounded-2xl p-4 transition-all hover:bg-[#25363E] border-2 border-[#2A3A43] hover:border-[#3B4C56] shadow-[0_4px_0_0_#18252C] hover:translate-y-[2px] hover:shadow-[0_2px_0_0_#18252C] active:translate-y-[4px] active:shadow-none group"
+          className="flex-1 flex items-center gap-3 bg-primary/5 dark:bg-white/5 rounded-2xl p-4 transition-all hover:bg-primary/10 border-2 border-border-primary hover:border-primary/20 shadow-[0_4px_0_0_rgba(0,0,0,0.05)] dark:shadow-[0_4px_0_0_#18252C] hover:translate-y-[2px] hover:shadow-[0_2px_0_0_rgba(0,0,0,0.05)] dark:hover:shadow-[0_2px_0_0_#18252C] active:translate-y-[4px] active:shadow-none group"
         >
-          <div className="w-6 h-6 flex items-center justify-center transition-transform group-hover:scale-110 duration-200" style={{ color: s.color }}>
+          <div className="w-6 h-6 flex items-center justify-center transition-transform group-hover:scale-110 duration-200" style={{ color: s.color === '#FAFAFA' || s.color === '#D4D4D8' || s.color === '#A1A1AA' ? 'var(--text-secondary)' : s.color }}>
             {i === 0 && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>}
             {i === 1 && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>}
             {i === 2 && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>}
           </div>
           <div className="flex flex-col">
-            <span className="text-white font-sans font-bold text-[13px] uppercase tracking-wider leading-none mb-1.5">{s.label}</span>
-            <span className="text-white/40 font-sans text-[11px] font-bold leading-none">{s.desc}</span>
+            <span className="text-primary font-sans font-bold text-[13px] uppercase tracking-wider leading-none mb-1.5">{s.label}</span>
+            <span className="text-primary/40 font-sans text-[11px] font-bold leading-none">{s.desc}</span>
           </div>
         </div>
       ))}

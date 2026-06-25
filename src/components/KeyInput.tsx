@@ -30,7 +30,7 @@ export default function KeyInput({ value, selectedProvider, onProviderChange, on
 
   return (
     <div className="w-full relative">
-      <div className={`relative flex items-center transition-all duration-200 bg-[#202F36] rounded-2xl p-2 border-2 border-border-primary focus-within:border-accent ${isInvalid ? 'border-error' : ''}`}>
+      <div className={`relative flex items-center transition-all duration-200 bg-surface rounded-2xl p-2 border-2 border-border-primary focus-within:border-accent ${isInvalid ? 'border-error' : ''}`}>
         <input
           type="text"
           value={value}

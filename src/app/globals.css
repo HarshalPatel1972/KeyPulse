@@ -15,13 +15,13 @@
 }
 
 :root {
-  --bg-base: #131F24;       /* Dark Teal Base */
-  --bg-surface: #18252C;    /* Elevated Teal Surface */
-  --text-primary: #FFFFFF;  /* Bright White */
-  --text-secondary: rgba(255, 255, 255, 0.6);
-  --border-primary: #2A3A43; /* Solid Border */
-  --accent: #1CB0F6;        /* Sky Blue */
-  --accent-shadow: #1899D6; /* Deep Blue Shadow */
+  --bg-base: #FFFFFF;
+  --bg-surface: #F7F7F7;
+  --text-primary: #4B4B4B;
+  --text-secondary: rgba(75, 75, 75, 0.6);
+  --border-primary: #E5E5E5;
+  --accent: #1CB0F6;
+  --accent-shadow: #1899D6;
   --success: #58CC02;
   --success-shadow: #58A700;
 }
