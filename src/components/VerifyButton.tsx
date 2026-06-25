@@ -11,13 +11,17 @@ export default function VerifyButton({ onClick, disabled, isLoading }: Props) {
       disabled={disabled || isLoading}
       className={`
         flex items-center justify-center h-[36px] px-6 rounded-xl font-sans font-medium text-[13px] tracking-wide
-        transition-all duration-300 relative overflow-hidden group active-scale
+        transition-all duration-300 relative overflow-hidden group
         ${disabled || isLoading 
            ? 'bg-white/5 text-white/30 cursor-not-allowed' 
-           : 'bg-white text-slate-900 hover:bg-slate-200 hover:scale-[1.02] active:scale-[0.98]'
+           : 'bg-accent text-[#0A0F1C] shadow-[0_0_15px_rgba(212,175,55,0.4)] hover:shadow-[0_0_25px_rgba(212,175,55,0.6)] hover:scale-[1.02] active:scale-[0.98]'
         }
       `}
     >
+      {/* Metallic Shine Sweep */}
+      {!disabled && !isLoading && (
+        <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:animate-[sweep_1.5s_ease-in-out_infinite] z-0" />
+      )}
       {isLoading ? (
         <span className="flex items-center justify-center gap-2">
           <svg className="animate-spin h-4 w-4 text-white/50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

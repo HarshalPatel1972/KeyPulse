@@ -111,6 +111,11 @@ html, body {
 .animate-aurora-2 { animation: aurora-2 25s infinite ease-in-out reverse; }
 .animate-aurora-3 { animation: aurora-3 30s infinite ease-in-out; }
 
+@keyframes sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
 * {
   scrollbar-width: none;
   -ms-overflow-style: none;
