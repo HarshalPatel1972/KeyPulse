@@ -8,7 +8,6 @@ import VerifyButton from '@/components/VerifyButton'
 import ResultCard from '@/components/ResultCard'
 import TrustStrip from '@/components/TrustStrip'
 import GitHubButton from '@/components/GitHubButton'
-import AuroraBackground from '@/components/AuroraBackground'
 
 export default function Home() {
   const [key, setKey] = useState('')
@@ -18,7 +17,7 @@ export default function Home() {
   const [hasChecked, setHasChecked] = useState(false)
   const [isInvalid, setIsInvalid] = useState(false)
   const [forceManual, setForceManual] = useState(false)
-  const [theme, setTheme] = useState<'light' | 'dark'>('light')
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark')
   
   const pulseRef = useRef<HTMLDivElement>(null)
   const resultsRef = useRef<HTMLDivElement>(null)
@@ -28,6 +27,10 @@ export default function Home() {
     if (savedTheme) {
       setTheme(savedTheme)
       document.documentElement.setAttribute('data-theme', savedTheme)
+    } else {
+      // Default to dark mode for gamified theme
+      setTheme('dark')
+      document.documentElement.setAttribute('data-theme', 'dark')
     }
   }, [])
 
@@ -42,7 +45,6 @@ export default function Home() {
     if (!key.trim() || !provider || isLoading) return
     setIsLoading(true)
     setHasChecked(true)
-    // Absolute Zero History: Clear previous result before checking new one
     setLastResult(null)
     const r = await verify(key.trim(), provider.id)
     setIsLoading(false)
@@ -52,7 +54,6 @@ export default function Home() {
       setIsInvalid(false)
       setLastResult(r)
       
-      // Precision Jump: Scroll to results and stop at the navbar (64px offset)
       if (typeof window !== 'undefined' && window.innerWidth < 1280) {
         setTimeout(() => {
           const target = resultsRef.current?.offsetTop || 0
@@ -76,9 +77,8 @@ export default function Home() {
 
   return (
     <main className="min-h-screen xl:h-screen bg-base text-primary font-sans flex flex-col relative transition-colors duration-500 overflow-x-hidden">
-      <AuroraBackground />
       
-      <nav className="h-16 w-full fixed top-0 left-0 bg-base/70 dark:bg-base/90 backdrop-blur-xl z-[110] border-b border-border-primary flex items-center justify-between px-8 shrink-0 transition-colors duration-500">
+      <nav className="h-16 w-full fixed top-0 left-0 bg-[#111C21] z-[110] border-b-2 border-[#2A3A43] flex items-center justify-between px-8 shrink-0 transition-colors duration-500">
         <div className="flex items-center">
           <button onClick={scrollToPulse} className="text-2xl font-heading font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-accent transition-transform hover:opacity-80 active:scale-95">
             KeyPulse
