@@ -41,7 +41,7 @@ export default function KeyInput({ value, selectedProvider, onProviderChange, on
           autoCorrect="off"
           autoCapitalize="off"
           spellCheck="false"
-          className="flex-1 px-4 py-3.5 outline-none text-primary placeholder:text-primary/40 text-sm font-sans bg-transparent min-w-0"
+          className="flex-1 px-4 py-3.5 outline-none text-primary placeholder:text-[var(--text-secondary)] text-sm font-sans bg-transparent min-w-0"
           style={{ WebkitTextSecurity: showKey ? 'none' : 'disc' } as any}
         />
         <button 
