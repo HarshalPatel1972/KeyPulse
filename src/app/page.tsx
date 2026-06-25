@@ -210,7 +210,7 @@ export default function Home() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 bg-primary/5 dark:bg-white/5 border-2 border-border-primary rounded-xl text-[10px] font-black uppercase tracking-wider text-primary/60 hover:text-primary hover:border-primary/20 hover:translate-y-0.5 active:translate-y-1 transition-all"
+              className="px-4 py-2 bg-[var(--bg-panel)] border-2 border-border-primary rounded-xl text-[10px] font-black uppercase tracking-wider text-primary/60 hover:text-primary hover:border-primary/20 hover:translate-y-0.5 active:translate-y-1 transition-all"
             >
               {link.label}
             </a>

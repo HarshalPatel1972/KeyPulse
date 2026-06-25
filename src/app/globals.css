@@ -17,6 +17,7 @@
 :root {
   --bg-base: #E2E8F0;       /* Slate 200 */
   --bg-surface: #F1F5F9;    /* Slate 100 */
+  --bg-panel: #CBD5E1;      /* Slate 300 for inner panels */
   --text-primary: #0F172A;  /* Slate 900 */
   --text-secondary: rgba(15, 23, 42, 0.6);
   --border-primary: #CBD5E1; /* Slate 300 */
@@ -29,6 +30,7 @@
 [data-theme='dark'] {
   --bg-base: #131F24;
   --bg-surface: #18252C;
+  --bg-panel: #202F36;      /* Elevated Dark Teal for inner panels */
   --text-primary: #FFFFFF;
   --text-secondary: rgba(255, 255, 255, 0.6);
   --border-primary: #2A3A43;

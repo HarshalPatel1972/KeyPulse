@@ -28,7 +28,7 @@ export default function ResultCard({ result, provider: manualProvider, onDelete 
             {result.status}
           </div>
           {onDelete && (
-            <button onClick={onDelete} className="p-2.5 rounded-xl bg-primary/5 dark:bg-white/5 border-2 border-border-primary text-primary/50 hover:text-primary transition-all hover:scale-110 active:scale-95">
+            <button onClick={onDelete} className="p-2.5 rounded-xl bg-[var(--bg-panel)] border-2 border-border-primary text-primary/50 hover:text-primary transition-all hover:scale-110 active:scale-95">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
             </button>
           )}
@@ -45,14 +45,14 @@ export default function ResultCard({ result, provider: manualProvider, onDelete 
 
         <div className="grid grid-cols-1 gap-4">
           {result.account && (
-            <div className="bg-primary/5 dark:bg-white/5 border-2 border-border-primary p-6 rounded-[24px] group transition-all">
+            <div className="bg-[var(--bg-panel)] border-2 border-border-primary p-6 rounded-[24px] group transition-all">
               <p className="text-[11px] text-primary/50 mb-2 uppercase tracking-[0.2em] font-black">Authenticated Subject</p>
               <p className="text-[18px] text-primary font-heading font-black">{result.account.name || 'Anonymous Identifier'}</p>
               {result.account.email && <p className="text-[14px] text-primary/60 mt-1 font-bold">{result.account.email}</p>}
             </div>
           )}
 
-          <div className="bg-primary/5 dark:bg-white/5 border-2 border-border-primary rounded-[24px] overflow-hidden flex flex-col transition-all">
+          <div className="bg-[var(--bg-panel)] border-2 border-border-primary rounded-[24px] overflow-hidden flex flex-col transition-all">
             <div className="flex items-center justify-between p-6 border-b-2 border-border-primary">
               <p className="text-[11px] text-primary/50 font-black uppercase tracking-[0.2em]">Available Endpoints</p>
               <span className="text-[11px] py-1 px-3 bg-accent/20 border-2 border-accent/40 rounded-full text-accent font-black">{result.models.length} Nodes</span>
