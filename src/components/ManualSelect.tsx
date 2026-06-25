@@ -32,7 +32,7 @@ export default function ManualSelect({ value, onChange }: Props) {
       <div className="relative">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className={`w-full flex items-center justify-between px-6 py-5 bg-surface dark:bg-surface/95 shadow-[0_15px_45px_rgba(0,0,0,0.1)] dark:shadow-[0_15px_45px_rgba(0,0,0,0.2)] rounded-[24px] transition-all duration-300 transform active:scale-[0.98] group ${isOpen ? 'ring-2 ring-primary/10' : ''}`}
+          className={`w-full flex items-center justify-between px-6 py-5 bg-[var(--glass-bg)] backdrop-blur-2xl shadow-[0_15px_45px_var(--glass-shadow)] border border-[var(--glass-border)] rounded-[24px] transition-all duration-300 transform active:scale-[0.98] group ${isOpen ? 'ring-2 ring-white/30' : ''}`}
         >
           <div className="flex items-center gap-4">
             {value ? (
@@ -60,7 +60,7 @@ export default function ManualSelect({ value, onChange }: Props) {
         </button>
 
         {isOpen && (
-          <div className="absolute top-full left-0 w-full z-[99999] mt-3 bg-surface dark:bg-surface/95 shadow-[0_30px_75px_rgba(0,0,0,0.15)] dark:shadow-[0_30px_75px_rgba(0,0,0,0.3)] rounded-[32px] p-2 backdrop-blur-2xl animate-slide-up border border-primary/5">
+          <div className="absolute top-full left-0 w-full z-[99999] mt-3 bg-[var(--glass-bg)] backdrop-blur-3xl shadow-[0_30px_75px_var(--glass-shadow)] rounded-[32px] p-2 border border-[var(--glass-border)] animate-slide-up">
             <div className="flex flex-col gap-1 overflow-y-auto max-h-[320px] p-1 custom-scrollbar">
               {PROVIDERS.map((p) => (
                 <button
