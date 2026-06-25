@@ -8,6 +8,7 @@ import VerifyButton from '@/components/VerifyButton'
 import ResultCard from '@/components/ResultCard'
 import TrustStrip from '@/components/TrustStrip'
 import GitHubButton from '@/components/GitHubButton'
+import AuroraBackground from '@/components/AuroraBackground'
 
 export default function Home() {
   const [key, setKey] = useState('')
@@ -75,6 +76,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen xl:h-screen bg-base text-primary font-sans flex flex-col relative transition-colors duration-500 overflow-x-hidden">
+      <AuroraBackground />
       
       <nav className="h-16 w-full fixed top-0 left-0 bg-base/70 dark:bg-base/90 backdrop-blur-xl z-[110] border-b border-border-primary flex items-center justify-between px-8 shrink-0 transition-colors duration-500">
         <div className="flex items-center">
