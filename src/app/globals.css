@@ -6,30 +6,36 @@
   --font-heading: 'Nunito', "ui-sans-serif", "system-ui", "sans-serif";
   --font-sans: 'Nunito', "ui-sans-serif", "system-ui", "sans-serif";
   
-  --color-slate-900: #0A0F1C;
-  --color-slate-800: #111827;
-  --color-slate-700: #1F2937;
+  --color-slate-900: #131F24;
+  --color-slate-800: #18252C;
+  --color-slate-700: #2A3A43;
   --color-slate-300: #E5E7EB;
-  --color-success: #10B981;
-  --color-error: #F43F5E;
+  --color-success: #58CC02;
+  --color-error: #FF4B4B;
 }
 
 :root {
-  --bg-base: #0A0F1C;       /* Deep Midnight Navy */
-  --bg-surface: #111827;    /* Elevated Indigo/Navy Surface */
-  --text-primary: #F8F9FA;  /* Warm Off-White */
-  --text-secondary: rgba(248, 249, 250, 0.6);
-  --border-primary: rgba(212, 175, 55, 0.15); /* Gold Tinted Border */
-  --accent: #D4AF37;        /* Metallic Gold Accent */
+  --bg-base: #131F24;       /* Dark Teal Base */
+  --bg-surface: #18252C;    /* Elevated Teal Surface */
+  --text-primary: #FFFFFF;  /* Bright White */
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --border-primary: #2A3A43; /* Solid Border */
+  --accent: #1CB0F6;        /* Sky Blue */
+  --accent-shadow: #1899D6; /* Deep Blue Shadow */
+  --success: #58CC02;
+  --success-shadow: #58A700;
 }
 
 [data-theme='dark'] {
-  --bg-base: #0A0F1C;
-  --bg-surface: #111827;
-  --text-primary: #F8F9FA;
-  --text-secondary: rgba(248, 249, 250, 0.6);
-  --border-primary: rgba(212, 175, 55, 0.15);
-  --accent: #D4AF37;
+  --bg-base: #131F24;
+  --bg-surface: #18252C;
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --border-primary: #2A3A43;
+  --accent: #1CB0F6;
+  --accent-shadow: #1899D6;
+  --success: #58CC02;
+  --success-shadow: #58A700;
 }
 
 html, body {
