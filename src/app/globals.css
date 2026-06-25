@@ -129,10 +129,29 @@ html, body {
 }
 .animate-bounce-scale { animation: bounce-scale 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
-* {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-*::-webkit-scrollbar {
+/* Hide scrollbar globally, but let .custom-scrollbar show it */
+body::-webkit-scrollbar {
   display: none;
+}
+body {
+  scrollbar-width: none;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(150, 150, 150, 0.4) transparent;
+}
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  display: block;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(150, 150, 150, 0.4);
+  border-radius: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(150, 150, 150, 0.8);
 }
