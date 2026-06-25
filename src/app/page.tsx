@@ -103,7 +103,7 @@ export default function Home() {
       <div className="flex-1 min-h-0 flex flex-col xl:flex-row relative transition-colors duration-500 pt-16 overflow-visible xl:overflow-hidden">
         <div ref={pulseRef} className="flex-1 flex flex-col items-center justify-center p-4 md:p-8 relative z-10 shrink-0 min-h-[calc(100vh-164px)] xl:min-h-0 xl:overflow-y-auto custom-scrollbar">
           <div className="w-full max-w-[600px] animate-fade-in py-12 md:p-0">
-            <div className="rounded-3xl p-8 md:p-12 relative overflow-visible transition-colors duration-500 bg-[var(--glass-bg)] backdrop-blur-3xl border border-[var(--glass-border)] shadow-[0_8px_32px_var(--glass-shadow)]">
+            <div className="rounded-3xl p-8 md:p-12 relative z-50 overflow-visible transition-colors duration-500 bg-[var(--glass-bg)] backdrop-blur-3xl border border-[var(--glass-border)] shadow-[0_8px_32px_var(--glass-shadow)]">
               <div className="mb-10 text-center flex flex-col items-center">
                 <button
                   onClick={() => setForceManual(v => !v)}

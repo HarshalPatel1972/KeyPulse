@@ -60,7 +60,7 @@ export default function ManualSelect({ value, onChange }: Props) {
         </button>
 
         {isOpen && (
-          <div className="absolute top-full left-0 w-full z-[99999] mt-3 bg-[var(--glass-bg)] backdrop-blur-3xl shadow-[0_30px_75px_var(--glass-shadow)] rounded-[32px] p-2 border border-[var(--glass-border)] animate-slide-up">
+          <div className="absolute top-full left-0 w-full z-[99999] mt-3 bg-white dark:bg-[#1C1C1E] shadow-[0_30px_75px_var(--glass-shadow)] rounded-[32px] p-2 border border-[var(--glass-border)] animate-slide-up">
             <div className="flex flex-col gap-1 overflow-y-auto max-h-[320px] p-1 custom-scrollbar">
               {PROVIDERS.map((p) => (
                 <button
