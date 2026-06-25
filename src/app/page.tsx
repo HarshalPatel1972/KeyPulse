@@ -189,11 +189,11 @@ export default function Home() {
         </aside>
       </div>
 
-      {/* Global Footer: Clean, Minimalist, Dark Theme */}
+      {/* Global Footer: Classic Elegant Theme */}
       <footer className="w-full py-4 flex flex-col xl:flex-row items-center justify-center xl:justify-between px-10 border-t border-border-primary bg-base relative z-30 shrink-0">
         <div className="flex flex-col items-center xl:items-start gap-1">
-          <p className="text-[10px] font-bold tracking-[0.5em] uppercase text-primary/80">KeyPulse</p>
-          <p className="text-[8px] font-semibold tracking-widest text-primary/30 uppercase">By Harshal Patel</p>
+          <p className="text-[11px] font-heading font-bold tracking-[0.4em] uppercase text-primary/80">KeyPulse</p>
+          <p className="text-[8px] font-semibold tracking-widest text-primary/40 uppercase">By Harshal Patel</p>
         </div>
 
         {/* Professional Connections */}
@@ -210,7 +210,7 @@ export default function Home() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[8px] font-bold uppercase tracking-[0.3em] text-primary/30 hover:text-primary transition-colors duration-300"
+              className="text-[8px] font-bold uppercase tracking-[0.3em] text-primary/40 hover:text-accent hover:shadow-accent transition-colors duration-300"
             >
               {link.label}
             </a>
