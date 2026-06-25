@@ -78,10 +78,10 @@ export default function Home() {
   return (
     <main className="min-h-screen xl:h-screen bg-base text-primary font-sans flex flex-col relative transition-colors duration-500 overflow-x-hidden">
       
-      <nav className="h-16 w-full fixed top-0 left-0 bg-[#111C21] z-[110] border-b-2 border-[#2A3A43] flex items-center justify-between px-8 shrink-0 transition-colors duration-500">
+      <nav className="h-16 w-full fixed top-0 left-0 bg-[#131F24] z-[110] border-b-2 border-[#2A3A43] flex items-center justify-between px-8 shrink-0">
         <div className="flex items-center">
-          <button onClick={scrollToPulse} className="text-2xl font-heading font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-accent transition-transform hover:opacity-80 active:scale-95">
-            KeyPulse
+          <button onClick={scrollToPulse} className="text-2xl font-heading font-black tracking-tight text-[#58CC02] transition-transform hover:opacity-80 active:scale-95">
+            keypulse
           </button>
         </div>
 
