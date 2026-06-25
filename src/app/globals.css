@@ -6,30 +6,30 @@
   --font-heading: 'Playfair Display', "ui-serif", "serif";
   --font-sans: 'Outfit', "ui-sans-serif", "system-ui", "sans-serif";
   
-  --color-slate-900: #09090B;
-  --color-slate-800: #18181B;
-  --color-slate-700: #27272A;
-  --color-slate-300: #D4D4D8;
+  --color-slate-900: #0A0F1C;
+  --color-slate-800: #111827;
+  --color-slate-700: #1F2937;
+  --color-slate-300: #E5E7EB;
   --color-success: #10B981;
   --color-error: #F43F5E;
 }
 
 :root {
-  --bg-base: #09090B;       /* Deep Slate/Charcoal */
-  --bg-surface: #18181B;    /* Elevated Slate */
-  --text-primary: #FAFAFA;  /* Clean White */
-  --text-secondary: rgba(250, 250, 250, 0.6);
-  --border-primary: rgba(255, 255, 255, 0.05); /* 1px solid white/0.05 */
-  --accent: #D4D4D8;        /* Muted Gray Accent */
+  --bg-base: #0A0F1C;       /* Deep Midnight Navy */
+  --bg-surface: #111827;    /* Elevated Indigo/Navy Surface */
+  --text-primary: #F8F9FA;  /* Warm Off-White */
+  --text-secondary: rgba(248, 249, 250, 0.6);
+  --border-primary: rgba(212, 175, 55, 0.15); /* Gold Tinted Border */
+  --accent: #D4AF37;        /* Metallic Gold Accent */
 }
 
 [data-theme='dark'] {
-  --bg-base: #09090B;
-  --bg-surface: #18181B;
-  --text-primary: #FAFAFA;
-  --text-secondary: rgba(250, 250, 250, 0.6);
-  --border-primary: rgba(255, 255, 255, 0.05);
-  --accent: #D4D4D8;
+  --bg-base: #0A0F1C;
+  --bg-surface: #111827;
+  --text-primary: #F8F9FA;
+  --text-secondary: rgba(248, 249, 250, 0.6);
+  --border-primary: rgba(212, 175, 55, 0.15);
+  --accent: #D4AF37;
 }
 
 html, body {
