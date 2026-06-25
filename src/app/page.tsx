@@ -189,15 +189,15 @@ export default function Home() {
         </aside>
       </div>
 
-      {/* Global Footer: Classic Elegant Theme */}
-      <footer className="w-full py-4 flex flex-col xl:flex-row items-center justify-center xl:justify-between px-10 border-t border-border-primary bg-base relative z-30 shrink-0">
+      {/* Global Footer: Playful Gamified Theme */}
+      <footer className="w-full py-6 flex flex-col xl:flex-row items-center justify-center xl:justify-between px-10 border-t-2 border-[#2A3A43] bg-[#111C21] relative z-30 shrink-0">
         <div className="flex flex-col items-center xl:items-start gap-1">
-          <p className="text-[11px] font-heading font-bold tracking-[0.4em] uppercase text-primary/80">KeyPulse</p>
-          <p className="text-[8px] font-semibold tracking-widest text-primary/40 uppercase">By Harshal Patel</p>
+          <p className="text-[13px] font-heading font-black tracking-widest text-success">keypulse</p>
+          <p className="text-[10px] font-bold tracking-widest text-white/40 uppercase">By Harshal Patel</p>
         </div>
 
         {/* Professional Connections */}
-        <div className="flex items-center gap-8 my-4 xl:my-0">
+        <div className="flex items-center gap-6 my-6 xl:my-0 flex-wrap justify-center">
           {[
             { label: 'Portfolio', href: 'http://harshal-patel-chi.vercel.app/' },
             { label: 'LinkedIn', href: 'https://www.linkedin.com/in/harshal-patel-59b9a5278/' },
@@ -210,7 +210,7 @@ export default function Home() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[8px] font-bold uppercase tracking-[0.3em] text-primary/40 hover:text-accent hover:shadow-accent transition-colors duration-300"
+              className="px-4 py-2 bg-[#202F36] border-2 border-[#2A3A43] rounded-xl text-[10px] font-black uppercase tracking-wider text-white/60 hover:text-white hover:border-[#3B4C56] hover:translate-y-0.5 active:translate-y-1 transition-all"
             >
               {link.label}
             </a>
