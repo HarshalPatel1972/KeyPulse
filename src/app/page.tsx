@@ -8,6 +8,7 @@ import VerifyButton from '@/components/VerifyButton'
 import ResultCard from '@/components/ResultCard'
 import TrustStrip from '@/components/TrustStrip'
 import GitHubButton from '@/components/GitHubButton'
+import VibrantMeshBackground from '@/components/VibrantMeshBackground'
 
 export default function Home() {
   const [key, setKey] = useState('')
@@ -76,11 +77,12 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen xl:h-screen bg-base text-primary font-sans flex flex-col relative transition-colors duration-500 overflow-x-hidden">
+    <main className="min-h-screen xl:h-screen bg-transparent text-primary font-sans flex flex-col relative transition-colors duration-500 overflow-x-hidden">
+      <VibrantMeshBackground />
       
-      <nav className="h-16 w-full fixed top-0 left-0 bg-base z-[110] border-b-2 border-border-primary flex items-center justify-between px-8 shrink-0">
+      <nav className="h-16 w-full fixed top-0 left-0 bg-[var(--glass-bg)] backdrop-blur-xl z-[110] border-b border-[var(--glass-border)] shadow-[0_4px_30px_var(--glass-shadow)] flex items-center justify-between px-8 shrink-0">
         <div className="flex items-center">
-          <button onClick={scrollToPulse} className="text-2xl font-heading font-black tracking-tight text-success transition-transform hover:opacity-80 active:scale-95">
+          <button onClick={scrollToPulse} className="text-2xl font-heading font-semibold tracking-tight bg-gradient-to-r from-[var(--mesh-c2)] to-[var(--mesh-c3)] bg-clip-text text-transparent transition-transform hover:opacity-80 active:scale-95">
             keypulse
           </button>
         </div>
@@ -101,11 +103,11 @@ export default function Home() {
       <div className="flex-1 min-h-0 flex flex-col xl:flex-row relative transition-colors duration-500 pt-16 overflow-visible xl:overflow-hidden">
         <div ref={pulseRef} className="flex-1 flex flex-col items-center justify-center p-4 md:p-8 relative z-10 shrink-0 min-h-[calc(100vh-164px)] xl:min-h-0 xl:overflow-y-auto custom-scrollbar">
           <div className="w-full max-w-[600px] animate-fade-in py-12 md:p-0">
-            <div className="interaction-card rounded-3xl p-8 md:p-12 relative overflow-visible transition-colors duration-500">
+            <div className="rounded-3xl p-8 md:p-12 relative overflow-visible transition-colors duration-500 bg-[var(--glass-bg)] backdrop-blur-3xl border border-[var(--glass-border)] shadow-[0_8px_32px_var(--glass-shadow)]">
               <div className="mb-10 text-center flex flex-col items-center">
                 <button
                   onClick={() => setForceManual(v => !v)}
-                  className="px-3 py-1 rounded-full bg-primary text-base font-bold text-[10px] uppercase tracking-wider mb-6 transition-transform hover:scale-105 active:scale-95"
+                  className="px-4 py-1.5 rounded-full bg-[var(--glass-bg)] border border-[var(--glass-border)] shadow-[0_4px_12px_var(--glass-shadow)] text-primary font-medium text-[11px] uppercase tracking-wider mb-6 transition-transform hover:scale-105 active:scale-95"
                 >
                   {forceManual ? 'Pick a provider' : '11 Providers Supported'}
                 </button>
@@ -153,11 +155,11 @@ export default function Home() {
 
         <aside 
           ref={resultsRef}
-          className={`w-full transition-all duration-700 ease-in-out flex flex-col relative z-20 xl:min-h-0 xl:overflow-y-auto custom-scrollbar border-l border-border-primary bg-base
+          className={`w-full transition-all duration-700 ease-in-out flex flex-col relative z-20 xl:min-h-0 xl:overflow-y-auto custom-scrollbar border-l border-[var(--glass-border)] bg-[var(--glass-bg)] backdrop-blur-2xl shadow-[-8px_0_32px_var(--glass-shadow)]
             ${lastResult ? 'xl:w-[460px] opacity-100' : 'xl:w-[400px] opacity-80 hover:opacity-100'}
           `}
         >
-          <div className="px-6 xl:px-10 py-6 xl:py-8 border-b border-border-primary flex items-center justify-between sticky top-[64px] xl:top-0 bg-base z-[95] transition-colors duration-500">
+          <div className="px-6 xl:px-10 py-6 xl:py-8 border-b border-[var(--glass-border)] flex items-center justify-between sticky top-[64px] xl:top-0 bg-[var(--glass-bg)] backdrop-blur-xl z-[95] transition-colors duration-500">
             <h2 className="text-[10px] font-bold tracking-[0.3em] uppercase text-primary/60 flex items-center gap-2">
               <span className={`w-2 h-2 rounded-full ${lastResult ? 'bg-success animate-pulse' : 'bg-primary/20'}`}></span>
               Result Feed
@@ -168,13 +170,13 @@ export default function Home() {
           <div className="flex-1 px-6 xl:px-10 py-10 xl:py-12 space-y-8 relative z-10 transition-colors duration-500 h-auto">
             {!lastResult ? (
               <div className="flex flex-col gap-4 opacity-50 pointer-events-none select-none animate-[bounce-scale_2s_ease-in-out_infinite]">
-                <div className="h-32 w-full bg-surface rounded-3xl border-2 border-border-primary flex flex-col p-6 gap-4">
-                  <div className="w-1/3 h-4 bg-border-primary rounded-full"></div>
-                  <div className="w-full h-8 bg-border-primary rounded-full mt-auto"></div>
+                <div className="h-32 w-full bg-[var(--glass-bg)] rounded-3xl border border-[var(--glass-border)] flex flex-col p-6 gap-4">
+                  <div className="w-1/3 h-4 bg-[var(--glass-border)] rounded-full"></div>
+                  <div className="w-full h-8 bg-[var(--glass-border)] rounded-full mt-auto"></div>
                 </div>
-                <div className="h-24 w-full bg-surface rounded-3xl border-2 border-border-primary flex flex-col p-6 gap-4">
-                  <div className="w-1/4 h-3 bg-border-primary rounded-full"></div>
-                  <div className="w-2/3 h-6 bg-border-primary rounded-full mt-auto"></div>
+                <div className="h-24 w-full bg-[var(--glass-bg)] rounded-3xl border border-[var(--glass-border)] flex flex-col p-6 gap-4">
+                  <div className="w-1/4 h-3 bg-[var(--glass-border)] rounded-full"></div>
+                  <div className="w-2/3 h-6 bg-[var(--glass-border)] rounded-full mt-auto"></div>
                 </div>
               </div>
             ) : (
@@ -189,11 +191,11 @@ export default function Home() {
         </aside>
       </div>
 
-      {/* Global Footer: Playful Gamified Theme */}
-      <footer className="w-full py-6 flex flex-col xl:flex-row items-center justify-center xl:justify-between px-10 border-t-2 border-border-primary bg-base relative z-30 shrink-0">
+      {/* Global Footer: Apple Glass Theme */}
+      <footer className="w-full py-6 flex flex-col xl:flex-row items-center justify-center xl:justify-between px-10 border-t border-[var(--glass-border)] bg-[var(--glass-bg)] backdrop-blur-xl relative z-30 shrink-0">
         <div className="flex flex-col items-center xl:items-start gap-1">
-          <p className="text-[13px] font-heading font-black tracking-widest text-success">keypulse</p>
-          <p className="text-[10px] font-bold tracking-widest text-primary/40 uppercase">By Harshal Patel</p>
+          <p className="text-[13px] font-heading font-semibold tracking-widest text-primary">keypulse</p>
+          <p className="text-[10px] font-medium tracking-widest text-primary/40 uppercase">By Harshal Patel</p>
         </div>
 
         {/* Professional Connections */}
@@ -210,7 +212,7 @@ export default function Home() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 bg-[var(--bg-panel)] border-2 border-border-primary rounded-xl text-[10px] font-black uppercase tracking-wider text-primary/60 hover:text-primary hover:border-primary/20 hover:translate-y-0.5 active:translate-y-1 transition-all"
+              className="px-4 py-2 bg-[var(--glass-bg)] border border-[var(--glass-border)] rounded-xl text-[10px] font-medium uppercase tracking-wider text-primary/60 hover:text-primary hover:border-primary/20 hover:scale-105 active:scale-95 transition-all shadow-[0_4px_12px_var(--glass-shadow)]"
             >
               {link.label}
             </a>
