@@ -167,14 +167,14 @@ export default function Home() {
           
           <div className="flex-1 px-6 xl:px-10 py-10 xl:py-12 space-y-8 relative z-10 transition-colors duration-500 h-auto">
             {!lastResult ? (
-              <div className="flex flex-col gap-4 opacity-20 pointer-events-none select-none animate-pulse">
-                <div className="h-32 w-full bg-white rounded-2xl border border-white flex flex-col p-6 gap-4">
-                  <div className="w-1/3 h-4 bg-white/20 rounded"></div>
-                  <div className="w-full h-8 bg-white/20 rounded mt-auto"></div>
+              <div className="flex flex-col gap-4 opacity-40 pointer-events-none select-none animate-[pulse_3s_ease-in-out_infinite]">
+                <div className="h-32 w-full bg-accent/5 rounded-2xl border border-accent/10 flex flex-col p-6 gap-4">
+                  <div className="w-1/3 h-4 bg-accent/20 rounded"></div>
+                  <div className="w-full h-8 bg-accent/10 rounded mt-auto"></div>
                 </div>
-                <div className="h-24 w-full bg-white/5 rounded-2xl border border-white/10 flex flex-col p-6 gap-4">
+                <div className="h-24 w-full bg-white/5 rounded-2xl border border-white/5 flex flex-col p-6 gap-4">
                   <div className="w-1/4 h-3 bg-white/10 rounded"></div>
-                  <div className="w-2/3 h-6 bg-white/10 rounded mt-auto"></div>
+                  <div className="w-2/3 h-6 bg-white/5 rounded mt-auto"></div>
                 </div>
               </div>
             ) : (
