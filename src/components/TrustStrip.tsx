@@ -12,7 +12,7 @@ export default function TrustStrip() {
       {signals.map((s, i) => (
         <div 
           key={s.label} 
-          className="flex-1 flex items-center gap-3 bg-primary/5 dark:bg-white/5 rounded-2xl p-4 transition-all hover:bg-primary/10 border-2 border-border-primary hover:border-primary/20 shadow-[0_4px_0_0_rgba(0,0,0,0.05)] dark:shadow-[0_4px_0_0_#18252C] hover:translate-y-[2px] hover:shadow-[0_2px_0_0_rgba(0,0,0,0.05)] dark:hover:shadow-[0_2px_0_0_#18252C] active:translate-y-[4px] active:shadow-none group"
+          className="flex-1 flex items-center gap-3 bg-primary/5 dark:bg-white/5 rounded-2xl p-4 transition-all hover:bg-primary/10 border-2 border-border-primary hover:border-primary/20 shadow-[0_4px_0_0_#94A3B8] dark:shadow-[0_4px_0_0_#18252C] hover:translate-y-[2px] hover:shadow-[0_2px_0_0_#94A3B8] dark:hover:shadow-[0_2px_0_0_#18252C] active:translate-y-[4px] active:shadow-none group"
         >
           <div className="w-6 h-6 flex items-center justify-center transition-transform group-hover:scale-110 duration-200" style={{ color: s.color === '#FAFAFA' || s.color === '#D4D4D8' || s.color === '#A1A1AA' ? 'var(--text-secondary)' : s.color }}>
             {i === 0 && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>}

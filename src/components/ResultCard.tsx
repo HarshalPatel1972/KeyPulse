@@ -14,7 +14,7 @@ export default function ResultCard({ result, provider: manualProvider, onDelete 
   const domain = provider?.domain || 'google.com'
   
   return (
-    <div className="w-full bg-surface border-2 border-border-primary shadow-[0_8px_0_0_rgba(0,0,0,0.1)] dark:shadow-[0_8px_0_0_#111C21] rounded-[32px] p-6 md:p-8 relative animate-[bounce-scale_0.4s_ease-out] transition-colors duration-500 overflow-hidden">
+    <div className="w-full bg-surface border-2 border-border-primary shadow-[0_8px_0_0_#94A3B8] dark:shadow-[0_8px_0_0_#111C21] rounded-[32px] p-6 md:p-8 relative animate-[bounce-scale_0.4s_ease-out] transition-colors duration-500 overflow-hidden">
       <div className="flex items-center justify-between mb-10">
         <div className="flex items-center gap-4">
           <div className="w-14 h-14 rounded-2xl bg-base border-2 border-border-primary flex items-center justify-center p-3">
