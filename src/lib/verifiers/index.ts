@@ -35,5 +35,17 @@ export async function verify(key: string, providerId: ProviderId): Promise<Verif
       checkedAt: new Date().toISOString(),
     }
   }
-  return verifier(key)
+  try {
+    return await verifier(key)
+  } catch (error) {
+    return {
+      status: 'error',
+      provider: providerId,
+      models: [],
+      account: null,
+      rateLimit: null,
+      rawError: error instanceof Error ? error.message : 'An unexpected error occurred during verification.',
+      checkedAt: new Date().toISOString(),
+    }
+  }
 }
