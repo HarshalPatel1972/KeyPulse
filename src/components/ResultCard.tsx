@@ -25,7 +25,7 @@ export default function ResultCard({ result, provider: manualProvider, onDelete 
         
         <div className="flex items-center gap-3">
           <span className="text-[16px] font-heading font-semibold text-primary tracking-tight">{providerName}</span>
-          <div className={`px-4 py-1.5 rounded-full text-[11px] font-bold tracking-[0.2em] uppercase border ${result.status === 'valid' ? 'bg-[var(--glass-bg)] backdrop-blur-md border-[var(--glass-border)] text-success shadow-[0_0_15px_rgba(52,199,89,0.2)]' : 'bg-[var(--glass-bg)] backdrop-blur-md border-[var(--glass-border)] text-error shadow-[0_0_15px_rgba(255,59,48,0.2)]'}`}>
+          <div className={`px-4 py-1.5 rounded-full text-[11px] font-bold tracking-[0.2em] uppercase border bg-[var(--glass-bg)] backdrop-blur-md border-[var(--glass-border)] ${result.status === 'valid' ? 'text-success shadow-[0_0_15px_rgba(52,199,89,0.2)]' : 'text-error shadow-[0_0_15px_rgba(255,59,48,0.2)]'}`}>
             {result.status}
           </div>
           {onDelete && (
