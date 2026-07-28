@@ -32,7 +32,7 @@ export default function KeyInput({ value, selectedProvider, onProviderChange, on
     <div className="w-full relative">
       <div className={`relative flex items-center transition-all duration-500 bg-[var(--glass-bg)] backdrop-blur-xl rounded-2xl p-2 border border-[var(--glass-border)] shadow-[0_4px_12px_var(--glass-shadow)] focus-within:border-white/30 focus-within:shadow-[0_0_20px_rgba(255,255,255,0.2)] ${isInvalid ? 'border-error shadow-[0_0_20px_rgba(255,59,48,0.2)]' : ''}`}>
         <input
-          type="text"
+          type={showKey ? "text" : "password"}
           value={value}
           onChange={(e) => handleChange(e.target.value)}
           placeholder="Paste API key..."
@@ -42,7 +42,6 @@ export default function KeyInput({ value, selectedProvider, onProviderChange, on
           autoCapitalize="off"
           spellCheck="false"
           className="flex-1 px-4 py-3.5 outline-none text-primary placeholder:text-[var(--text-secondary)] text-sm font-sans bg-transparent min-w-0"
-          style={{ WebkitTextSecurity: showKey ? 'none' : 'disc' } as any}
         />
         <button 
           onClick={() => setShowKey(!showKey)} 
