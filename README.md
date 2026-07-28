@@ -13,8 +13,8 @@ Built with a **Zero-Persistence** philosophy, KeyPulse operates in "Ghost-Mode"â
 KeyPulse is more than a tool; it's a cinematic dashboard for your workspace.
 
 - **Neural Isolation Architecture**: 100% client-side verification. Zero history. Zero logs.
-- **Cinematic Design System**: A high-contrast, boutique interface utilizing a "Lavender & Deep Indigo" color hierarchy.
-- **Micro-Interaction Fidelity**: Fluid animations, including the "Logo Fountain" and "Star River" background for a premium feel.
+- **Apple-Tier Design System**: A premium, frosted glassmorphism interface that dynamically adapts to light and dark modes.
+- **Micro-Interaction Fidelity**: Fluid, buttery-smooth animations, featuring a vibrant, multi-colored drifting mesh background for an incredibly polished feel.
 - **Node Verification**: Beyond just "valid/invalid"â€”retrieve available endpoints, account subject identifiers, and real-time API exceptions.
 
 ---
