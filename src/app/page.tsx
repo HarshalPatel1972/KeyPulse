@@ -123,7 +123,7 @@ export default function Home() {
                   forceManual={forceManual}
                   onKeyChange={(val) => {
                     setKey(val)
-                    if (!val) { setIsInvalid(false); setHasChecked(false); }
+                    if (!val) { setIsInvalid(false); setHasChecked(false); setProvider(null); }
                   }}
                   isLoading={isLoading}
                   isInvalid={isInvalid}
