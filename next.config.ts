@@ -14,6 +14,22 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 't1.gstatic.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'unavatar.io',
+      },
+      {
+        protocol: 'https',
+        hostname: 'logo.clearbit.com',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

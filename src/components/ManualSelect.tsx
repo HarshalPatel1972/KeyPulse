@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import Image from 'next/image'
 import { PROVIDERS } from '@/lib/providers'
 import { Provider } from '@/lib/types'
 
@@ -38,7 +39,7 @@ export default function ManualSelect({ value, onChange }: Props) {
             {value ? (
               <>
                 <div className="w-8 h-8 rounded-xl bg-base flex items-center justify-center p-1.5 shadow-md transition-transform group-hover:scale-110">
-                  <img src={`https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${value.domain}&size=128`} alt="" className="w-full h-full object-contain" />
+                  <Image src={`https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${value.domain}&size=128`} alt="" width={32} height={32} unoptimized className="w-full h-full object-contain" />
                 </div>
                 <div className="flex flex-col">
                   <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/40 leading-none mb-1.5">Selected Provider</span>

@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import { VerifyResult, Provider } from '@/lib/types'
 import { PROVIDERS_MAP } from '@/lib/providers'
 
@@ -18,7 +19,7 @@ export default function ResultCard({ result, provider: manualProvider, onDelete 
       <div className="flex items-center justify-between mb-10 relative z-10">
         <div className="flex items-center gap-4">
           <div className="w-14 h-14 rounded-2xl bg-[var(--glass-bg)] backdrop-blur-xl border border-[var(--glass-border)] flex items-center justify-center p-3 shadow-[0_4px_16px_var(--glass-shadow)]">
-            <img src={`https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${domain}&size=128`} alt="" className="w-full h-full object-contain brightness-110" />
+            <Image src={`https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${domain}&size=128`} alt="" width={56} height={56} unoptimized className="w-full h-full object-contain brightness-110" />
           </div>
         </div>
         
