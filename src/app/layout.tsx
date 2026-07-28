@@ -24,11 +24,13 @@ export const metadata: Metadata = {
     url: 'https://key-pulse-tau.vercel.app',
     siteName: 'KeyPulse',
     type: 'website',
+    images: [{ url: '/og-image.png' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'KeyPulse — API Key Validator',
     description: 'The heartbeat of your API lifecycle.',
+    images: ['/og-image.png'],
   },
   icons: {
     icon: '/favicon.ico',
