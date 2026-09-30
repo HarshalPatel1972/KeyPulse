@@ -13,7 +13,7 @@ export default function VerifyButton({ disabled, isLoading }: Props) {
       <span className="btn-fill" aria-hidden />
       <span className="relative z-10 inline-flex items-center gap-2.5">
         {isLoading ? 'Listening' : 'Check pulse'}
-        {isLoading && <span className="inline-block h-2 w-2 animate-blink bg-current" />}
+        {isLoading && <span className="caret inline-block h-2 w-2 bg-current" />}
       </span>
     </button>
   )

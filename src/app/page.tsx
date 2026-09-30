@@ -117,9 +117,7 @@ export default function Home() {
         <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between gap-4 px-5 md:px-8">
           <a href="#check" className="flex items-center gap-3">
             <span className="relative flex h-2 w-2">
-              <span
-                className={`absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-70 ${isLoading ? '[animation-duration:0.55s]' : ''}`}
-              />
+              <span className="caret absolute inline-flex h-full w-full rounded-full bg-accent" />
               <span className="relative h-2 w-2 rounded-full bg-accent" />
             </span>
             <span className="font-sans text-[15px] font-medium tracking-tight">keypulse</span>
@@ -166,20 +164,28 @@ export default function Home() {
         <section id="check" className="mx-auto grid max-w-[1440px] items-end gap-14 px-5 pt-14 pb-16 md:px-8 md:pt-20 md:pb-24 lg:grid-cols-12 lg:gap-16 lg:pt-28">
           <div className="lg:col-span-5 lg:pb-6">
             <div>
-              <p className="animate-rise font-mono text-[11px] uppercase tracking-[0.22em] text-muted">API health, live</p>
-              <h1 className="animate-rise mt-5 font-serif text-[clamp(3.5rem,6.4vw,6.35rem)] leading-[0.88] tracking-[-0.04em] [animation-delay:80ms]">
-                Does your key
-                <br />
-                still have a
-                <br />
-                <em className="text-accent-ink italic bg-[linear-gradient(transparent_58%,var(--accent)_58%,var(--accent)_90%,transparent_90%)]">
-                  pulse?
-                </em>
+              <p className="settle font-mono text-[11px] uppercase tracking-[0.22em] text-muted">API health, live</p>
+              <h1 className="mt-5 font-serif text-[clamp(3.5rem,6.4vw,6.35rem)] leading-[0.88] tracking-[-0.04em]">
+                <span className="line-mask">
+                  <span className="line-in">Does your key</span>
+                </span>
+                <span className="line-mask">
+                  <span className="line-in" style={{ animationDelay: '90ms' }}>
+                    still have a
+                  </span>
+                </span>
+                <span className="line-mask">
+                  <span className="line-in" style={{ animationDelay: '180ms' }}>
+                    <em className="text-accent-ink italic bg-[linear-gradient(transparent_58%,var(--accent)_58%,var(--accent)_90%,transparent_90%)]">
+                      pulse?
+                    </em>
+                  </span>
+                </span>
               </h1>
-              <p className="animate-rise mt-8 max-w-md text-lg leading-relaxed text-muted [animation-delay:160ms]">
+              <p className="settle mt-8 max-w-md text-lg leading-relaxed text-muted" style={{ animationDelay: '240ms' }}>
                 Paste a key. We name the provider, ask it once whether the key is alive, and show what came back. Nothing is written down.
               </p>
-              <dl className="animate-rise mt-12 grid grid-cols-3 gap-4 border-t border-line pt-6 [animation-delay:240ms]">
+              <dl className="settle mt-12 grid grid-cols-3 gap-4 border-t border-line pt-6" style={{ animationDelay: '340ms' }}>
                 <div>
                   <dt className="font-sans text-[2.75rem] font-medium leading-none tracking-[-0.05em] tabular-nums">{PROVIDERS.length}</dt>
                   <dd className="mt-2 font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Providers</dd>
@@ -196,7 +202,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="animate-rise relative border border-line bg-raised lg:col-span-7 [animation-delay:180ms]">
+          <div className="settle relative border border-line bg-raised lg:col-span-7" style={{ animationDelay: '160ms' }}>
             <span className="frame-tick frame-tick-tl" />
             <span className="frame-tick frame-tick-tr" />
             <span className="frame-tick frame-tick-bl" />
@@ -270,11 +276,11 @@ export default function Home() {
 
         <section id="readout" ref={readoutRef} aria-live="polite" className="border-t border-line">
           {isLoading && !lastResult && (
-            <div className="mx-auto max-w-[1440px] px-5 py-16 md:px-8 md:py-24">
+            <div className="readout-in mx-auto max-w-[1440px] px-5 py-16 md:px-8 md:py-24">
               <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted">Readout</p>
               <p className="mt-4 font-serif text-[clamp(3.5rem,7vw,6.5rem)] leading-[0.88] tracking-[-0.04em]">
                 Listening
-                <span className="animate-blink">_</span>
+                <span className="caret">_</span>
               </p>
               <p className="mt-5 max-w-md text-lg text-muted">
                 Asking {provider?.name ?? 'the provider'} whether this key is alive.

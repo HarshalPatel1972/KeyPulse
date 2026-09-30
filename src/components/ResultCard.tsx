@@ -85,7 +85,7 @@ export default function ResultCard({ result, provider: manualProvider, onDelete 
   }, [query, result.models])
 
   return (
-    <div className="mx-auto grid max-w-[1440px] gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-12 lg:gap-16">
+    <div className="readout-in mx-auto grid max-w-[1440px] gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-12 lg:gap-16">
       <div className="lg:col-span-5">
         <div className="flex flex-wrap items-center gap-3">
           {provider && <ProviderMark domain={provider.domain} name={provider.name} size={22} />}
