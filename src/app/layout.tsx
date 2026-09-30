@@ -1,11 +1,25 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Instrument_Sans, Instrument_Serif, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({
+const instrumentSans = Instrument_Sans({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-inter',
+  variable: '--font-instrument-sans',
+})
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ['latin'],
+  weight: '400',
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-instrument-serif',
+})
+
+const jetbrains = JetBrains_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-jetbrains',
 })
 
 export const metadata: Metadata = {
@@ -40,7 +54,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${instrumentSans.variable} ${instrumentSerif.variable} ${jetbrains.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -57,7 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className={`${inter.variable} font-sans antialiased`} suppressHydrationWarning>
+      <body className="font-sans antialiased" suppressHydrationWarning>
         {children}
       </body>
     </html>
