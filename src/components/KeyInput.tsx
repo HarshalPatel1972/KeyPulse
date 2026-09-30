@@ -1,4 +1,6 @@
-import { useState, useCallback } from 'react'
+'use client'
+
+import { useCallback, useEffect, useState } from 'react'
 import { detectProvider } from '@/lib/detect'
 import { Provider } from '@/lib/types'
 import ManualSelect from './ManualSelect'
@@ -11,64 +13,94 @@ interface Props {
   isLoading: boolean
   isInvalid: boolean
   forceManual?: boolean
-  rightAction?: React.ReactNode
 }
 
-export default function KeyInput({ value, selectedProvider, onProviderChange, onKeyChange, isLoading, isInvalid, forceManual, rightAction }: Props) {
+export default function KeyInput({
+  value,
+  selectedProvider,
+  onProviderChange,
+  onKeyChange,
+  isLoading,
+  isInvalid,
+  forceManual,
+}: Props) {
   const [showKey, setShowKey] = useState(false)
   const [detection, setDetection] = useState<ReturnType<typeof detectProvider> | null>(null)
-  
-  const handleChange = useCallback((newValue: string) => {
-    onKeyChange(newValue)
-    if (!newValue.trim()) return
-    const result = detectProvider(newValue)
-    setDetection(result)
-    if (result.confidence === 'high' && result.provider) {
-      onProviderChange(result.provider)
-    }
-  }, [onKeyChange, onProviderChange])
+
+  useEffect(() => {
+    if (!value.trim()) setDetection(null)
+  }, [value])
+
+  const handleChange = useCallback(
+    (newValue: string) => {
+      onKeyChange(newValue)
+      if (!newValue.trim()) {
+        setDetection(null)
+        return
+      }
+      const result = detectProvider(newValue)
+      setDetection(result)
+      if (result.confidence === 'high' && result.provider) {
+        onProviderChange(result.provider)
+      }
+    },
+    [onKeyChange, onProviderChange],
+  )
+
+  const matched = detection?.confidence === 'high' && detection.provider
+  const showManual = Boolean(forceManual || (detection?.confidence === 'unknown' && value.length > 8))
 
   return (
-    <div className="w-full relative">
-      <div className={`relative flex items-center transition-all duration-500 bg-[var(--glass-bg)] backdrop-blur-xl rounded-2xl p-2 border border-[var(--glass-border)] shadow-[0_4px_12px_var(--glass-shadow)] focus-within:border-white/30 focus-within:shadow-[0_0_20px_rgba(255,255,255,0.2)] ${isInvalid ? 'border-error shadow-[0_0_20px_rgba(255,59,48,0.2)]' : ''}`}>
+    <div className="w-full">
+      <div className="mb-3 flex items-end justify-between gap-4">
+        <label htmlFor="api-key" className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted">
+          API key
+        </label>
+        <button
+          type="button"
+          onClick={() => setShowKey((open) => !open)}
+          className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted transition-colors hover:text-ink"
+        >
+          {showKey ? 'Hide' : 'Show'}
+        </button>
+      </div>
+
+      <div className={`border-b ${isInvalid ? 'border-danger' : 'border-ink/25 focus-within:border-ink'}`}>
         <input
-          type={showKey ? "text" : "password"}
+          id="api-key"
+          name="api-key"
+          type={showKey ? 'text' : 'password'}
           value={value}
-          onChange={(e) => handleChange(e.target.value)}
-          placeholder="Paste API key..."
+          onChange={(event) => handleChange(event.target.value)}
+          placeholder="sk-…"
           disabled={isLoading}
           autoComplete="off"
           autoCorrect="off"
           autoCapitalize="off"
-          spellCheck="false"
-          className="flex-1 px-4 py-3.5 outline-none text-primary placeholder:text-[var(--text-secondary)] text-sm font-sans bg-transparent min-w-0"
+          spellCheck={false}
+          data-1p-ignore
+          data-lpignore="true"
+          className="w-full bg-transparent py-3.5 font-mono text-[15px] text-ink outline-none placeholder:text-muted/70 md:text-base"
         />
-        <button 
-          onClick={() => setShowKey(!showKey)} 
-          className="px-3 py-2 text-[10px] uppercase font-bold tracking-widest text-primary/30 hover:text-primary transition-colors shrink-0"
-        >
-          {showKey ? 'Hide' : 'Show'}
-        </button>
-        {rightAction && (
-          <div className="shrink-0 ml-1">
-            {rightAction}
-          </div>
+      </div>
+
+      <div className="mt-4 min-h-6">
+        {isInvalid && (
+          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-danger">The provider refused this key.</p>
+        )}
+        {!isInvalid && matched && detection.provider && (
+          <p className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-ink">
+            <span className="h-1.5 w-1.5 bg-accent" />
+            {detection.provider.name} matched
+          </p>
         )}
       </div>
 
-      <div className="mt-4 h-8 flex items-center">
-        {detection?.confidence === 'high' && detection.provider && (
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-success/10 rounded-full border border-success/20 animate-fade-in">
-            <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
-            <span className="text-[9px] font-bold uppercase tracking-widest text-success">{detection.provider.name} Identified</span>
-          </div>
-        )}
-      </div>
-
-      {(forceManual || (detection?.confidence === 'unknown' && value.length > 8)) && (
-        <ManualSelect value={selectedProvider} onChange={p => onProviderChange(p)} />
+      {showManual && (
+        <div className="mt-2">
+          <ManualSelect value={selectedProvider} onChange={(provider) => onProviderChange(provider)} />
+        </div>
       )}
     </div>
   )
 }
-
