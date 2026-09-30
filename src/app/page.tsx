@@ -115,12 +115,19 @@ export default function Home() {
 
       <header className="sticky top-0 z-40 border-b border-line bg-paper/80 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between gap-4 px-5 md:px-8">
-          <a href="#check" className="flex items-center gap-3">
-            <span className="relative flex h-2 w-2">
-              <span className="caret absolute inline-flex h-full w-full rounded-full bg-accent" />
-              <span className="relative h-2 w-2 rounded-full bg-accent" />
-            </span>
-            <span className="font-sans text-[15px] font-medium tracking-tight">keypulse</span>
+          <a href="#check" className="flex items-center gap-2.5 text-ink">
+            <svg viewBox="0 0 36 36" className="h-[30px] w-[30px] shrink-0" aria-hidden>
+              <rect x="1" y="1" width="34" height="34" fill="none" stroke="currentColor" strokeWidth="1.25" />
+              <path
+                d="M6.5 19.5h6.2l2.1-6.4 3.5 12.2 2.3-5.8H29.5"
+                fill="none"
+                stroke="var(--accent)"
+                strokeWidth="1.7"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span className="font-serif text-[1.55rem] leading-none tracking-[-0.045em]">keypulse</span>
           </a>
 
           <nav className="hidden items-center gap-8 font-mono text-[11px] uppercase tracking-[0.18em] text-muted md:flex">
