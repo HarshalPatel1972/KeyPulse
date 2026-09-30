@@ -130,7 +130,7 @@ export default function Home() {
             <span className="font-serif text-[1.55rem] leading-none tracking-[-0.045em]">keypulse</span>
           </a>
 
-          <nav className="hidden items-center gap-8 font-mono text-[11px] uppercase tracking-[0.18em] text-muted md:flex">
+          <nav className="hidden items-center gap-7 font-serif text-[1.05rem] tracking-[-0.02em] text-muted md:flex">
             <a href="#check" className="link-draw hover:text-ink">
               Check
             </a>
@@ -147,14 +147,14 @@ export default function Home() {
               type="button"
               onClick={toggleTheme}
               aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
-              className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted transition-colors hover:text-ink"
+              className="font-serif text-[1.05rem] tracking-[-0.02em] text-muted transition-colors hover:text-ink"
             >
               {theme === 'dark' ? 'Light' : 'Dark'}
             </button>
             <GitHubButton />
           </div>
         </div>
-        <div className="flex gap-5 border-t border-line px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.18em] text-muted md:hidden">
+        <div className="flex gap-5 border-t border-line px-5 py-2.5 font-serif text-[1.05rem] tracking-[-0.02em] text-muted md:hidden">
           <a href="#check" className="hover:text-ink">
             Check
           </a>
@@ -363,8 +363,8 @@ export default function Home() {
       <footer className="border-t border-line">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-8 px-5 py-10 md:flex-row md:items-end md:justify-between md:px-8">
           <div>
-            <p className="font-serif text-4xl tracking-[-0.03em]">keypulse</p>
-            <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.18em] text-muted">By Harshal Patel</p>
+            <p className="font-serif text-[1.7rem] leading-none tracking-[-0.04em]">keypulse</p>
+            <p className="mt-2 font-sans text-sm text-muted">Harshal Patel</p>
           </div>
           <nav className="flex flex-wrap gap-x-6 gap-y-3">
             {LINKS.map((link) => (
@@ -373,13 +373,13 @@ export default function Home() {
                 href={link.href}
                 target={link.href.startsWith('mailto:') ? undefined : '_blank'}
                 rel={link.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
-                className="link-draw font-mono text-[11px] uppercase tracking-[0.16em] text-muted hover:text-ink"
+                className="link-draw font-serif text-[1.05rem] tracking-[-0.02em] text-muted hover:text-ink"
               >
                 {link.label}
               </a>
             ))}
           </nav>
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">© 2026</p>
+          <p className="font-sans text-sm text-muted">© 2026</p>
         </div>
       </footer>
     </div>
