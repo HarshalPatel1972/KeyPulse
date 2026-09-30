@@ -168,7 +168,7 @@ export default function Home() {
       </header>
 
       <main>
-        <section id="check" className="mx-auto grid max-w-[1440px] items-end gap-14 px-5 pt-14 pb-16 md:px-8 md:pt-20 md:pb-24 lg:grid-cols-12 lg:gap-16 lg:pt-28">
+        <section id="check" className="mx-auto grid max-w-[1440px] items-end gap-10 px-5 pt-6 pb-14 md:px-8 md:pt-8 md:pb-16 lg:grid-cols-12 lg:gap-16 lg:pt-8">
           <div className="lg:col-span-5 lg:pb-6">
             <div>
               <p className="settle font-mono text-[11px] uppercase tracking-[0.22em] text-muted">API health, live</p>
