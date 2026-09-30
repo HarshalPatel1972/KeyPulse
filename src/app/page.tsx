@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { verify } from '@/lib/verifiers'
 import { PROVIDERS } from '@/lib/providers'
 import { Provider, VerifyResult } from '@/lib/types'
@@ -46,6 +46,14 @@ export default function Home() {
   const [isInvalid, setIsInvalid] = useState(false)
   const [forceManual, setForceManual] = useState(false)
   const [theme, setTheme] = useState<'light' | 'dark'>('dark')
+  const readoutRef = useRef<HTMLElement>(null)
+
+  const scrollToReadout = () => {
+    const node = readoutRef.current
+    if (!node) return
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    node.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' })
+  }
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('kp_theme') as 'light' | 'dark' | null
@@ -53,6 +61,12 @@ export default function Home() {
     setTheme(next)
     document.documentElement.setAttribute('data-theme', next)
   }, [])
+
+  useEffect(() => {
+    if (!isLoading && !lastResult) return
+    const frame = window.requestAnimationFrame(() => scrollToReadout())
+    return () => window.cancelAnimationFrame(frame)
+  }, [isLoading, lastResult])
 
   const toggleTheme = () => {
     const next = theme === 'light' ? 'dark' : 'light'
@@ -73,15 +87,12 @@ export default function Home() {
       (result.rawError?.toLowerCase().includes('invalid') || result.rawError?.toLowerCase().includes('unauthorized'))
     ) {
       setIsInvalid(true)
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      document.getElementById('check')?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' })
       return
     }
     setIsInvalid(false)
     setLastResult(result)
-    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
-      window.setTimeout(() => {
-        document.getElementById('readout')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }, 80)
-    }
   }, [key, provider, isLoading])
 
   const handleReset = () => {
@@ -257,7 +268,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="readout" aria-live="polite" className="border-t border-line">
+        <section id="readout" ref={readoutRef} aria-live="polite" className="border-t border-line">
           {isLoading && !lastResult && (
             <div className="mx-auto max-w-[1440px] px-5 py-16 md:px-8 md:py-24">
               <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted">Readout</p>
