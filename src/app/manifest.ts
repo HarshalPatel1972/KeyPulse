@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'Instant, privacy-first API key detection and validation.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#08070f',
-    theme_color: '#7c3aed',
+    background_color: '#090a08',
+    theme_color: '#090a08',
     icons: [
       {
         src: '/favicon.ico',
