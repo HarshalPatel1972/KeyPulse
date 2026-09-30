@@ -38,7 +38,14 @@ export const metadata: Metadata = {
     url: 'https://key-pulse-tau.vercel.app',
     siteName: 'KeyPulse',
     type: 'website',
-    images: [{ url: '/og-image.png' }],
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'KeyPulse — Does your key still have a pulse?',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
@@ -47,8 +54,8 @@ export const metadata: Metadata = {
     images: ['/og-image.png'],
   },
   icons: {
-    icon: '/favicon.ico',
-    apple: '/favicon.ico',
+    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
   },
 }
 
